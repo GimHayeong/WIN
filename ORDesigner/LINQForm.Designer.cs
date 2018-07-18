@@ -53,6 +53,9 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbTblPeopleBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tsTbxName = new System.Windows.Forms.ToolStripTextBox();
+            this.tsBtnSearchByName = new System.Windows.Forms.ToolStripButton();
             this.tblSaleDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,13 +65,13 @@
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.ageTextBox = new System.Windows.Forms.TextBox();
             this.maleCheckBox = new System.Windows.Forms.CheckBox();
-            this.tblPeopleTableAdapter = new ORDesigner.ADOPeopleDataSetTableAdapters.tblPeopleTableAdapter();
-            this.tblSaleTableAdapter = new ORDesigner.ADOPeopleDataSetTableAdapters.tblSaleTableAdapter();
-            this.tblAdapterManager = new ORDesigner.ADOPeopleDataSetTableAdapters.TableAdapterManager();
             this.btnFillBy35 = new System.Windows.Forms.Button();
             this.btnGetCount = new System.Windows.Forms.Button();
             this.brnUpdateByName = new System.Windows.Forms.Button();
             this.btnGetToday = new System.Windows.Forms.Button();
+            this.tblPeopleTableAdapter = new ORDesigner.ADOPeopleDataSetTableAdapters.tblPeopleTableAdapter();
+            this.tblSaleTableAdapter = new ORDesigner.ADOPeopleDataSetTableAdapters.tblSaleTableAdapter();
+            this.tblAdapterManager = new ORDesigner.ADOPeopleDataSetTableAdapters.TableAdapterManager();
             nameLabel = new System.Windows.Forms.Label();
             ageLabel = new System.Windows.Forms.Label();
             maleLabel = new System.Windows.Forms.Label();
@@ -86,27 +89,27 @@
             nameLabel.AutoSize = true;
             nameLabel.Location = new System.Drawing.Point(592, 45);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(48, 15);
+            nameLabel.Size = new System.Drawing.Size(42, 15);
             nameLabel.TabIndex = 4;
-            nameLabel.Text = "Name:";
+            nameLabel.Text = "이름:";
             // 
             // ageLabel
             // 
             ageLabel.AutoSize = true;
             ageLabel.Location = new System.Drawing.Point(592, 76);
             ageLabel.Name = "ageLabel";
-            ageLabel.Size = new System.Drawing.Size(37, 15);
+            ageLabel.Size = new System.Drawing.Size(42, 15);
             ageLabel.TabIndex = 6;
-            ageLabel.Text = "Age:";
+            ageLabel.Text = "나이:";
             // 
             // maleLabel
             // 
             maleLabel.AutoSize = true;
             maleLabel.Location = new System.Drawing.Point(592, 109);
             maleLabel.Name = "maleLabel";
-            maleLabel.Size = new System.Drawing.Size(43, 15);
+            maleLabel.Size = new System.Drawing.Size(42, 15);
             maleLabel.TabIndex = 8;
-            maleLabel.Text = "Male:";
+            maleLabel.Text = "성별:";
             // 
             // lbxResult
             // 
@@ -116,7 +119,7 @@
             this.lbxResult.ItemHeight = 15;
             this.lbxResult.Location = new System.Drawing.Point(12, 42);
             this.lbxResult.Name = "lbxResult";
-            this.lbxResult.Size = new System.Drawing.Size(193, 274);
+            this.lbxResult.Size = new System.Drawing.Size(193, 289);
             this.lbxResult.TabIndex = 0;
             // 
             // dgvPeople
@@ -131,11 +134,12 @@
             this.ageDataGridViewTextBoxColumn,
             this.maleDataGridViewCheckBoxColumn});
             this.dgvPeople.DataSource = this.tblPeopleBindingSource;
-            this.dgvPeople.Location = new System.Drawing.Point(220, 42);
+            this.dgvPeople.Location = new System.Drawing.Point(220, 45);
             this.dgvPeople.Name = "dgvPeople";
             this.dgvPeople.RowTemplate.Height = 27;
-            this.dgvPeople.Size = new System.Drawing.Size(349, 292);
+            this.dgvPeople.Size = new System.Drawing.Size(349, 289);
             this.dgvPeople.TabIndex = 1;
+            this.dgvPeople.SelectionChanged += new System.EventHandler(this.dgvPeople_SelectionChanged);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -146,14 +150,18 @@
             // ageDataGridViewTextBoxColumn
             // 
             this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn.FillWeight = 60F;
             this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
             this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
+            this.ageDataGridViewTextBoxColumn.Width = 60;
             // 
             // maleDataGridViewCheckBoxColumn
             // 
             this.maleDataGridViewCheckBoxColumn.DataPropertyName = "Male";
+            this.maleDataGridViewCheckBoxColumn.FillWeight = 60F;
             this.maleDataGridViewCheckBoxColumn.HeaderText = "Male";
             this.maleDataGridViewCheckBoxColumn.Name = "maleDataGridViewCheckBoxColumn";
+            this.maleDataGridViewCheckBoxColumn.Width = 60;
             // 
             // tblPeopleBindingSource
             // 
@@ -184,7 +192,10 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.tsbTblPeopleBindingNavigatorSaveItem});
+            this.tsbTblPeopleBindingNavigatorSaveItem,
+            this.toolStripLabel1,
+            this.tsTbxName,
+            this.tsBtnSearchByName});
             this.tblBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.tblBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.tblBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -289,7 +300,28 @@
             this.tsbTblPeopleBindingNavigatorSaveItem.Name = "tsbTblPeopleBindingNavigatorSaveItem";
             this.tsbTblPeopleBindingNavigatorSaveItem.Size = new System.Drawing.Size(24, 24);
             this.tsbTblPeopleBindingNavigatorSaveItem.Text = "저장";
-            this.tsbTblPeopleBindingNavigatorSaveItem.Click += new System.EventHandler(this.tsbTblPeopleBindingNavigatorSaveItem_Click);
+            this.tsbTblPeopleBindingNavigatorSaveItem.Click += new System.EventHandler(this.TblPeopleBindingNavigatorButton_Click);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(117, 24);
+            this.toolStripLabel1.Text = "검색할사람이름:";
+            // 
+            // tsTbxName
+            // 
+            this.tsTbxName.Name = "tsTbxName";
+            this.tsTbxName.Size = new System.Drawing.Size(100, 27);
+            // 
+            // tsBtnSearchByName
+            // 
+            this.tsBtnSearchByName.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnSearchByName.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnSearchByName.Image")));
+            this.tsBtnSearchByName.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnSearchByName.Name = "tsBtnSearchByName";
+            this.tsBtnSearchByName.Size = new System.Drawing.Size(24, 24);
+            this.tsBtnSearchByName.Text = "toolStripButton1";
+            this.tsBtnSearchByName.Click += new System.EventHandler(this.TblPeopleBindingNavigatorButton_Click);
             // 
             // tblSaleDataGridView
             // 
@@ -301,18 +333,20 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
             this.tblSaleDataGridView.DataSource = this.tblSaleBindingSource;
-            this.tblSaleDataGridView.Location = new System.Drawing.Point(756, 42);
+            this.tblSaleDataGridView.Location = new System.Drawing.Point(756, 45);
             this.tblSaleDataGridView.Name = "tblSaleDataGridView";
             this.tblSaleDataGridView.RowTemplate.Height = 27;
-            this.tblSaleDataGridView.Size = new System.Drawing.Size(371, 286);
+            this.tblSaleDataGridView.Size = new System.Drawing.Size(371, 289);
             this.tblSaleDataGridView.TabIndex = 3;
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "OrderNo";
+            this.dataGridViewTextBoxColumn1.FillWeight = 60F;
             this.dataGridViewTextBoxColumn1.HeaderText = "OrderNo";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 60;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -342,7 +376,7 @@
             this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblPeopleBindingSource, "Name", true));
             this.nameTextBox.Location = new System.Drawing.Point(646, 42);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(104, 25);
+            this.nameTextBox.Size = new System.Drawing.Size(90, 25);
             this.nameTextBox.TabIndex = 5;
             // 
             // ageTextBox
@@ -350,7 +384,7 @@
             this.ageTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblPeopleBindingSource, "Age", true));
             this.ageTextBox.Location = new System.Drawing.Point(646, 73);
             this.ageTextBox.Name = "ageTextBox";
-            this.ageTextBox.Size = new System.Drawing.Size(104, 25);
+            this.ageTextBox.Size = new System.Drawing.Size(57, 25);
             this.ageTextBox.TabIndex = 7;
             // 
             // maleCheckBox
@@ -360,8 +394,48 @@
             this.maleCheckBox.Name = "maleCheckBox";
             this.maleCheckBox.Size = new System.Drawing.Size(104, 24);
             this.maleCheckBox.TabIndex = 9;
-            this.maleCheckBox.Text = "checkBox1";
+            this.maleCheckBox.Text = "남자";
             this.maleCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // btnFillBy35
+            // 
+            this.btnFillBy35.Location = new System.Drawing.Point(595, 176);
+            this.btnFillBy35.Name = "btnFillBy35";
+            this.btnFillBy35.Size = new System.Drawing.Size(141, 38);
+            this.btnFillBy35.TabIndex = 10;
+            this.btnFillBy35.Text = "35세이상";
+            this.btnFillBy35.UseVisualStyleBackColor = true;
+            this.btnFillBy35.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // btnGetCount
+            // 
+            this.btnGetCount.Location = new System.Drawing.Point(595, 216);
+            this.btnGetCount.Name = "btnGetCount";
+            this.btnGetCount.Size = new System.Drawing.Size(141, 38);
+            this.btnGetCount.TabIndex = 10;
+            this.btnGetCount.Text = "회원수조회";
+            this.btnGetCount.UseVisualStyleBackColor = true;
+            this.btnGetCount.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // brnUpdateByName
+            // 
+            this.brnUpdateByName.Location = new System.Drawing.Point(595, 256);
+            this.brnUpdateByName.Name = "brnUpdateByName";
+            this.brnUpdateByName.Size = new System.Drawing.Size(141, 38);
+            this.brnUpdateByName.TabIndex = 10;
+            this.brnUpdateByName.Text = "이름으로 수정";
+            this.brnUpdateByName.UseVisualStyleBackColor = true;
+            this.brnUpdateByName.Click += new System.EventHandler(this.Button_Click);
+            // 
+            // btnGetToday
+            // 
+            this.btnGetToday.Location = new System.Drawing.Point(595, 296);
+            this.btnGetToday.Name = "btnGetToday";
+            this.btnGetToday.Size = new System.Drawing.Size(141, 38);
+            this.btnGetToday.TabIndex = 10;
+            this.btnGetToday.Text = "시스템날짜";
+            this.btnGetToday.UseVisualStyleBackColor = true;
+            this.btnGetToday.Click += new System.EventHandler(this.Button_Click);
             // 
             // tblPeopleTableAdapter
             // 
@@ -377,46 +451,6 @@
             this.tblAdapterManager.tblPeopleTableAdapter = this.tblPeopleTableAdapter;
             this.tblAdapterManager.tblSaleTableAdapter = this.tblSaleTableAdapter;
             this.tblAdapterManager.UpdateOrder = ORDesigner.ADOPeopleDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // btnFillBy35
-            // 
-            this.btnFillBy35.Location = new System.Drawing.Point(595, 153);
-            this.btnFillBy35.Name = "btnFillBy35";
-            this.btnFillBy35.Size = new System.Drawing.Size(141, 23);
-            this.btnFillBy35.TabIndex = 10;
-            this.btnFillBy35.Text = "35세이상";
-            this.btnFillBy35.UseVisualStyleBackColor = true;
-            this.btnFillBy35.Click += new System.EventHandler(this.Button_Click);
-            // 
-            // btnGetCount
-            // 
-            this.btnGetCount.Location = new System.Drawing.Point(595, 182);
-            this.btnGetCount.Name = "btnGetCount";
-            this.btnGetCount.Size = new System.Drawing.Size(141, 23);
-            this.btnGetCount.TabIndex = 10;
-            this.btnGetCount.Text = "회원수조회";
-            this.btnGetCount.UseVisualStyleBackColor = true;
-            this.btnGetCount.Click += new System.EventHandler(this.Button_Click);
-            // 
-            // brnUpdateByName
-            // 
-            this.brnUpdateByName.Location = new System.Drawing.Point(595, 211);
-            this.brnUpdateByName.Name = "brnUpdateByName";
-            this.brnUpdateByName.Size = new System.Drawing.Size(141, 23);
-            this.brnUpdateByName.TabIndex = 10;
-            this.brnUpdateByName.Text = "이름으로 수정";
-            this.brnUpdateByName.UseVisualStyleBackColor = true;
-            this.brnUpdateByName.Click += new System.EventHandler(this.Button_Click);
-            // 
-            // btnGetToday
-            // 
-            this.btnGetToday.Location = new System.Drawing.Point(595, 240);
-            this.btnGetToday.Name = "btnGetToday";
-            this.btnGetToday.Size = new System.Drawing.Size(141, 23);
-            this.btnGetToday.TabIndex = 10;
-            this.btnGetToday.Text = "시스템날짜";
-            this.btnGetToday.UseVisualStyleBackColor = true;
-            this.btnGetToday.Click += new System.EventHandler(this.Button_Click);
             // 
             // LINQForm
             // 
@@ -460,9 +494,6 @@
         private ADOPeopleDataSet adoPeopleDataSet;
         private System.Windows.Forms.BindingSource tblPeopleBindingSource;
         private ADOPeopleDataSetTableAdapters.tblPeopleTableAdapter tblPeopleTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn maleDataGridViewCheckBoxColumn;
         private System.Windows.Forms.BindingNavigator tblBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
@@ -480,10 +511,6 @@
         private ADOPeopleDataSetTableAdapters.tblSaleTableAdapter tblSaleTableAdapter;
         private ADOPeopleDataSetTableAdapters.TableAdapterManager tblAdapterManager;
         private System.Windows.Forms.DataGridView tblSaleDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.TextBox ageTextBox;
         private System.Windows.Forms.CheckBox maleCheckBox;
@@ -491,6 +518,16 @@
         private System.Windows.Forms.Button btnGetCount;
         private System.Windows.Forms.Button brnUpdateByName;
         private System.Windows.Forms.Button btnGetToday;
+        private System.Windows.Forms.ToolStripTextBox tsTbxName;
+        private System.Windows.Forms.ToolStripButton tsBtnSearchByName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn maleDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }
 

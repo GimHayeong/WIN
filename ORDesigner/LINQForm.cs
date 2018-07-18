@@ -28,11 +28,11 @@ namespace ORDesigner
             this.tblSaleTableAdapter.Connection.ConnectionString = SampleData.GetConnectionString();
 
 
-            // TODO: 이 코드는 데이터를 'adoPeopleDataSet.tblSale' 테이블에 로드합니다. 필요 시 이 코드를 이동하거나 제거할 수 있습니다.
-            this.tblSaleTableAdapter.Fill(this.adoPeopleDataSet.tblSale);
-
             // TODO: 이 코드는 데이터를 'aDOPeopleDataSet.tblPeople' 테이블에 로드합니다. 필요 시 이 코드를 이동하거나 제거할 수 있습니다.
             this.tblPeopleTableAdapter.Fill(this.adoPeopleDataSet.tblPeople);
+
+            // TODO: 이 코드는 데이터를 'adoPeopleDataSet.tblSale' 테이블에 로드합니다. 필요 시 이 코드를 이동하거나 제거할 수 있습니다.
+            //this.tblSaleTableAdapter.Fill(this.adoPeopleDataSet.tblSale);
         }
 
         private void GetPeopleListAll()
@@ -62,14 +62,36 @@ namespace ORDesigner
 
         private void tsbTblPeopleBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.tblPeopleBindingSource.EndEdit();
-            this.tblPeopleTableAdapter.Update(this.adoPeopleDataSet.tblPeople);
         }
 
-        private void btnFillBy35_Click(object sender, EventArgs e)
+        private void TblPeopleBindingNavigatorButton_Click(object sender, EventArgs e)
         {
+            ToolStripButton btn = sender as ToolStripButton;
+            if (btn != null)
+            {
+                switch (btn.Name)
+                {
+                    case "tsbTblPeopleBindingNavigatorSaveItem":
+                        this.Validate();
+                        this.tblPeopleBindingSource.EndEdit();
+                        this.tblPeopleTableAdapter.Update(this.adoPeopleDataSet.tblPeople);
+                        break;
+
+                    case "tsBtnSearchByName":
+                        if (!String.IsNullOrWhiteSpace(tsTbxName.Text))
+                        {
+                            this.tblPeopleTableAdapter.FillByName(this.adoPeopleDataSet.tblPeople, tsTbxName.Text);
+                        }
+                        else
+                        {
+                            this.tblPeopleTableAdapter.Fill(this.adoPeopleDataSet.tblPeople);
+                        }
+                        break;
+                }
+            }
         }
+
+
 
         private void Button_Click(object sender, EventArgs e)
         {
@@ -100,6 +122,16 @@ namespace ORDesigner
                         break;
                 }
             }
+        }
+
+        private void dgvPeople_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+            if (dgv != null && dgv.Name == "dgvPeople" && dgv.SelectedRows != null && dgv.SelectedRows.Count > 0)
+            {
+                this.tblSaleTableAdapter.FillByName(this.adoPeopleDataSet.tblSale, dgv.SelectedRows[0].Cells[0].Value.ToString());
+            }
+
         }
     }
 }
