@@ -1,4 +1,6 @@
-﻿using System;
+﻿//#define LINQFORM
+#define ACCESSFILEFORM
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +18,11 @@ namespace ORDesigner
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+#if ACCESSFILEFORM
+            Application.Run(new AccessForm());
+#else
             Application.Run(new LINQForm());
+#endif
         }
     }
 }

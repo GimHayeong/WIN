@@ -72,6 +72,8 @@
             this.tblPeopleTableAdapter = new ORDesigner.ADOPeopleDataSetTableAdapters.tblPeopleTableAdapter();
             this.tblSaleTableAdapter = new ORDesigner.ADOPeopleDataSetTableAdapters.tblSaleTableAdapter();
             this.tblAdapterManager = new ORDesigner.ADOPeopleDataSetTableAdapters.TableAdapterManager();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnMsg = new System.Windows.Forms.Button();
             nameLabel = new System.Windows.Forms.Label();
             ageLabel = new System.Windows.Forms.Label();
             maleLabel = new System.Windows.Forms.Label();
@@ -139,6 +141,7 @@
             this.dgvPeople.RowTemplate.Height = 27;
             this.dgvPeople.Size = new System.Drawing.Size(349, 289);
             this.dgvPeople.TabIndex = 1;
+            this.dgvPeople.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvPeople_DataError);
             this.dgvPeople.SelectionChanged += new System.EventHandler(this.dgvPeople_SelectionChanged);
             // 
             // nameDataGridViewTextBoxColumn
@@ -452,11 +455,33 @@
             this.tblAdapterManager.tblSaleTableAdapter = this.tblSaleTableAdapter;
             this.tblAdapterManager.UpdateOrder = ORDesigner.ADOPeopleDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(595, 147);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(59, 23);
+            this.btnAdd.TabIndex = 11;
+            this.btnAdd.Text = "5+3";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnMsg
+            // 
+            this.btnMsg.Location = new System.Drawing.Point(660, 147);
+            this.btnMsg.Name = "btnMsg";
+            this.btnMsg.Size = new System.Drawing.Size(76, 23);
+            this.btnMsg.TabIndex = 11;
+            this.btnMsg.Text = "메시지";
+            this.btnMsg.UseVisualStyleBackColor = true;
+            this.btnMsg.Click += new System.EventHandler(this.btnMsg_Click);
+            // 
             // LINQForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1147, 348);
+            this.Controls.Add(this.btnMsg);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnGetToday);
             this.Controls.Add(this.brnUpdateByName);
             this.Controls.Add(this.btnGetCount);
@@ -528,6 +553,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnMsg;
     }
 }
 

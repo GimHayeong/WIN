@@ -12,3 +12,5 @@ D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\DAL.dll
 D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\BLL.pdb
 D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\DAL.pdb
 D:\Projects\2015\WpfApp\ORDesigner\obj\Debug\ORDesigner.LINQDetailForm.resources
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\Resources\ADOSample.mdb
+D:\Projects\2015\WpfApp\ORDesigner\obj\Debug\ORDesigner.AccessForm.resources

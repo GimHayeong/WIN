@@ -133,5 +133,21 @@ namespace ORDesigner
             }
 
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            int k = this.adoPeopleDataSet.Add(5, 3);
+            MessageBox.Show(String.Format("5 + 3 = {0}", k));
+        }
+
+        private void btnMsg_Click(object sender, EventArgs e)
+        {
+            tblPeopleTableAdapter.UserMessage();
+        }
+
+        private void dgvPeople_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message, "에러발생");
+        }
     }
 }
