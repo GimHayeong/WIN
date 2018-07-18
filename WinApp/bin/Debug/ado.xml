@@ -1,0 +1,104 @@
+<?xml version="1.0" standalone="yes"?>
+<ADONET>
+  <xs:schema id="ADONET" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="ADONET" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="tblPeople">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="10" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Age" type="xs:int" />
+                <xs:element name="Male" type="xs:boolean" default="false" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="tblSale">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="OrderNo" msdata:ReadOnly="true" msdata:AutoIncrement="true" type="xs:int" />
+                <xs:element name="Customer">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="10" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Item">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="20" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="OrderDate" type="xs:dateTime" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//tblPeople" />
+        <xs:field xpath="Name" />
+      </xs:unique>
+      <xs:unique name="tblSale_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//tblSale" />
+        <xs:field xpath="OrderNo" />
+      </xs:unique>
+      <xs:keyref name="Buy" refer="Constraint1">
+        <xs:selector xpath=".//tblSale" />
+        <xs:field xpath="Customer" />
+      </xs:keyref>
+    </xs:element>
+  </xs:schema>
+  <tblPeople>
+    <Name>정우성</Name>
+    <Age>36</Age>
+    <Male>true</Male>
+  </tblPeople>
+  <tblPeople>
+    <Name>고두심</Name>
+    <Age>32</Age>
+    <Male>false</Male>
+  </tblPeople>
+  <tblPeople>
+    <Name>욘사마</Name>
+    <Age>37</Age>
+    <Male>true</Male>
+  </tblPeople>
+  <tblPeople>
+    <Name>김태희</Name>
+    <Age>29</Age>
+    <Male>false</Male>
+  </tblPeople>
+  <tblSale>
+    <OrderNo>0</OrderNo>
+    <Customer>정우성</Customer>
+    <Item>면도기</Item>
+    <OrderDate>2018-01-01T00:00:00+09:00</OrderDate>
+  </tblSale>
+  <tblSale>
+    <OrderNo>1</OrderNo>
+    <Customer>고두심</Customer>
+    <Item>화장품</Item>
+    <OrderDate>2018-01-02T00:00:00+09:00</OrderDate>
+  </tblSale>
+  <tblSale>
+    <OrderNo>2</OrderNo>
+    <Customer>김태희</Customer>
+    <Item>핸드폰</Item>
+    <OrderDate>2018-01-03T00:00:00+09:00</OrderDate>
+  </tblSale>
+  <tblSale>
+    <OrderNo>3</OrderNo>
+    <Customer>김태희</Customer>
+    <Item>휘발유</Item>
+    <OrderDate>2018-01-04T00:00:00+09:00</OrderDate>
+  </tblSale>
+</ADONET>

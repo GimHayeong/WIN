@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfApp.WinNickname"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="WinNickname" Height="300" Width="300">
+    <Window.Resources>
+        <local:Nicknames x:Key="names">
+            <local:Nickname Name="장현희" Nick="webgenie"/>
+            <local:Nickname Name="김태영" Nick="TAEYO"/>
+            <local:Nickname Name="박경훈" Nick="HOONS"/>
+        </local:Nicknames>
+    </Window.Resources>
+    <DockPanel x:Name="dockPanel" DataContext="{StaticResource names}">
+        <TextBlock DockPanel.Dock="Top">
+                    <TextBlock VerticalAlignment="Center" Text="Name: "/>
+                    <TextBox Text="{Binding Path=Name, Mode=TwoWay}" MinWidth="80"/>
+                    <TextBlock VerticalAlignment="Center" Text="Nick: "/>
+                    <TextBox Text="{Binding Path=Nick, Mode=TwoWay}" MinWidth="80"/>
+            </TextBlock>
+        <Button x:Name="btnAdd" Content="Add" DockPanel.Dock="Bottom"/>
+        <ListBox ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                            <TextBlock Text="{Binding Path=Nick}"/>
+                        </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</Window>

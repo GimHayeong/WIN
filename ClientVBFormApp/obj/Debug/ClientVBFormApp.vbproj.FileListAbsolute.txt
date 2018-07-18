@@ -1,0 +1,13 @@
+D:\Projects\2015\WpfApp\ClientVBFormApp\bin\Debug\ClientVBFormApp.exe.config
+D:\Projects\2015\WpfApp\ClientVBFormApp\bin\Debug\ClientVBFormApp.exe
+D:\Projects\2015\WpfApp\ClientVBFormApp\bin\Debug\ClientVBFormApp.pdb
+D:\Projects\2015\WpfApp\ClientVBFormApp\bin\Debug\ClientVBFormApp.xml
+D:\Projects\2015\WpfApp\ClientVBFormApp\bin\Debug\ServerLib.dll
+D:\Projects\2015\WpfApp\ClientVBFormApp\bin\Debug\ServerLib.pdb
+D:\Projects\2015\WpfApp\ClientVBFormApp\obj\Debug\ClientVBFormApp.vbprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\ClientVBFormApp\obj\Debug\ClientVBFormApp.Form1.resources
+D:\Projects\2015\WpfApp\ClientVBFormApp\obj\Debug\ClientVBFormApp.Resources.resources
+D:\Projects\2015\WpfApp\ClientVBFormApp\obj\Debug\ClientVBFormApp.vbproj.GenerateResource.Cache
+D:\Projects\2015\WpfApp\ClientVBFormApp\obj\Debug\ClientVBFormApp.exe
+D:\Projects\2015\WpfApp\ClientVBFormApp\obj\Debug\ClientVBFormApp.xml
+D:\Projects\2015\WpfApp\ClientVBFormApp\obj\Debug\ClientVBFormApp.pdb

@@ -1,0 +1,6 @@
+D:\Projects\2015\WpfApp\ConsoleApp\bin\Debug\ConsoleApp.exe.config
+D:\Projects\2015\WpfApp\ConsoleApp\bin\Debug\ConsoleApp.exe
+D:\Projects\2015\WpfApp\ConsoleApp\bin\Debug\ConsoleApp.pdb
+D:\Projects\2015\WpfApp\ConsoleApp\obj\Debug\ConsoleApp.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\ConsoleApp\obj\Debug\ConsoleApp.exe
+D:\Projects\2015\WpfApp\ConsoleApp\obj\Debug\ConsoleApp.pdb

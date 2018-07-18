@@ -1,0 +1,7 @@
+D:\Projects\2015\WpfApp\BLL\bin\Debug\BLL.dll
+D:\Projects\2015\WpfApp\BLL\bin\Debug\BLL.pdb
+D:\Projects\2015\WpfApp\BLL\bin\Debug\DAL.dll
+D:\Projects\2015\WpfApp\BLL\bin\Debug\DAL.pdb
+D:\Projects\2015\WpfApp\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\BLL\obj\Debug\BLL.dll
+D:\Projects\2015\WpfApp\BLL\obj\Debug\BLL.pdb

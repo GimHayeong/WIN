@@ -1,0 +1,5 @@
+D:\Projects\2015\WpfApp\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\DAL\bin\Debug\DAL.dll
+D:\Projects\2015\WpfApp\DAL\bin\Debug\DAL.pdb
+D:\Projects\2015\WpfApp\DAL\obj\Debug\DAL.dll
+D:\Projects\2015\WpfApp\DAL\obj\Debug\DAL.pdb

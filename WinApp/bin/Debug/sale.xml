@@ -1,0 +1,50 @@
+<?xml version="1.0" standalone="yes"?>
+<ADONET>
+  <xs:schema id="ADONET" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="ADONET" msdata:IsDataSet="true" msdata:MainDataTable="tblPeople" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="tblPeople">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Name">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="10" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+                <xs:element name="Age" type="xs:int" />
+                <xs:element name="Male" type="xs:boolean" default="false" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//tblPeople" />
+        <xs:field xpath="Name" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <tblPeople>
+    <Name>정우성</Name>
+    <Age>36</Age>
+    <Male>true</Male>
+  </tblPeople>
+  <tblPeople>
+    <Name>고소영</Name>
+    <Age>32</Age>
+    <Male>false</Male>
+  </tblPeople>
+  <tblPeople>
+    <Name>배용준</Name>
+    <Age>37</Age>
+    <Male>true</Male>
+  </tblPeople>
+  <tblPeople>
+    <Name>김태희</Name>
+    <Age>29</Age>
+    <Male>false</Male>
+  </tblPeople>
+</ADONET>

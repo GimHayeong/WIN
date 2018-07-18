@@ -1,0 +1,5 @@
+D:\Projects\2015\WpfApp\ServerLib\bin\Debug\ServerLib.dll
+D:\Projects\2015\WpfApp\ServerLib\bin\Debug\ServerLib.pdb
+D:\Projects\2015\WpfApp\ServerLib\obj\Debug\ServerLib.dll
+D:\Projects\2015\WpfApp\ServerLib\obj\Debug\ServerLib.pdb
+D:\Projects\2015\WpfApp\ServerLib\obj\Debug\ServerLib.csprojResolveAssemblyReference.cache

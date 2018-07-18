@@ -1,0 +1,14 @@
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\ORDesigner.exe.config
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\ORDesigner.exe
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\ORDesigner.pdb
+D:\Projects\2015\WpfApp\ORDesigner\obj\Debug\ORDesigner.Properties.Resources.resources
+D:\Projects\2015\WpfApp\ORDesigner\obj\Debug\ORDesigner.csproj.GenerateResource.Cache
+D:\Projects\2015\WpfApp\ORDesigner\obj\Debug\ORDesigner.exe
+D:\Projects\2015\WpfApp\ORDesigner\obj\Debug\ORDesigner.pdb
+D:\Projects\2015\WpfApp\ORDesigner\obj\Debug\ORDesigner.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\ORDesigner\obj\Debug\ORDesigner.LINQForm.resources
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\BLL.dll
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\DAL.dll
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\BLL.pdb
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\DAL.pdb
+D:\Projects\2015\WpfApp\ORDesigner\obj\Debug\ORDesigner.LINQDetailForm.resources

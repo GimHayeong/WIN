@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbe8d4d7f2e0784050bc66a91e01804b58" Class="DataPeopleDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=e8d4d7f2-e078-4050-bc66-a91e01804b58.sqlserver.sequelizer.com;Initial Catalog=dbe8d4d7f2e0784050bc66a91e01804b58;User ID=ntizhdbffmvyfhby;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="ORDesigner.Properties.Settings" SettingsPropertyName="dbe8d4d7f2e0784050bc66a91e01804b58ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblPeople" Member="tblPeople">
+    <Type Name="tblPeople">
+      <Column Name="Name" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Age" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Male" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.IncAllAge" Method="IncAllAge">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.IncSomeAge" Method="IncSomeAge">
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="Age" Parameter="age" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

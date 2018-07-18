@@ -1,0 +1,12 @@
+D:\Projects\2015\WpfApp\ClientVBApp\bin\Debug\ClientVBApp.exe.config
+D:\Projects\2015\WpfApp\ClientVBApp\bin\Debug\ClientVBApp.exe
+D:\Projects\2015\WpfApp\ClientVBApp\bin\Debug\ClientVBApp.pdb
+D:\Projects\2015\WpfApp\ClientVBApp\bin\Debug\ClientVBApp.xml
+D:\Projects\2015\WpfApp\ClientVBApp\bin\Debug\ServerLib.dll
+D:\Projects\2015\WpfApp\ClientVBApp\bin\Debug\ServerLib.pdb
+D:\Projects\2015\WpfApp\ClientVBApp\obj\Debug\ClientVBApp.vbprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\ClientVBApp\obj\Debug\ClientVBApp.Resources.resources
+D:\Projects\2015\WpfApp\ClientVBApp\obj\Debug\ClientVBApp.vbproj.GenerateResource.Cache
+D:\Projects\2015\WpfApp\ClientVBApp\obj\Debug\ClientVBApp.exe
+D:\Projects\2015\WpfApp\ClientVBApp\obj\Debug\ClientVBApp.xml
+D:\Projects\2015\WpfApp\ClientVBApp\obj\Debug\ClientVBApp.pdb
