@@ -31,23 +31,29 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccessForm));
             this.dgvPeople = new System.Windows.Forms.DataGridView();
-            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingSrc = new System.Windows.Forms.BindingSource(this.components);
+            this.adoSampleDS = new ORDesigner.ADOSampleDataSet();
+            this.bindingNav = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.tsLblTotal = new System.Windows.Forms.ToolStripLabel();
             this.tsBtnConnect = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnConnectMySql = new System.Windows.Forms.ToolStripButton();
+            this.tblPeopleTableAdapter = new ORDesigner.ADOSampleDataSetTableAdapters.tblPeopleTableAdapter();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maleDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeople)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
-            this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSrc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adoSampleDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNav)).BeginInit();
+            this.bindingNav.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvPeople
@@ -55,22 +61,38 @@
             this.dgvPeople.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvPeople.AutoGenerateColumns = false;
             this.dgvPeople.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPeople.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn,
+            this.ageDataGridViewTextBoxColumn,
+            this.maleDataGridViewCheckBoxColumn});
+            this.dgvPeople.DataSource = this.bindingSrc;
             this.dgvPeople.Location = new System.Drawing.Point(12, 12);
             this.dgvPeople.Name = "dgvPeople";
             this.dgvPeople.RowTemplate.Height = 27;
             this.dgvPeople.Size = new System.Drawing.Size(666, 551);
             this.dgvPeople.TabIndex = 0;
             // 
-            // bindingNavigator1
+            // bindingSrc
             // 
-            this.bindingNavigator1.AddNewItem = null;
-            this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
-            this.bindingNavigator1.DeleteItem = null;
-            this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bindingNavigator1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
+            this.bindingSrc.DataMember = "tblPeople";
+            this.bindingSrc.DataSource = this.adoSampleDS;
+            // 
+            // adoSampleDS
+            // 
+            this.adoSampleDS.DataSetName = "ADOSampleDataSet";
+            this.adoSampleDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // bindingNav
+            // 
+            this.bindingNav.AddNewItem = null;
+            this.bindingNav.BindingSource = this.bindingSrc;
+            this.bindingNav.CountItem = this.bindingNavigatorCountItem;
+            this.bindingNav.DeleteItem = null;
+            this.bindingNav.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bindingNav.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.bindingNav.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
             this.bindingNavigatorSeparator,
@@ -80,19 +102,25 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
-            this.toolStripLabel2,
-            this.tsLblTotal,
-            this.tsBtnConnect});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 566);
-            this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.bindingNavigator1.Name = "bindingNavigator1";
-            this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(690, 27);
-            this.bindingNavigator1.TabIndex = 1;
-            this.bindingNavigator1.Text = "bindingNavigator1";
+            this.tsBtnConnect,
+            this.tsBtnConnectMySql});
+            this.bindingNav.Location = new System.Drawing.Point(0, 566);
+            this.bindingNav.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.bindingNav.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.bindingNav.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.bindingNav.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bindingNav.Name = "bindingNav";
+            this.bindingNav.PositionItem = this.bindingNavigatorPositionItem;
+            this.bindingNav.Size = new System.Drawing.Size(690, 27);
+            this.bindingNav.TabIndex = 1;
+            this.bindingNav.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(33, 24);
+            this.bindingNavigatorCountItem.Text = "/{0}";
+            this.bindingNavigatorCountItem.ToolTipText = "전체 항목 수";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -126,16 +154,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "현재 위치";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(33, 24);
-            this.bindingNavigatorCountItem.Text = "/{0}";
-            this.bindingNavigatorCountItem.ToolTipText = "전체 항목 수";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
@@ -158,26 +179,8 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(87, 24);
-            this.toolStripLabel1.Text = "현재레코드:";
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(53, 24);
-            this.toolStripLabel2.Text = "/ 전체:";
-            // 
-            // tsLblTotal
-            // 
-            this.tsLblTotal.Name = "tsLblTotal";
-            this.tsLblTotal.Size = new System.Drawing.Size(17, 24);
-            this.tsLblTotal.Text = "0";
             // 
             // tsBtnConnect
             // 
@@ -186,23 +189,57 @@
             this.tsBtnConnect.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnConnect.Name = "tsBtnConnect";
             this.tsBtnConnect.Size = new System.Drawing.Size(24, 24);
-            this.tsBtnConnect.Text = "Connect";
+            this.tsBtnConnect.Text = "MS-Access 파일조회";
             this.tsBtnConnect.Click += new System.EventHandler(this.tsBtnConnect_Click);
+            // 
+            // tsBtnConnectMySql
+            // 
+            this.tsBtnConnectMySql.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnConnectMySql.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnConnectMySql.Image")));
+            this.tsBtnConnectMySql.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnConnectMySql.Name = "tsBtnConnectMySql";
+            this.tsBtnConnectMySql.Size = new System.Drawing.Size(24, 24);
+            this.tsBtnConnectMySql.Text = "My-SQL 조회";
+            this.tsBtnConnectMySql.Click += new System.EventHandler(this.tsBtnConnectMySql_Click);
+            // 
+            // tblPeopleTableAdapter
+            // 
+            this.tblPeopleTableAdapter.ClearBeforeFill = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // ageDataGridViewTextBoxColumn
+            // 
+            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
+            // 
+            // maleDataGridViewCheckBoxColumn
+            // 
+            this.maleDataGridViewCheckBoxColumn.DataPropertyName = "Male";
+            this.maleDataGridViewCheckBoxColumn.HeaderText = "Male";
+            this.maleDataGridViewCheckBoxColumn.Name = "maleDataGridViewCheckBoxColumn";
             // 
             // AccessForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(690, 593);
-            this.Controls.Add(this.bindingNavigator1);
+            this.Controls.Add(this.bindingNav);
             this.Controls.Add(this.dgvPeople);
             this.Name = "AccessForm";
             this.Text = "AccessForm";
             this.Load += new System.EventHandler(this.AccessForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeople)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
-            this.bindingNavigator1.ResumeLayout(false);
-            this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSrc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adoSampleDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNav)).EndInit();
+            this.bindingNav.ResumeLayout(false);
+            this.bindingNav.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,9 +248,9 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvPeople;
-        private System.Windows.Forms.BindingNavigator bindingNavigator1;
+        private System.Windows.Forms.BindingSource bindingSrc;
+        private System.Windows.Forms.BindingNavigator bindingNav;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
@@ -222,8 +259,12 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ToolStripLabel tsLblTotal;
         private System.Windows.Forms.ToolStripButton tsBtnConnect;
+        private System.Windows.Forms.ToolStripButton tsBtnConnectMySql;
+        private ADOSampleDataSet adoSampleDS;
+        private ADOSampleDataSetTableAdapters.tblPeopleTableAdapter tblPeopleTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn maleDataGridViewCheckBoxColumn;
     }
 }

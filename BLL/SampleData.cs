@@ -41,6 +41,22 @@ namespace BLL
             return db.GetConnectionString();
         }
 
-        
+        public static string GetMySqlConnectionString()
+        {
+            MySqlDbConn db = new MySqlDbConn();
+            return db.GetConnectionString();
+        }
+
+        public static string GetOleDbConnectionString(string connectionName)
+        {
+            OleDbConn db = new OleDbConn();
+            return db.GetOleDbConnectionString(connectionName);
+        }
+
+        public static string GetOleDbConnectionString(string applicationStartupPath, string folder, string accessFileName)
+        {
+            OleDbConn db = new OleDbConn();
+            return db.GetOleDbConnectionString(applicationStartupPath, folder, accessFileName);
+        }
     }
 }

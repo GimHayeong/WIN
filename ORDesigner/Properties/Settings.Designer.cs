@@ -34,5 +34,16 @@ namespace ORDesigner.Properties {
                 return ((string)(this["dbe8d4d7f2e0784050bc66a91e01804b58ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Resources\\ADOSample." +
+            "mdb;Persist Security Info=True")]
+        public string ADOAccessConnectionString {
+            get {
+                return ((string)(this["ADOAccessConnectionString"]));
+            }
+        }
     }
 }

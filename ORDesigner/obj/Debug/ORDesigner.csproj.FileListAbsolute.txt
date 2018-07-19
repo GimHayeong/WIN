@@ -14,3 +14,7 @@ D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\DAL.pdb
 D:\Projects\2015\WpfApp\ORDesigner\obj\Debug\ORDesigner.LINQDetailForm.resources
 D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\Resources\ADOSample.mdb
 D:\Projects\2015\WpfApp\ORDesigner\obj\Debug\ORDesigner.AccessForm.resources
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\Google.Protobuf.dll
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\MySql.Data.dll
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\Google.Protobuf.xml
+D:\Projects\2015\WpfApp\ORDesigner\bin\Debug\MySql.Data.xml
