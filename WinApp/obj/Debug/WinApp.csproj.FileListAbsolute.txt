@@ -38,3 +38,6 @@ D:\Projects\2015\WpfApp\WinApp\bin\Debug\MySql.Data.dll
 D:\Projects\2015\WpfApp\WinApp\bin\Debug\Google.Protobuf.dll
 D:\Projects\2015\WpfApp\WinApp\bin\Debug\MySql.Data.xml
 D:\Projects\2015\WpfApp\WinApp\bin\Debug\Google.Protobuf.xml
+D:\Projects\2015\WpfApp\WinApp\bin\Debug\System.Net.Http.Formatting.dll
+D:\Projects\2015\WpfApp\WinApp\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\2015\WpfApp\WinApp\bin\Debug\Newtonsoft.Json.xml

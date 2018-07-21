@@ -1,36 +1,87 @@
-﻿using System;
+﻿//#define DISPLAYARRAY
+//#define ENVIRONMENT
+//#define TRYCATCH
+//#define RUNNOTEPADBYWINEXEC
+//#define RUNNOTEPADBYPROCESSSTART
+//#define GETPROCESS
+//#define GETPROCESSTHREADSBYPROCESSID
+//#define GETPROCESSMODULESBYPROCESSID
+//#define LINQ
+//#define THREADSTART
+//#define THREADSTARTBYPARAMS
+//#define SYNCTHREAD
+//#define WEBAPI
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DAL;
+using System.Net.Http.Headers;
+using System.Net;
+using System.Xml;
 
 namespace ConsoleApp
 {
     class Program
     {
+#if RUNNOTEPADBYWINEXEC
+
         [DllImport("Kernel32.dll")]
         public static extern int WinExec(string Path, uint nCmdShow);
+
+#elif SYNCTHREAD
 
         // 공유자원
         private static Site m_site = new Site("www.winapi.co.kr");
 
+#elif WEBAPI
+
+#else
+
+#endif
+
         static void Main(string[] args)
         {
-            //DisplayArray();
 
-            //GetEnvironment();
+#if DISPLAYARRAY
 
-            //NestTry();
+            DisplayArray();
 
-            //RunNotepad();
-            //ProcessNotepad();
-            //DisplayProcess();
-            //DisplayProcessThread();
-            //DisplayProcessModule();
+#elif ENVIRONMENT
 
+            GetEnvironment();
+
+#elif TRYCATCH
+
+            NestTry();
+
+#elif RUNNOTEPADBYWINEXEC
+
+            RunNotepad();
+
+#elif RUNNOTEPADBYPROCESSSTART
+
+            ProcessNotepad();
+
+#elif GETPROCESS
+
+            DisplayProcess();
+
+#elif GETPROCESSTHREADSBYPROCESSID
+
+            DisplayProcessThread();
+
+#elif GETPROCESSTHREADSBYPROCESSID
+
+            DisplayProcessModule();
+
+#elif LINQ
             People[] peoples = { new People("정우성", 36, true)
                                 , new People("고소영", 32, false)
                                 , new People("배용준", 37, true)
@@ -43,33 +94,60 @@ namespace ConsoleApp
                             , new Sale("김태희", "휘발유", new DateTime(2008, 1, 4))
             };
 
-            //LinqGroupBy(peoples);
-            //LinqJoin(peoples, sales);
+            LinqGroupBy(peoples);
+            LinqJoin(peoples, sales);
 
-            //ThreadByThreadStart();
-            //ThreadByParameterizedThreadStart(5);
-            //SyncThread();
+#elif THREADSTART
 
+            ThreadByThreadStart();
+
+#elif THREADSTARTBYPARAMS
+
+            ThreadByParameterizedThreadStart(5);
+
+#elif SYNCTHREAD
+
+            SyncThread();
+
+#elif WEBAPI
+
+            
+
+#else
+
+#endif
+            
             Console.ReadLine();
         }
 
+#if WEBAPI
         
+        
+#endif
 
+
+
+#if SYNCTHREAD
         private static void SyncThread()
         {
-            Thread thread = new Thread(new ThreadStart(DownloadingThreadProc));
-            thread.Start();
+            Thread thread = new Thread(new ThreadStart(DownloadingFile)); // 공유자원을 사용하는 메서드 ==> DownloadingFile()
+            thread.Start(); // 스레드 시작
             Thread.Sleep(2000);
 
-            lock (m_site)
+            lock (m_site) // 공유자원 잠금
             {
                 // 주 스레드가 공유자원(m_site)을 독점하여 잠금을 하면 주 스레드가 작업을 완료할 동안 다른 스레드는 공유자원 접근이 불가하여 대기상태.
-                DownloadingFromApi();
+                DownloadingFileFromApi();
             }
             // 주 스레드가 독점했던 공유자원을 잠금 해지하면 공유자원을 사용하는 대기상태의 다른 스레드에서 공유자원에 접근하여 하던 작업을 계속함.
         }
+#endif
 
-        private static void DownloadingThreadProc()
+#if SYNCTHREAD
+        /// <summary>
+        /// 주 스레드에서 공유자원 잠금없이 호출
+        /// </summary>
+        private static void DownloadingFile()
         {
             for(int i=0; i<=100; i += 10)
             {
@@ -81,10 +159,18 @@ namespace ConsoleApp
                 Thread.Sleep(1000);
             }
         }
+#endif
 
-        private static void DownloadingFromApi()
+#if SYNCTHREAD
+        /// <summary>
+        /// 주 스레드에서 공유자원 잠금상태로 호출
+        /// </summary>
+        private static void DownloadingFileFromApi()
         {
+            // 1. 보관 : 공유자원 기존정보 보관
             string old = m_site.Name;
+
+            // 2. 사용 : 공유자원 사용
             m_site.Name = "www.loseapi.co.kr";//
             for (int i = 0; i <= 100; i += 10)
             {
@@ -92,9 +178,13 @@ namespace ConsoleApp
                 Console.WriteLine("{0}에서 {1}% 다운로드 중", m_site.Name, i);
                 Thread.Sleep(500);
             }
+
+            // 3. 복원 : 공유자원 기존정보 복원
             m_site.Name = old;
         }
+#endif
 
+#if THREADSTART
         private static void ThreadByThreadStart()
         {
             // Thread : 코드의 실행흐름
@@ -105,9 +195,9 @@ namespace ConsoleApp
             //  + ThreadState : 스레드 현재 상태
             //  + CurrentThread : 현재 실행중인 스레드
 
-            Thread thread = new Thread(new ThreadStart(ThreadProc));
-            thread.IsBackground = false;
-            thread.Start();
+            Thread thread = new Thread(new ThreadStart(DisplayNumber)); //0 ~ 9 까지 출력하는 메서드 ==> DisplayNumber()
+            thread.IsBackground = false; //백그라운드 스레드로 설정
+            thread.Start(); // 스레드 시작 ==> DisplayNumber()
             for (;;)
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey();
@@ -123,12 +213,14 @@ namespace ConsoleApp
             thread.Abort();
             Console.WriteLine("주 스레드 종료");
         }
+#endif
 
+#if THREADSTARTBYPARAMS
         private static void ThreadByParameterizedThreadStart(int count)
         {
-            Thread thread = new Thread(new ParameterizedThreadStart(ThreadProc));
-            thread.IsBackground = false;
-            thread.Start(count); // 반복회수 인자
+            Thread thread = new Thread(new ParameterizedThreadStart(DisplayNumber)); //0 ~ N 까지 출력하는 메서드 ==> DisplayNumber(n)
+            thread.IsBackground = false; //백그라운드 스레드로 설정
+            thread.Start(count); // 매개변수를 전달하는 스레드 시작 ==> DisplayNumber(count)
             for (;;)
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey();
@@ -144,8 +236,13 @@ namespace ConsoleApp
             thread.Abort();
             Console.WriteLine("주 스레드 종료");
         }
+#endif
 
-        private static void ThreadProc()
+#if THREADSTART
+        /// <summary>
+        /// 0 ~ 9 까지 출력
+        /// </summary>
+        private static void DisplayNumber()
         {
             for(int i=0; i<10; i++)
             {
@@ -154,9 +251,16 @@ namespace ConsoleApp
             }
             Console.WriteLine("작업스레드 종료");
         }
+#endif
 
-        private static void ThreadProc(object count)
+#if THREADSTARTBYPARAMS
+        /// <summary>
+        /// 0 ~ N 까지 출력
+        /// </summary>
+        /// <param name="count"></param>
+        private static void DisplayNumber(object count)
         {
+            Console.WriteLine("매개변수: {0}", count);
             for (int i = 0; i < (int)count; i++)
             {
                 Console.WriteLine("==>" + i);
@@ -164,7 +268,9 @@ namespace ConsoleApp
             }
             Console.WriteLine("작업스레드 종료");
         }
+#endif
 
+#if DISPLAYARRAY
         private static void DisplayArray()
         {
             int[] arr = { 3, 4, 5 };
@@ -183,9 +289,12 @@ namespace ConsoleApp
             int mok = Math.DivRem(5, 3, out result);
             Console.WriteLine("5 / 3 : 목: {0}, 나머지: {1}", mok, result);//1, 2
         }
+#endif
 
+#if LINQ
         private static void LinqJoin(People[] peoples, Sale[] sales)
         {
+            Console.WriteLine("\r\n::전체회원명단 (조인)::");
             var query = from p in peoples
                         join s in sales on p.Name equals s.Customer
                         select new { p.Name, p.Age, s.Item, s.SaleDate };
@@ -195,10 +304,12 @@ namespace ConsoleApp
                 Console.WriteLine("{0}세 {1} 판매사원이 {2}(을)를 {3}에 구입함", q.Age, q.Name, q.Item, q.SaleDate);
             }
         }
+#endif
 
+#if LINQ
         private static void LinqGroupBy(People[] peoples)
         {
-            Console.WriteLine("::전체회원명단(이름역순/성별그룹)::");
+            Console.WriteLine("\r\n::전체회원명단 (이름역순/성별그룹)::");
             var queryGroup = from p in peoples
                              orderby p.Name descending
                              group p by p.IsMale;
@@ -254,7 +365,9 @@ namespace ConsoleApp
                     Console.WriteLine(q);
                 }
         }
+#endif
 
+#if RUNNOTEPADBYWINEXEC
         private static void RunNotepad()
         {
             Console.Write("메모장을 실행할까요?(Y/N)");
@@ -263,14 +376,26 @@ namespace ConsoleApp
                 WinExec("notepad.exe", 1);
             }
         }
+#endif
 
+#if RUNNOTEPADBYPROCESSSTART
         private static void ProcessNotepad()
         {
             Process proc = Process.Start("notepad.exe");
             Thread.Sleep(5000);
-            proc.Kill(); 
+            if (!proc.HasExited)
+            {
+                proc.Kill();
+                Console.WriteLine("메모장을 정해진 실행시간 후 종료하였습니다.");
+            }
+            else
+            {
+                Console.WriteLine("메모장은 이미 종료되었습니다.");
+            }
         }
+#endif
 
+#if GETPROCESS
         private static void DisplayProcess()
         {
             Process[] processes = Process.GetProcesses();
@@ -279,27 +404,33 @@ namespace ConsoleApp
                 Console.WriteLine("ID = {0, 5}, 이름 = {1}", proc.Id, proc.ProcessName);
             }
         }
+#endif
 
+#if GETPROCESSTHREADSBYPROCESSID
         private static void DisplayProcessThread()
         {
-            Process proc = Process.GetProcessById(14744);
+            Process proc = Process.GetProcessById(24052);
             ProcessThreadCollection collection = proc.Threads;
             foreach(ProcessThread thread in collection)
             {
                 Console.WriteLine("스레드 ID = {0}, 우선순위 = {1}", thread.Id, thread.PriorityLevel);
             }
         }
+#endif
 
+#if GETPROCESSMODULESBYPROCESSID
         private static void DisplayProcessModule()
         {
-            Process proc = Process.GetProcessById(14744);
+            Process proc = Process.GetProcessById(18552);
             ProcessModuleCollection collection = proc.Modules;
             foreach (ProcessModule module in collection)
             {
                 Console.WriteLine("모듈 ID = {0}", module.ModuleName);
             }
         }
+#endif
 
+#if TRYCATCH
         // try 블록에서 발생하는 예외는 대응되는 catch 문에서 처리.
         // try 블록에서 처리하지 않은 예외는 바깥쪽 try 문의 대응되는 catch 문에서 처리
         private static void NestTry()
@@ -354,9 +485,9 @@ namespace ConsoleApp
                 Console.WriteLine("Ex: " + ex.Message);
             }
         }
+#endif
 
-
-
+#if ENVIRONMENT
         private static void GetEnvironment()
         {
             Console.WriteLine("Machine Name: {0}", Environment.MachineName);
@@ -371,12 +502,18 @@ namespace ConsoleApp
             Console.WriteLine("User Domain Name: {0}", Environment.UserDomainName);
             Console.WriteLine("내문서: {0}", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
         }
+#endif
 
+#if WEBAPI
+#else
         private static int AddAll(params int[] nums)
         {
             var sum = nums.Sum();
             return sum;
         }
-    }
+#endif
 
+
+
+    }
 }

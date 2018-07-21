@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace BLL
 {
@@ -58,5 +60,7 @@ namespace BLL
             OleDbConn db = new OleDbConn();
             return db.GetOleDbConnectionString(applicationStartupPath, folder, accessFileName);
         }
+
+        
     }
 }

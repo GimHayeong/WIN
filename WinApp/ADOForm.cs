@@ -46,11 +46,14 @@ namespace WinApp
 
     public partial class ADOForm : Form
     {
+#if LINQ
+#else
         private SqlConnection m_Con;
         private SqlDataAdapter m_Adt;
         private DataSet m_Ds;
         private DataTable m_TblPeople;
         private DataTable m_TblNewPeople;
+#endif
 
         public ADOForm()
         {
@@ -286,6 +289,8 @@ namespace WinApp
         /// </summary>
         private void GetPeopleListAll()
         {
+#if LINQ
+#else
             SqlCommand cmd = new SqlCommand("SELECT Name, Age, Male FROM tblPeople", m_Con);
             SqlDataReader reader = cmd.ExecuteReader();
             lbxQueryResult.Items.Clear();
@@ -300,10 +305,13 @@ namespace WinApp
                                                         , reader.GetBoolean(2) ? "남자" : "여자"));
             }
             reader.Close();//반드시 필요
+#endif
         }
 
         private void AdapterButton_Click(object sender, EventArgs e)
         {
+#if LINQ
+#else
             Button btn = sender as Button;
             if(btn != null)
             {
@@ -327,10 +335,13 @@ namespace WinApp
 
                 }
             }
+#endif
         }
 
         private void BindingButton_Click(object sender, EventArgs e)
         {
+#if LINQ
+#else
             Button btn = sender as Button;
             if(btn != null)
             {
@@ -345,6 +356,7 @@ namespace WinApp
                         break;
                 }
             }
+#endif
         }
 
 
@@ -360,11 +372,13 @@ namespace WinApp
         /// </summary>
         private void MergeDataSet()
         {
+#if LINQ
+#else
             Person[] people = new Person[] { new Person("정우성", 41, true), new Person("송혜교", 33, false) };
             m_TblNewPeople = SampleData.GetPeople(people);
             m_Ds.Merge(m_TblNewPeople);
             dgvAdtResult.DataSource = m_Ds.Tables["tblPeople"];
-
+#endif
         }
 
         /// <summary>
@@ -372,8 +386,11 @@ namespace WinApp
         /// </summary>
         private void FillAdapterByTable()
         {
+#if LINQ
+#else
             m_Adt = new SqlDataAdapter("SELECT Name, Age, Male FROM tblPeople", m_Con);
             m_TblPeople = new DataTable("tblPeople");
+
 
 #if SQLCOMMANDBUILDER
             // 어댑터의 SELECT 문을 참조하여 나머지 쿼리문 자동 생성
@@ -383,6 +400,9 @@ namespace WinApp
 
             CreateAdapterCommand();
 #endif
+
+
+
             m_TblPeople.ColumnChanging += TablePeople_ColumnChanging;
             m_TblPeople.RowChanging += TablePeople_RowChanging;
 
@@ -390,6 +410,7 @@ namespace WinApp
 
             m_Adt.Fill(m_TblPeople);
             dgvAdtResult.DataSource = m_TblPeople;
+#endif
         }
 
 
@@ -453,6 +474,8 @@ namespace WinApp
 
         private void CreateAdapterCommand()
         {
+#if LINQ
+#else
             SqlCommand cmd;
             cmd = new SqlCommand("INSERT INTO tblPeople VALUES (@Name, @Age, @Male)", m_Con);
             cmd.Parameters.Add("@Name", SqlDbType.NVarChar, 10, "Name");
@@ -470,6 +493,7 @@ namespace WinApp
             cmd = new SqlCommand("DELETE FROM tblPeople WHERE Name = @Name", m_Con);
             cmd.Parameters.Add("@Name", SqlDbType.NVarChar, 10, "Name");
             m_Adt.DeleteCommand = cmd;
+#endif
         }
 
         /// <summary>
@@ -477,14 +501,21 @@ namespace WinApp
         /// </summary>
         private void SetDataTableMapping()
         {
+#if LINQ
+#else
+
             DataTableMapping mapper = m_Adt.TableMappings.Add("tblPeople", "tblPeople");
             mapper.ColumnMappings.Add("Name", "이름");
             mapper.ColumnMappings.Add("Age", "나이");
             mapper.ColumnMappings.Add("Male", "성별");
+#endif
         }
 
         private void FillAdapterByDataSet()
         {
+#if LINQ
+#else
+
             m_Adt = new SqlDataAdapter("SELECT * FROM tblPeople", m_Con);
             m_Ds = new DataSet();
 
@@ -492,10 +523,14 @@ namespace WinApp
 
             m_Adt.Fill(m_Ds, "tblPeople");
             dgvAdtResult.DataSource = m_Ds.Tables["tblPeople"];
+#endif
         }
 
         private void GetChangedAdapterData()
         {
+#if LINQ
+#else
+
             if (m_Ds.HasChanges())
             {
                 DataSet dsChanged = m_Ds.GetChanges();
@@ -521,6 +556,7 @@ namespace WinApp
                     }
                 }
             }
+#endif
         }
 
 
@@ -529,6 +565,9 @@ namespace WinApp
         /// </summary>
         private void GetPeopleNSaleListAll()
         {
+#if LINQ
+#else
+
             SqlCommand cmd = new SqlCommand("SELECT Name, Age, Male FROM tblPeople; SELECT OrderNo, Customer, Item, OrderDate FROM tblSale", m_Con);
             SqlDataReader reader = cmd.ExecuteReader();
             lbxQueryResult.Items.Clear();
@@ -548,6 +587,7 @@ namespace WinApp
                                                         , reader.GetString(2)
                                                         , reader.GetDateTime(3)));
             }
+#endif
         }
 
         /// <summary>
@@ -555,12 +595,16 @@ namespace WinApp
         /// </summary>
         private void UpdatePeople()
         {
+#if LINQ
+#else
+
             if(!String.IsNullOrWhiteSpace(tbxQueryName.Text))
             {
                 SqlCommand cmd = new SqlCommand(String.Format("UPDATE tblPeople SET Age = Age + 1 WHERE Name = N'{0}'", tbxQueryName.Text), m_Con);
                 cmd.ExecuteNonQuery();
                 GetPeopleListAll();
             }
+#endif
         }
 
         /// <summary>
@@ -568,12 +612,16 @@ namespace WinApp
         /// </summary>
         private void DeletePeople()
         {
+#if LINQ
+#else
+
             if (!String.IsNullOrWhiteSpace(tbxQueryName.Text))
             {
                 SqlCommand cmd = new SqlCommand(String.Format("DELETE tblPeople WHERE Name = N'{0}'", tbxQueryName.Text), m_Con);
                 cmd.ExecuteNonQuery();
                 GetPeopleListAll();
             }
+#endif
         }
 
         /// <summary>
@@ -584,6 +632,9 @@ namespace WinApp
         /// </remarks>
         private void SumAgePeople()
         {
+#if LINQ
+#else
+
 #if ExecuteScalar메서드는_IsDBNull체크불가하므로_ExecuteReader메서드를_사용해_IsDBNull체크
                         SqlCommand cmd = new SqlCommand("SELECT SUM(Age) FROM tblPeople;SELECT AVG(Age) FROM tblPeople;SELECT COUNT(Name) FROM tblPeople", m_Con);
             SqlDataReader reader = cmd.ExecuteReader();
@@ -614,6 +665,8 @@ namespace WinApp
             int cnt = (int)cmd.ExecuteScalar();
             MessageBox.Show("총 " + cnt + " 명의 회원들의 나이의 합은 " + sum + " 이며, 평균나이는 " + avg + " 입니다.");
 #endif
+
+#endif
         }
 
         /// <summary>
@@ -621,6 +674,9 @@ namespace WinApp
         /// </summary>
         private void InsertPeople()
         {
+#if LINQ
+#else
+
             SqlCommand cmd = new SqlCommand(String.Format("INSERT INTO tblPeople VALUES (N'{0}', {1}, {2})"
                                                         , tbxQueryName.Text
                                                         , nudQueryAge.Value
@@ -628,6 +684,7 @@ namespace WinApp
 
             cmd.ExecuteNonQuery();
             GetPeopleListAll();
+#endif
         }
 
         /// <summary>
@@ -635,6 +692,8 @@ namespace WinApp
         /// </summary>
         private void InsertPeopleByParams()
         {
+#if LINQ
+#else
             SqlCommand cmd = new SqlCommand("INSERT INTO tblPeople VALUES (@Name, @Age, @Male)", m_Con);
             cmd.Parameters.Add("@Name", SqlDbType.NVarChar, 10);
             cmd.Parameters.Add("@Age", SqlDbType.Int);
@@ -645,6 +704,7 @@ namespace WinApp
 
             cmd.ExecuteNonQuery();
             GetPeopleListAll();
+#endif
         }
 
         /// <summary>
@@ -653,6 +713,8 @@ namespace WinApp
         /// <param name="spName"></param>
         private void ExecuteSP(string spName)
         {
+#if LINQ
+#else
             SqlCommand cmd = new SqlCommand(spName, m_Con);
             cmd.CommandType = CommandType.StoredProcedure;//저장프로시저임을 선언
 
@@ -679,10 +741,13 @@ namespace WinApp
                     }
                     break;
             }
+#endif
         }
 
         private void ExecuteTransaction(bool isCommit)
         {
+#if LINQ
+#else
             SqlTransaction trans = m_Con.BeginTransaction();
             SqlCommand cmd = m_Con.CreateCommand();
             cmd.Connection = m_Con;
@@ -702,6 +767,7 @@ namespace WinApp
             }
 
             GetPeopleListAll();
+#endif
         }
 
 
@@ -916,7 +982,10 @@ namespace WinApp
         {
             try
             {
+#if LINQ
+#else
                 m_Con.Open();
+#endif
             }
             catch (Exception ex)
             {
@@ -929,10 +998,14 @@ namespace WinApp
         /// </summary>
         private void CloseConnection()
         {
+#if LINQ
+#else
+
             if(m_Con.State == ConnectionState.Open)
             {
                 m_Con.Close();
             }
+#endif
         }
 
         
