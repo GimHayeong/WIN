@@ -111,10 +111,10 @@ namespace WinAppAddressBook
         private bool IsValidData(ref Control ctrlError)
         {
             if (!IsValidData(tbxName, tbxName.Text, ref ctrlError)) return false;
-            if (!IsValidData(mskZipcode, mskZipcode.Text, ref ctrlError)) return false;
+            if (!IsValidData(mskZipcode, mskZipcode.Text.Replace('-', ' '), ref ctrlError)) return false;
             if (!IsValidData(tbxAddr, tbxAddr.Text, ref ctrlError)) return false;
             if (!IsValidData(tbxAddrDetail, tbxAddrDetail.Text, ref ctrlError)) return false;
-            if (!IsValidData(mskCellPhone, mskCellPhone.Text, ref ctrlError)) return false;
+            if (!IsValidData(mskCellPhone, mskCellPhone.Text.Replace('-', ' '), ref ctrlError)) return false;
 
             string email = $"{tbxEmail.Text.Trim()}{GetEmailHost(cbxEmailHost.SelectedIndex)}";
             Util util = new Util();
