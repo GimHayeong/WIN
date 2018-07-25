@@ -1,4 +1,5 @@
-﻿using BLL;
+﻿//#define TEST
+using BLL;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,9 @@ namespace WinAppVideoRentalStore
 {
     public partial class VRSMemberForm : Form
     {
+
         public Membership m_Member = new Membership();
+
         public VRSMemberForm()
         {
             InitializeComponent();
@@ -27,10 +30,23 @@ namespace WinAppVideoRentalStore
         /// </summary>
         private void InitControl()
         {
-            tbxName.Text = "강감찬";
-            cbxMale.Checked = true;
-            
+            tblCodeTableAdt.Connection.ConnectionString = SampleData.GetConnectionString();
+            tblCodeTableAdt.Fill(vrsDataSet.tblCode);
 
+            var query = from c in vrsDataSet.tblCode
+                        where c.CodeGroupCode == "0001" && c.IsUse
+                        select c;
+            foreach(var q in query)
+            {
+                RadioButton rdo = grpbxGrade.Controls.Find($"rdo{q.CodeValue}", true)[0] as RadioButton;
+                if(rdo != null)
+                {
+                    rdo.Text = q.CodeText;
+                    rdo.Tag = q.Code;
+                }
+            }
+            rdoAssociate.Checked = true;
+#if TEST
             MembershipBLL biz = new MembershipBLL();
             foreach(var c in biz.GetGradeList())
             {
@@ -41,10 +57,28 @@ namespace WinAppVideoRentalStore
                     rdo.Tag = c;
                 }
             }
+#endif
+
         }
 
         private void VRSMemberForm_Load(object sender, EventArgs e)
         {
+            if(m_Member != null)
+            {
+                SetMapping();
+            }
+
+#if TEST
+            if (m_Member != null)
+            {
+                SetMapping();
+                tbxName.Text = "강감찬";
+                cbxMale.Checked = true;
+                mskCellPhone.Text = "00112345678";
+            }
+#endif
+
+
             tip.SetToolTip(tbxName, "이름을 입력하세요.");
             tip.SetToolTip(dtpBirthday, "생년월일을 선택하세요.");
             tip.SetToolTip(mskZipcode, "우편번호를 검색 및 입력하세요.");
@@ -81,7 +115,7 @@ namespace WinAppVideoRentalStore
             RadioButton rdo = sender as RadioButton;
             if(rdo != null && rdo.Checked)
             {
-                m_Member.MGrade = rdo.Tag as Grade;
+                m_Member.MGradeCode = Convert.ToInt32(rdo.Tag);
             }
         }
 
@@ -125,7 +159,6 @@ namespace WinAppVideoRentalStore
             Control ctrlError = null;
             if (IsValidData(ref ctrlError))
             {
-                MessageBox.Show(m_Member.ToString());
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -190,8 +223,10 @@ namespace WinAppVideoRentalStore
             mskZipcode.DataBindings.Add("Text", m_Member, "Zipcode");
             tbxAddr.DataBindings.Add("Text", m_Member, "Addr");
             tbxAddrDetail.DataBindings.Add("Text", m_Member, "AddrDetail");
-            mskCellPhone.DataBindings.Add("Text", m_Member, "CellPhone");
-            tbxDeposit.DataBindings.Add("Text", m_Member, "Deposit");
+            mskCellPhone.DataBindings.Add("Text", m_Member, "Cellphone");
+            tbxDeposit.DataBindings.Add("Text", m_Member, "MDeposit");
         }
+
+        
     }
 }

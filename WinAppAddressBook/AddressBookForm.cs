@@ -78,7 +78,7 @@ namespace WinAppAddressBook
             row.Zipcode = addressDetail.ZipCode;
             row.Addr = addressDetail.Addr;
             row.Addr2 = addressDetail.AddrDetail;
-            row.Cellphone = addressDetail.CellPhone;
+            row.Cellphone = addressDetail.Cellphone;
             row.Email = addressDetail.Email;
         }
 
@@ -102,7 +102,7 @@ namespace WinAppAddressBook
             dlg.AddressDetail.Addr = (string)currentRow.Cells[4].Value;
             dlg.AddressDetail.AddrDetail = (string)currentRow.Cells[5].Value;
             dlg.AddressDetail.ZipCode = (string)currentRow.Cells[6].Value;
-            dlg.AddressDetail.CellPhone = (string)currentRow.Cells[7].Value;
+            dlg.AddressDetail.Cellphone = (string)currentRow.Cells[7].Value;
             dlg.AddressDetail.Email = (string)currentRow.Cells[8].Value;
 
             if (dlg.ShowDialog() == DialogResult.OK)

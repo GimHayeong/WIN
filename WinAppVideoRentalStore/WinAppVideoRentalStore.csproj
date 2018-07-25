@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="VRSDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VRSDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="VRSForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +107,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="VRSDataSet.xsc">
+      <DependentUpon>VRSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="VRSDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VRSDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VRSDataSet.xss">
+      <DependentUpon>VRSDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

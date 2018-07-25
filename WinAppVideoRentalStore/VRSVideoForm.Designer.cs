@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.grpbxGrade = new System.Windows.Forms.GroupBox();
-            this.rtoEtc = new System.Windows.Forms.RadioButton();
+            this.grpbxVideoType = new System.Windows.Forms.GroupBox();
+            this.rdoEtc = new System.Windows.Forms.RadioButton();
             this.rdoMelo = new System.Windows.Forms.RadioButton();
             this.rdoKids = new System.Windows.Forms.RadioButton();
             this.rdoComedy = new System.Windows.Forms.RadioButton();
-            this.rdoPorno = new System.Windows.Forms.RadioButton();
+            this.rdoErotic = new System.Windows.Forms.RadioButton();
             this.rdoAction = new System.Windows.Forms.RadioButton();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -55,35 +55,40 @@
             this.mskStock = new System.Windows.Forms.MaskedTextBox();
             this.mskProductionYear = new System.Windows.Forms.MaskedTextBox();
             this.tip = new System.Windows.Forms.ToolTip(this.components);
-            this.grpbxGrade.SuspendLayout();
+            this.vrsDataSet = new WinAppVideoRentalStore.VRSDataSet();
+            this.tblVideoTableAdt = new WinAppVideoRentalStore.VRSDataSetTableAdapters.tblVideoTableAdapter();
+            this.tblCodeTableAdt = new WinAppVideoRentalStore.VRSDataSetTableAdapters.tblCodeTableAdapter();
+            this.grpbxVideoType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vrsDataSet)).BeginInit();
             this.SuspendLayout();
             // 
-            // grpbxGrade
+            // grpbxVideoType
             // 
-            this.grpbxGrade.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpbxGrade.Controls.Add(this.rtoEtc);
-            this.grpbxGrade.Controls.Add(this.rdoMelo);
-            this.grpbxGrade.Controls.Add(this.rdoKids);
-            this.grpbxGrade.Controls.Add(this.rdoComedy);
-            this.grpbxGrade.Controls.Add(this.rdoPorno);
-            this.grpbxGrade.Controls.Add(this.rdoAction);
-            this.grpbxGrade.Location = new System.Drawing.Point(307, 53);
-            this.grpbxGrade.Name = "grpbxGrade";
-            this.grpbxGrade.Size = new System.Drawing.Size(263, 166);
-            this.grpbxGrade.TabIndex = 7;
-            this.grpbxGrade.TabStop = false;
-            this.grpbxGrade.Text = "비디오 유형";
+            this.grpbxVideoType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpbxVideoType.Controls.Add(this.rdoEtc);
+            this.grpbxVideoType.Controls.Add(this.rdoMelo);
+            this.grpbxVideoType.Controls.Add(this.rdoKids);
+            this.grpbxVideoType.Controls.Add(this.rdoComedy);
+            this.grpbxVideoType.Controls.Add(this.rdoErotic);
+            this.grpbxVideoType.Controls.Add(this.rdoAction);
+            this.grpbxVideoType.Location = new System.Drawing.Point(307, 53);
+            this.grpbxVideoType.Name = "grpbxVideoType";
+            this.grpbxVideoType.Size = new System.Drawing.Size(263, 166);
+            this.grpbxVideoType.TabIndex = 7;
+            this.grpbxVideoType.TabStop = false;
+            this.grpbxVideoType.Text = "비디오 유형";
             // 
-            // rtoEtc
+            // rdoEtc
             // 
-            this.rtoEtc.AutoSize = true;
-            this.rtoEtc.Location = new System.Drawing.Point(152, 111);
-            this.rtoEtc.Name = "rtoEtc";
-            this.rtoEtc.Size = new System.Drawing.Size(58, 19);
-            this.rtoEtc.TabIndex = 12;
-            this.rtoEtc.Text = "기타";
-            this.rtoEtc.UseVisualStyleBackColor = true;
-            this.rtoEtc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadioButton_KeyDown);
+            this.rdoEtc.AutoSize = true;
+            this.rdoEtc.Location = new System.Drawing.Point(152, 111);
+            this.rdoEtc.Name = "rdoEtc";
+            this.rdoEtc.Size = new System.Drawing.Size(58, 19);
+            this.rdoEtc.TabIndex = 12;
+            this.rdoEtc.Text = "기타";
+            this.rdoEtc.UseVisualStyleBackColor = true;
+            this.rdoEtc.CheckedChanged += new System.EventHandler(this.VideoType_CheckedChanged);
+            this.rdoEtc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadioButton_KeyDown);
             // 
             // rdoMelo
             // 
@@ -94,6 +99,7 @@
             this.rdoMelo.TabIndex = 10;
             this.rdoMelo.Text = "멜로";
             this.rdoMelo.UseVisualStyleBackColor = true;
+            this.rdoMelo.CheckedChanged += new System.EventHandler(this.VideoType_CheckedChanged);
             this.rdoMelo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadioButton_KeyDown);
             // 
             // rdoKids
@@ -105,6 +111,7 @@
             this.rdoKids.TabIndex = 11;
             this.rdoKids.Text = "어린이";
             this.rdoKids.UseVisualStyleBackColor = true;
+            this.rdoKids.CheckedChanged += new System.EventHandler(this.VideoType_CheckedChanged);
             this.rdoKids.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadioButton_KeyDown);
             // 
             // rdoComedy
@@ -116,30 +123,31 @@
             this.rdoComedy.TabIndex = 8;
             this.rdoComedy.Text = "코미디";
             this.rdoComedy.UseVisualStyleBackColor = true;
+            this.rdoComedy.CheckedChanged += new System.EventHandler(this.VideoType_CheckedChanged);
             this.rdoComedy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadioButton_KeyDown);
             // 
-            // rdoPorno
+            // rdoErotic
             // 
-            this.rdoPorno.AutoSize = true;
-            this.rdoPorno.Location = new System.Drawing.Point(36, 76);
-            this.rdoPorno.Name = "rdoPorno";
-            this.rdoPorno.Size = new System.Drawing.Size(58, 19);
-            this.rdoPorno.TabIndex = 9;
-            this.rdoPorno.Text = "에로";
-            this.rdoPorno.UseVisualStyleBackColor = true;
-            this.rdoPorno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadioButton_KeyDown);
+            this.rdoErotic.AutoSize = true;
+            this.rdoErotic.Location = new System.Drawing.Point(36, 76);
+            this.rdoErotic.Name = "rdoErotic";
+            this.rdoErotic.Size = new System.Drawing.Size(58, 19);
+            this.rdoErotic.TabIndex = 9;
+            this.rdoErotic.Text = "에로";
+            this.rdoErotic.UseVisualStyleBackColor = true;
+            this.rdoErotic.CheckedChanged += new System.EventHandler(this.VideoType_CheckedChanged);
+            this.rdoErotic.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadioButton_KeyDown);
             // 
             // rdoAction
             // 
             this.rdoAction.AutoSize = true;
-            this.rdoAction.Checked = true;
             this.rdoAction.Location = new System.Drawing.Point(36, 41);
             this.rdoAction.Name = "rdoAction";
             this.rdoAction.Size = new System.Drawing.Size(58, 19);
             this.rdoAction.TabIndex = 7;
-            this.rdoAction.TabStop = true;
             this.rdoAction.Text = "액션";
             this.rdoAction.UseVisualStyleBackColor = true;
+            this.rdoAction.CheckedChanged += new System.EventHandler(this.VideoType_CheckedChanged);
             this.rdoAction.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadioButton_KeyDown);
             // 
             // btnCancel
@@ -162,8 +170,7 @@
             this.btnOK.TabIndex = 14;
             this.btnOK.Text = "확인";
             this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            this.btnOK.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnOK_KeyDown);
+            this.btnOK.Click += new System.EventHandler(this.Button_Click);
             // 
             // tbxTitle
             // 
@@ -316,6 +323,19 @@
             this.mskProductionYear.TabIndex = 6;
             this.mskProductionYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
             // 
+            // vrsDataSet
+            // 
+            this.vrsDataSet.DataSetName = "VRSDataSet";
+            this.vrsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblVideoTableAdt
+            // 
+            this.tblVideoTableAdt.ClearBeforeFill = true;
+            // 
+            // tblCodeTableAdt
+            // 
+            this.tblCodeTableAdt.ClearBeforeFill = true;
+            // 
             // VRSVideoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -324,7 +344,7 @@
             this.Controls.Add(this.mskProductionYear);
             this.Controls.Add(this.mskStock);
             this.Controls.Add(this.rtbDescription);
-            this.Controls.Add(this.grpbxGrade);
+            this.Controls.Add(this.grpbxVideoType);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.tbxStarring);
@@ -344,8 +364,9 @@
             this.Name = "VRSVideoForm";
             this.Text = "비디오등록";
             this.Load += new System.EventHandler(this.VRSVideoForm_Load);
-            this.grpbxGrade.ResumeLayout(false);
-            this.grpbxGrade.PerformLayout();
+            this.grpbxVideoType.ResumeLayout(false);
+            this.grpbxVideoType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vrsDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,12 +374,12 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox grpbxGrade;
-        private System.Windows.Forms.RadioButton rtoEtc;
+        private System.Windows.Forms.GroupBox grpbxVideoType;
+        private System.Windows.Forms.RadioButton rdoEtc;
         private System.Windows.Forms.RadioButton rdoMelo;
         private System.Windows.Forms.RadioButton rdoKids;
         private System.Windows.Forms.RadioButton rdoComedy;
-        private System.Windows.Forms.RadioButton rdoPorno;
+        private System.Windows.Forms.RadioButton rdoErotic;
         private System.Windows.Forms.RadioButton rdoAction;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
@@ -379,5 +400,8 @@
         private System.Windows.Forms.MaskedTextBox mskStock;
         private System.Windows.Forms.MaskedTextBox mskProductionYear;
         private System.Windows.Forms.ToolTip tip;
+        private VRSDataSet vrsDataSet;
+        private VRSDataSetTableAdapters.tblVideoTableAdapter tblVideoTableAdt;
+        private VRSDataSetTableAdapters.tblCodeTableAdapter tblCodeTableAdt;
     }
 }

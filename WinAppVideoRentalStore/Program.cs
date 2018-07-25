@@ -16,7 +16,7 @@ namespace WinAppVideoRentalStore
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new VRSMemberForm());
+            Application.Run(new VRSForm());
         }
     }
 }

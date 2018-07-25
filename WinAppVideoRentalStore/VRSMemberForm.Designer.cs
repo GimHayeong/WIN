@@ -50,7 +50,11 @@
             this.rdoAssociate = new System.Windows.Forms.RadioButton();
             this.cbxMale = new System.Windows.Forms.CheckBox();
             this.tip = new System.Windows.Forms.ToolTip(this.components);
+            this.vrsDataSet = new WinAppVideoRentalStore.VRSDataSet();
+            this.tblMembershipTableAdt = new WinAppVideoRentalStore.VRSDataSetTableAdapters.tblMembershipTableAdapter();
+            this.tblCodeTableAdt = new WinAppVideoRentalStore.VRSDataSetTableAdapters.tblCodeTableAdapter();
             this.grpbxGrade.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vrsDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // mskZipcode
@@ -226,12 +230,10 @@
             // rdoAssociate
             // 
             this.rdoAssociate.AutoSize = true;
-            this.rdoAssociate.Checked = true;
             this.rdoAssociate.Location = new System.Drawing.Point(36, 41);
             this.rdoAssociate.Name = "rdoAssociate";
             this.rdoAssociate.Size = new System.Drawing.Size(73, 19);
             this.rdoAssociate.TabIndex = 4;
-            this.rdoAssociate.TabStop = true;
             this.rdoAssociate.Text = "준회원";
             this.rdoAssociate.UseVisualStyleBackColor = true;
             this.rdoAssociate.CheckedChanged += new System.EventHandler(this.GradeCheckbox_CheckedChanged);
@@ -245,6 +247,19 @@
             this.cbxMale.TabIndex = 3;
             this.cbxMale.Text = "남자";
             this.cbxMale.UseVisualStyleBackColor = true;
+            // 
+            // vrsDataSet
+            // 
+            this.vrsDataSet.DataSetName = "VRSDataSet";
+            this.vrsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblMembershipTableAdt
+            // 
+            this.tblMembershipTableAdt.ClearBeforeFill = true;
+            // 
+            // tblCodeTableAdt
+            // 
+            this.tblCodeTableAdt.ClearBeforeFill = true;
             // 
             // VRSMemberForm
             // 
@@ -274,6 +289,7 @@
             this.Load += new System.EventHandler(this.VRSMemberForm_Load);
             this.grpbxGrade.ResumeLayout(false);
             this.grpbxGrade.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vrsDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,5 +318,8 @@
         private System.Windows.Forms.RadioButton rdoAssociate;
         private System.Windows.Forms.CheckBox cbxMale;
         private System.Windows.Forms.ToolTip tip;
+        private VRSDataSet vrsDataSet;
+        private VRSDataSetTableAdapters.tblMembershipTableAdapter tblMembershipTableAdt;
+        private VRSDataSetTableAdapters.tblCodeTableAdapter tblCodeTableAdt;
     }
 }

@@ -14,5 +14,11 @@ namespace BLL
             MembershipDAL dal = new MembershipDAL();
             return dal.GetGradeList();
         }
+
+        public List<VideoType> GetVideoTypeList()
+        {
+            MembershipDAL dal = new MembershipDAL();
+            return dal.GetVideoTypeList();
+        }
     }
 }
