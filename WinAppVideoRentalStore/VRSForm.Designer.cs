@@ -60,6 +60,8 @@
             this.tblVideoTableAdt = new WinAppVideoRentalStore.VRSDataSetTableAdapters.tblVideoTableAdapter();
             this.tblRentVideoTableAdt = new WinAppVideoRentalStore.VRSDataSetTableAdapters.tblRentVideoTableAdapter();
             this.tblCodeTableAdt = new WinAppVideoRentalStore.VRSDataSetTableAdapters.tblCodeTableAdapter();
+            this.RendMemberName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RendState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.grpbxMember.SuspendLayout();
             this.grpbxVideo.SuspendLayout();
             this.grpbxRendVideo.SuspendLayout();
@@ -133,7 +135,6 @@
             this.lbxMembership.TabIndex = 1;
             this.lbxMembership.UseCompatibleStateImageBehavior = false;
             this.lbxMembership.View = System.Windows.Forms.View.Details;
-            this.lbxMembership.SelectedIndexChanged += new System.EventHandler(this.ListView_SelectedIndexChanged);
             // 
             // MemberNo
             // 
@@ -261,15 +262,15 @@
             this.grpbxRendVideo.Controls.Add(this.lbxRendVideo);
             this.grpbxRendVideo.Location = new System.Drawing.Point(393, 12);
             this.grpbxRendVideo.Name = "grpbxRendVideo";
-            this.grpbxRendVideo.Size = new System.Drawing.Size(277, 579);
+            this.grpbxRendVideo.Size = new System.Drawing.Size(427, 579);
             this.grpbxRendVideo.TabIndex = 0;
             this.grpbxRendVideo.TabStop = false;
             this.grpbxRendVideo.Text = "대여 목록";
             // 
             // btnReturn
             // 
-            this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnReturn.Location = new System.Drawing.Point(188, 505);
+            this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReturn.Location = new System.Drawing.Point(324, 505);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(87, 63);
             this.btnReturn.TabIndex = 2;
@@ -279,8 +280,8 @@
             // 
             // btnRend
             // 
-            this.btnRend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRend.Location = new System.Drawing.Point(95, 505);
+            this.btnRend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRend.Location = new System.Drawing.Point(231, 505);
             this.btnRend.Name = "btnRend";
             this.btnRend.Size = new System.Drawing.Size(87, 63);
             this.btnRend.TabIndex = 2;
@@ -297,13 +298,15 @@
             this.RendNo,
             this.RendDate,
             this.RendMemberGrade,
-            this.RendVideoTitle});
+            this.RendVideoTitle,
+            this.RendMemberName,
+            this.RendState});
             this.lbxRendVideo.FullRowSelect = true;
             this.lbxRendVideo.GridLines = true;
             this.lbxRendVideo.Location = new System.Drawing.Point(15, 31);
             this.lbxRendVideo.Margin = new System.Windows.Forms.Padding(10);
             this.lbxRendVideo.Name = "lbxRendVideo";
-            this.lbxRendVideo.Size = new System.Drawing.Size(246, 461);
+            this.lbxRendVideo.Size = new System.Drawing.Size(396, 461);
             this.lbxRendVideo.TabIndex = 1;
             this.lbxRendVideo.UseCompatibleStateImageBehavior = false;
             this.lbxRendVideo.View = System.Windows.Forms.View.Details;
@@ -316,6 +319,7 @@
             // RendDate
             // 
             this.RendDate.Text = "대여일";
+            this.RendDate.Width = 80;
             // 
             // RendMemberGrade
             // 
@@ -348,11 +352,19 @@
             // 
             this.tblCodeTableAdt.ClearBeforeFill = true;
             // 
+            // RendMemberName
+            // 
+            this.RendMemberName.Text = "회원명";
+            // 
+            // RendState
+            // 
+            this.RendState.Text = "상태";
+            // 
             // VRSForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(682, 603);
+            this.ClientSize = new System.Drawing.Size(832, 603);
             this.Controls.Add(this.grpbxRendVideo);
             this.Controls.Add(this.grpbxVideo);
             this.Controls.Add(this.grpbxMember);
@@ -402,6 +414,8 @@
         private VRSDataSetTableAdapters.tblVideoTableAdapter tblVideoTableAdt;
         private VRSDataSetTableAdapters.tblRentVideoTableAdapter tblRentVideoTableAdt;
         private VRSDataSetTableAdapters.tblCodeTableAdapter tblCodeTableAdt;
+        private System.Windows.Forms.ColumnHeader RendMemberName;
+        private System.Windows.Forms.ColumnHeader RendState;
     }
 }
 

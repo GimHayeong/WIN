@@ -28,14 +28,35 @@ namespace WinAppVideoRentalStore
             tblRentVideoTableAdt.Connection.ConnectionString = BLL.SampleData.GetConnectionString();
             tblCodeTableAdt.Connection.ConnectionString = BLL.SampleData.GetConnectionString();
 
-            tblMembershipTableAdt.Fill(vrsDataSet.tblMembership);
-            tblVideoTableAdt.Fill(vrsDataSet.tblVideo);
-            tblRentVideoTableAdt.Fill(vrsDataSet.tblRentVideo);
-            tblCodeTableAdt.Fill(vrsDataSet.tblCode);
+            try
+            {
+                tblMembershipTableAdt.Fill(vrsDataSet.tblMembership);
+                tblVideoTableAdt.Fill(vrsDataSet.tblVideo);
+                tblRentVideoTableAdt.Fill(vrsDataSet.tblRentVideo);
+                tblCodeTableAdt.Fill(vrsDataSet.tblCode);
 
-            SetMemberListView();
-            SetVideoListView();
-            SetRendVideoListView();
+                SetMemberListView();
+                SetVideoListView();
+                SetRendVideoListView();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("데이터를 가져오는 동안 문제가 발생했습니다. \r\n인터넷 연결확인후 실행하시거나 관리자 문의바랍니다.", "데이터연결안내");
+                foreach(var ctr in this.Controls)
+                {
+                    GroupBox grp = ctr as GroupBox;
+                    if (ctr != null)
+                    {
+                        foreach(var btn in grp.Controls)
+                        {
+                            if(btn is Button)
+                            {
+                                ((Button)btn).Enabled = false;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void Button_Click(object sender, EventArgs e)
@@ -80,21 +101,7 @@ namespace WinAppVideoRentalStore
             }
         }
 
-        private void ListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ListView lbx = sender as ListView;
-            if(lbx != null)
-            {
-                switch (lbx.Name)
-                {
-                    case "lbxMembership":
-                        break;
 
-                    case "lbxVideo":
-                        break;
-                }
-            }
-        }
 
         private void RendVideo()
         {
@@ -109,21 +116,34 @@ namespace WinAppVideoRentalStore
             int idxMember = lbxMembership.SelectedItems[0].Index;
             int idxVideo = lbxVideo.SelectedItems[0].Index;
 
-
             int memberId = Convert.ToInt32(lbxMembership.Items[idxMember].Name);
-            int videoId = Convert.ToInt32(lbxMembership.Items[idxVideo].Name);
+            int videoId = Convert.ToInt32(lbxVideo.Items[idxVideo].Name);
 
             VRSDataSet.tblVideoRow rowVideo = vrsDataSet.tblVideo.FindById(videoId);
             VRSDataSet.tblMembershipRow rowMember = vrsDataSet.tblMembership.FindById(memberId);
 
+            if(rowVideo == null || rowMember == null)
+            {
+                MessageBox.Show("회원정보와 비디오정보를 확인해 주십시오", "대여정보 확인안내");
+                lbxVideo.Focus();
+                return;
+            }
 
-            if (rowVideo != null && rowMember != null && MessageBox.Show("대여하시겠습니까?", "대여확인안내") == DialogResult.OK)
+            if (rowVideo.Stock - vrsDataSet.tblRentVideo.Count(o => o.VideoId == rowVideo.Id && !o.IsReturn) < 0)
+            {
+                MessageBox.Show("대여할 비디오가 없습니다.", "대여정보 확인안내");
+                lbxVideo.Focus();
+                return;
+            }
+
+            if (MessageBox.Show("대여하시겠습니까?", "대여확인안내") == DialogResult.OK)
             {
                 VRSDataSet.tblRentVideoRow row = vrsDataSet.tblRentVideo.NewtblRentVideoRow();
                 row.BeginEdit();
                 row.MemberId = memberId;
                 row.VideoId = videoId;
                 row.RentDate = DateTime.Now;
+                row.IsReturn = false;
                 row.EndEdit();
                 vrsDataSet.tblRentVideo.Rows.Add(row);
 
@@ -131,16 +151,41 @@ namespace WinAppVideoRentalStore
                 this.Validate();
                 this.tblRentVideoTableAdt.Update(row);
 
+                SetMemberListView();
+                SetVideoListView();
                 SetRendVideoListView();
             }
         }
 
         private void ReturnVideo()
         {
-            throw new NotImplementedException();
+            if (lbxRendVideo.SelectedItems == null || lbxRendVideo.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("반환할 회원의 대여 비디오를 먼저 선택해 주십시오.", "비디오 반환안내");
+                lbxVideo.Focus();
+                return;
+            }
+
+            int idx = lbxRendVideo.SelectedItems[0].Index;
+            int id = Convert.ToInt32(lbxRendVideo.Items[idx].Name);
+
+            VRSDataSet.tblRentVideoRow row = vrsDataSet.tblRentVideo.FindById(id);
+
+            if(row != null && MessageBox.Show("반환하시겠습니까?", "반환확인안내") == DialogResult.OK)
+            {
+                row.BeginEdit();
+                row.ReturnDate = DateTime.Now;
+                row.IsReturn = true;
+                row.EndEdit();
+
+                this.Validate();
+                this.tblRentVideoTableAdt.Update(row);
+
+                SetMemberListView();
+                SetVideoListView();
+                SetRendVideoListView();
+            }
         }
-
-
 
 
 
@@ -230,15 +275,15 @@ namespace WinAppVideoRentalStore
 
         private void SetMemberData(DAL.Membership dlgData, ref VRSDataSet.tblMembershipRow row)
         {
-            if (!row.Name.Equals(dlgData.Name)) row.Name = dlgData.Name;
-            if (!row.Male.Equals(dlgData.Male)) row.Male = dlgData.Male;
-            if (!row.Birthday.Equals(dlgData.Birthday)) row.Birthday = dlgData.Birthday;
-            if (!row.Zipcode.Equals(dlgData.ZipCode)) row.Zipcode = dlgData.ZipCode;
-            if (!row.Addr.Equals(dlgData.Addr)) row.Addr = dlgData.Addr;
-            if (!row.Addr2.Equals(dlgData.AddrDetail)) row.Addr2 = dlgData.AddrDetail;
-            if (!row.Cellphone.Equals(dlgData.Cellphone)) row.Cellphone = dlgData.Cellphone;
-            if (!row.GradeCode.Equals(dlgData.MGradeCode)) row.GradeCode = dlgData.MGradeCode;
-            if (!row.Deposit.Equals(dlgData.MDeposit)) row.Deposit = dlgData.MDeposit;
+            if (row.IsNull("Name") || !row.Name.Equals(dlgData.Name)) row.Name = dlgData.Name;
+            if (row.IsNull("Male") || !row.Male.Equals(dlgData.Male)) row.Male = dlgData.Male;
+            if (row.IsNull("Birthday") || !row.Birthday.Equals(dlgData.Birthday)) row.Birthday = dlgData.Birthday;
+            if (row.IsNull("ZipCode") || !row.Zipcode.Equals(dlgData.ZipCode)) row.Zipcode = dlgData.ZipCode;
+            if (row.IsNull("Addr") || !row.Addr.Equals(dlgData.Addr)) row.Addr = dlgData.Addr;
+            if (row.IsNull("Addr2") || !row.Addr2.Equals(dlgData.AddrDetail)) row.Addr2 = dlgData.AddrDetail;
+            if (row.IsNull("Cellphone") || !row.Cellphone.Equals(dlgData.Cellphone)) row.Cellphone = dlgData.Cellphone;
+            if (row.IsNull("GradeCode") || !row.GradeCode.Equals(dlgData.MGradeCode)) row.GradeCode = dlgData.MGradeCode;
+            if (row.IsNull("Deposit") || !row.Deposit.Equals(dlgData.MDeposit)) row.Deposit = dlgData.MDeposit;
         }
 
 
@@ -330,14 +375,14 @@ namespace WinAppVideoRentalStore
         
         private void SetVideoData(DAL.Video dlgData, ref VRSDataSet.tblVideoRow row)
         {
-            if(!row.Title.Equals(dlgData.Title)) row.Title = dlgData.Title;
-            if (!row.Stock.Equals(dlgData.Stock)) row.Stock = dlgData.Stock;
-            if (!row.Producer.Equals(dlgData.Producer)) row.Producer = dlgData.Producer;
-            if (!row.Director.Equals(dlgData.Director)) row.Director = dlgData.Director;
-            if (!row.Starring.Equals(dlgData.Starring)) row.Starring = dlgData.Starring;
-            if (!row.ProductionYear.Equals(dlgData.ProductionYear)) row.ProductionYear = dlgData.ProductionYear;
-            if (!row.Description.Equals(dlgData.Description)) row.Description = dlgData.Description;
-            if (!row.VideoCode.Equals(dlgData.VideoType)) row.VideoCode = dlgData.VideoType;
+            if (row.IsNull("Title") || !row.Title.Equals(dlgData.Title)) row.Title = dlgData.Title;
+            if (row.IsNull("Stock") || !row.Stock.Equals(dlgData.Stock)) row.Stock = dlgData.Stock;
+            if (row.IsNull("Producer") || !row.Producer.Equals(dlgData.Producer)) row.Producer = dlgData.Producer;
+            if (row.IsNull("Director") || !row.Director.Equals(dlgData.Director)) row.Director = dlgData.Director;
+            if (row.IsNull("Starring") || !row.Starring.Equals(dlgData.Starring)) row.Starring = dlgData.Starring;
+            if (row.IsNull("ProductionYear") || !row.ProductionYear.Equals(dlgData.ProductionYear)) row.ProductionYear = dlgData.ProductionYear;
+            if (row.IsNull("Description") || !row.Description.Equals(dlgData.Description)) row.Description = dlgData.Description;
+            if (row.IsNull("VideoCode") || !row.VideoCode.Equals(dlgData.VideoType)) row.VideoCode = dlgData.VideoType;
         }
 
 
@@ -356,7 +401,7 @@ namespace WinAppVideoRentalStore
             lbxMembership.Items.Clear();
             foreach (var q in qryMember)
             {
-                rent = vrsDataSet.tblRentVideo.Sum(o => o.MemberId = q.Id);
+                rent = vrsDataSet.tblRentVideo.Count(o => o.MemberId == q.Id && !o.IsReturn);
                 lbxMembership.Items.Add(new ListViewItem(new string[] { no.ToString(), q.mMember.Name, q.mMember.MGradeCode.ToString(), q.mMember.MDeposit.ToString(), rent.ToString() }));
                 lbxMembership.Items[no - 1].Tag = q.mMember;
                 lbxMembership.Items[no - 1].Name = q.Id.ToString();
@@ -375,7 +420,7 @@ namespace WinAppVideoRentalStore
             lbxVideo.Items.Clear();
             foreach (var q in qryVideo)
             {
-                rent = vrsDataSet.tblRentVideo.Count(o => o.VideoId == q.Id);
+                rent = vrsDataSet.tblRentVideo.Count(o => o.VideoId == q.Id && !o.IsReturn);
                 lbxVideo.Items.Add(new ListViewItem(new string[] { no.ToString(), q.mVideo.Title, q.VideoType, $"{rent}/{q.mVideo.Stock}" }));
                 lbxVideo.Items[no - 1].Tag = q.mVideo;
                 lbxVideo.Items[no - 1].Name = q.Id.ToString();
@@ -388,14 +433,15 @@ namespace WinAppVideoRentalStore
             var qryRendVideo = from r in vrsDataSet.tblRentVideo
                                join v in vrsDataSet.tblVideo on r.VideoId equals v.Id
                                join m in vrsDataSet.tblMembership on r.MemberId equals m.Id
-                               select new { r.RentDate, v.Title, m.GradeCode };
+                               select new { r.Id, RendVideo = new RendVideo(r.MemberId, r.VideoId, r.RentDate), v.Title, m.GradeCode, MemberName = m.Name, State = r.IsReturn ? "반환" : "대여" };
 
             int no = 1;
             lbxRendVideo.Items.Clear();
             foreach (var q in qryRendVideo)
             {
-                lbxRendVideo.Items.Add(new ListViewItem(new string[] { no.ToString(), q.RentDate.ToShortDateString(), q.GradeCode.ToString(), q.Title }));
-                lbxRendVideo.Items[no - 1].Tag = q;
+                lbxRendVideo.Items.Add(new ListViewItem(new string[] { no.ToString(), q.RendVideo.RentDate.ToShortDateString(), q.GradeCode.ToString(), q.Title, q.MemberName, q.State }));
+                lbxRendVideo.Items[no - 1].Tag = q.RendVideo;
+                lbxRendVideo.Items[no - 1].Name = q.Id.ToString();
                 no++;
             }
         }
