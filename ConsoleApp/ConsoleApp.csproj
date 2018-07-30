@@ -74,6 +74,7 @@
     <Compile Include="AccountMonitor.cs" />
     <Compile Include="AccountMutex.cs" />
     <Compile Include="Animal.cs" />
+    <Compile Include="CollectionExam.cs" />
     <Compile Include="DelegateArithmetic.cs" />
     <Compile Include="ThreadStartCallback.cs" />
     <Compile Include="ThreadStartParam.cs" />

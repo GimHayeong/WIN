@@ -17,3 +17,6 @@ D:\Projects\2015\WpfApp\WpfApp\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\ControlWindow.g.cs
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\ControlWindow.baml
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WpfApp.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WpfApp.csproj.ResolveComReference.cache
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinExcel.g.cs
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinExcel.baml
