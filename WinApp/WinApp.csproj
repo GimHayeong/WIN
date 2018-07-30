@@ -96,6 +96,12 @@
     <Compile Include="EventViewerForm.Designer.cs">
       <DependentUpon>EventViewerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileExplorerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileExplorerForm.Designer.cs">
+      <DependentUpon>FileExplorerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileStreamForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,17 +182,41 @@
     <Compile Include="RegistryForm.Designer.cs">
       <DependentUpon>RegistryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThreadBgWorkerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThreadBgWorkerForm.Designer.cs">
+      <DependentUpon>ThreadBgWorkerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThreadInvokeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThreadInvokeForm.Designer.cs">
+      <DependentUpon>ThreadInvokeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TimerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TimerForm.Designer.cs">
       <DependentUpon>TimerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TokenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TokenForm.Designer.cs">
+      <DependentUpon>TokenForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TreeViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TreeViewForm.Designer.cs">
       <DependentUpon>TreeViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ValidationForm.Designer.cs">
+      <DependentUpon>ValidationForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
@@ -208,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EventViewerForm.resx">
       <DependentUpon>EventViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileExplorerForm.resx">
+      <DependentUpon>FileExplorerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileStreamForm.resx">
       <DependentUpon>FileStreamForm.cs</DependentUpon>
@@ -258,11 +291,23 @@
     <EmbeddedResource Include="RegistryForm.resx">
       <DependentUpon>RegistryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ThreadBgWorkerForm.resx">
+      <DependentUpon>ThreadBgWorkerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThreadInvokeForm.resx">
+      <DependentUpon>ThreadInvokeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TimerForm.resx">
       <DependentUpon>TimerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TokenForm.resx">
+      <DependentUpon>TokenForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TreeViewForm.resx">
       <DependentUpon>TreeViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ValidationForm.resx">
+      <DependentUpon>ValidationForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

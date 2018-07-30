@@ -15,8 +15,13 @@
 //#define REGISTRY
 //#define PRINT
 //#define CLIPBOARD
-#define ADONET
+//#define ADONET
 //#define DATASET
+//#define TOKEN
+//#define VALIDATION
+//#define SEARCH_FILE
+//#define THREAD_INVOKE
+#define THREAD_BGWORKER
 
 using System;
 using System.Collections.Generic;
@@ -76,6 +81,16 @@ namespace WinApp
             Application.Run(new ADOForm());
 #elif DATASET
             Application.Run(new DataSetForm());
+#elif TOKEN
+            Application.Run(new TokenForm());
+#elif VALIDATION
+            Application.Run(new ValidationForm());
+#elif SEARCH_FILE
+            Application.Run(new FileExplorerForm());
+#elif THREAD_INVOKE
+            Application.Run(new ThreadInvokeForm());
+#elif THREAD_BGWORKER
+            Application.Run(new ThreadBgWorkerForm());
 #else
             Application.Run(new MDHForm());
 #endif

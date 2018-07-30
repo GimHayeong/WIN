@@ -41,3 +41,8 @@ D:\Projects\2015\WpfApp\WinApp\bin\Debug\Google.Protobuf.xml
 D:\Projects\2015\WpfApp\WinApp\bin\Debug\System.Net.Http.Formatting.dll
 D:\Projects\2015\WpfApp\WinApp\bin\Debug\Newtonsoft.Json.dll
 D:\Projects\2015\WpfApp\WinApp\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.TokenForm.resources
+D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.ValidationForm.resources
+D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.FileExplorerForm.resources
+D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.ThreadInvokeForm.resources
+D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.ThreadBgWorkerForm.resources

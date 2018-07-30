@@ -70,16 +70,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="AccountMonitor.cs" />
+    <Compile Include="AccountMutex.cs" />
     <Compile Include="Animal.cs" />
+    <Compile Include="DelegateArithmetic.cs" />
+    <Compile Include="ThreadStartCallback.cs" />
+    <Compile Include="ThreadStartParam.cs" />
     <Compile Include="DelegateTest.cs" />
+    <Compile Include="DelegateEvent.cs" />
     <Compile Include="HandPhone.cs" />
     <Compile Include="Human.cs" />
+    <Compile Include="IAccount.cs" />
     <Compile Include="ICar.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="LINQExam.cs" />
     <Compile Include="NotKimException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleExam.cs" />
     <Compile Include="Site.cs" />
     <Compile Include="Socket.cs" />
     <Compile Include="Time.cs" />

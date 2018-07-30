@@ -31,7 +31,9 @@
             this.txtData = new System.Windows.Forms.TextBox();
             this.grbxFileStream = new System.Windows.Forms.GroupBox();
             this.btnReadForBinary = new System.Windows.Forms.Button();
+            this.btnReadCrypto = new System.Windows.Forms.Button();
             this.btnReadForString = new System.Windows.Forms.Button();
+            this.btnWriteCrypto = new System.Windows.Forms.Button();
             this.btnWriteForBinary = new System.Windows.Forms.Button();
             this.btnWriteForString = new System.Windows.Forms.Button();
             this.btnReadForByte = new System.Windows.Forms.Button();
@@ -62,20 +64,22 @@
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
             this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtData.Size = new System.Drawing.Size(514, 610);
+            this.txtData.Size = new System.Drawing.Size(514, 650);
             this.txtData.TabIndex = 1;
             // 
             // grbxFileStream
             // 
             this.grbxFileStream.Controls.Add(this.btnReadForBinary);
+            this.grbxFileStream.Controls.Add(this.btnReadCrypto);
             this.grbxFileStream.Controls.Add(this.btnReadForString);
+            this.grbxFileStream.Controls.Add(this.btnWriteCrypto);
             this.grbxFileStream.Controls.Add(this.btnWriteForBinary);
             this.grbxFileStream.Controls.Add(this.btnWriteForString);
             this.grbxFileStream.Controls.Add(this.btnReadForByte);
             this.grbxFileStream.Controls.Add(this.btnWriteForByte);
             this.grbxFileStream.Location = new System.Drawing.Point(9, 13);
             this.grbxFileStream.Name = "grbxFileStream";
-            this.grbxFileStream.Size = new System.Drawing.Size(283, 239);
+            this.grbxFileStream.Size = new System.Drawing.Size(283, 291);
             this.grbxFileStream.TabIndex = 2;
             this.grbxFileStream.TabStop = false;
             this.grbxFileStream.Text = "파일입출력";
@@ -91,6 +95,17 @@
             this.btnReadForBinary.UseVisualStyleBackColor = false;
             this.btnReadForBinary.Click += new System.EventHandler(this.btnReadBinary_Click);
             // 
+            // btnReadCrypto
+            // 
+            this.btnReadCrypto.BackColor = System.Drawing.SystemColors.Info;
+            this.btnReadCrypto.Location = new System.Drawing.Point(143, 224);
+            this.btnReadCrypto.Name = "btnReadCrypto";
+            this.btnReadCrypto.Size = new System.Drawing.Size(130, 53);
+            this.btnReadCrypto.TabIndex = 2;
+            this.btnReadCrypto.Text = "복호화 읽기 (CryptoStream)";
+            this.btnReadCrypto.UseVisualStyleBackColor = false;
+            this.btnReadCrypto.Click += new System.EventHandler(this.btnDecrypto_Click);
+            // 
             // btnReadForString
             // 
             this.btnReadForString.Location = new System.Drawing.Point(143, 95);
@@ -100,6 +115,17 @@
             this.btnReadForString.Text = "파일 읽기 (StreamReader)";
             this.btnReadForString.UseVisualStyleBackColor = true;
             this.btnReadForString.Click += new System.EventHandler(this.btnReadString_Click);
+            // 
+            // btnWriteCrypto
+            // 
+            this.btnWriteCrypto.BackColor = System.Drawing.SystemColors.Info;
+            this.btnWriteCrypto.Location = new System.Drawing.Point(9, 224);
+            this.btnWriteCrypto.Name = "btnWriteCrypto";
+            this.btnWriteCrypto.Size = new System.Drawing.Size(130, 53);
+            this.btnWriteCrypto.TabIndex = 4;
+            this.btnWriteCrypto.Text = "암호화 쓰기 (CryptoStream)";
+            this.btnWriteCrypto.UseVisualStyleBackColor = false;
+            this.btnWriteCrypto.Click += new System.EventHandler(this.btnEncryptData_Click);
             // 
             // btnWriteForBinary
             // 
@@ -148,7 +174,7 @@
             this.grbxSerialize.Controls.Add(this.btnWriteXMLForSoap);
             this.grbxSerialize.Controls.Add(this.btnReadObjectForSerializedBinary);
             this.grbxSerialize.Controls.Add(this.btnWriteObjectForSerializedBinary);
-            this.grbxSerialize.Location = new System.Drawing.Point(9, 269);
+            this.grbxSerialize.Location = new System.Drawing.Point(9, 310);
             this.grbxSerialize.Name = "grbxSerialize";
             this.grbxSerialize.Size = new System.Drawing.Size(283, 167);
             this.grbxSerialize.TabIndex = 2;
@@ -203,7 +229,7 @@
             this.grbxFileInfo.Controls.Add(this.btnDirectory);
             this.grbxFileInfo.Controls.Add(this.btnFileInfoCopy);
             this.grbxFileInfo.Controls.Add(this.btnFileCopy);
-            this.grbxFileInfo.Location = new System.Drawing.Point(9, 453);
+            this.grbxFileInfo.Location = new System.Drawing.Point(9, 497);
             this.grbxFileInfo.Name = "grbxFileInfo";
             this.grbxFileInfo.Size = new System.Drawing.Size(283, 167);
             this.grbxFileInfo.TabIndex = 3;
@@ -266,13 +292,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 635);
+            this.ClientSize = new System.Drawing.Size(827, 675);
             this.Controls.Add(this.grbxFileInfo);
             this.Controls.Add(this.grbxSerialize);
             this.Controls.Add(this.grbxFileStream);
             this.Controls.Add(this.txtData);
             this.Name = "FileStreamForm";
             this.Text = "FileStreamForm";
+            this.Load += new System.EventHandler(this.Form_Load);
             this.grbxFileStream.ResumeLayout(false);
             this.grbxSerialize.ResumeLayout(false);
             this.grbxFileInfo.ResumeLayout(false);
@@ -303,5 +330,7 @@
         private System.Windows.Forms.Button btnFileInfoCopy;
         private System.Windows.Forms.Button btnFileCopy;
         private System.IO.FileSystemWatcher fswFileWatcher;
+        private System.Windows.Forms.Button btnReadCrypto;
+        private System.Windows.Forms.Button btnWriteCrypto;
     }
 }

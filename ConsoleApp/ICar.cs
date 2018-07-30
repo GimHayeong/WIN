@@ -73,4 +73,32 @@ namespace ConsoleApp
             //
         }
     }
+
+    class TheNewSpark : ICar
+    {
+        const int MAX_SPEED = 100;
+        const int MIN_SPEED = 1;
+
+        public int Speed { get; set; }
+
+        public void SpeedUp()
+        {
+            if(Speed < MAX_SPEED) Speed++;
+        }
+
+        public void SpeedDn()
+        {
+            if(Speed > MIN_SPEED) Speed--;
+        }
+
+        public void Back()
+        {
+            //
+        }
+
+        public void Run()
+        {
+            //
+        }
+    }
 }
