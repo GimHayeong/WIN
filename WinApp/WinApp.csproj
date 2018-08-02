@@ -328,6 +328,7 @@
     <Content Include="Images\clover.jpg" />
     <Content Include="Images\dog.png" />
     <Content Include="Images\dog.wmf" />
+    <Content Include="Images\help.png" />
     <Content Include="Images\laser.wav" />
     <None Include="Resources\android_96X32.png" />
     <None Include="Resources\singers.jpg" />

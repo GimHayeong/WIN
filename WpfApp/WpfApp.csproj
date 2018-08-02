@@ -60,6 +60,7 @@
     <Compile Include="ControlWindow.xaml.cs">
       <DependentUpon>ControlWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Photos.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Sample.cs" />
     <Compile Include="WinExcel.xaml.cs">

@@ -18,6 +18,7 @@ namespace WinApp
 
     public partial class MDHForm : Form
     {
+        Form childForm = null;
         public MDHForm()
         {
             InitializeComponent();
@@ -25,6 +26,39 @@ namespace WinApp
             SetStyle(ControlStyles.ResizeRedraw, true);
 
             lstSystemInfo.KeyPress += new KeyPressEventHandler(OnKeyPress);
+
+            Text = "부모윈도우";
+            LocationChanged += Form_LocationChanged;
+            //SetBounds(10, 10, 250, 250);
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            childForm = new Form();
+            childForm.Text = "자식윈도우";
+            childForm.SetBounds(10, 10, 250, 250);
+
+            childForm.Show();
+
+            // LocationChanged 이벤트 호출하기 위해
+            this.Left = 10;
+        }
+
+        private void Form_LocationChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (childForm.Visible)
+                {
+                    childForm.Left = this.Left;
+                    childForm.Top = this.Top + this.Height;
+                    this.Focus();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"{ex} 예외발생");
+            }
         }
 
         protected void OnKeyPress(object sender, KeyPressEventArgs e)
@@ -54,5 +88,7 @@ namespace WinApp
             lstSystemInfo.Items.Add("UserName: " + SystemInformation.UserName.ToString());
             lstSystemInfo.Items.Add("WorkingArea: " + SystemInformation.WorkingArea.ToString());
         }
+
+        
     }
 }

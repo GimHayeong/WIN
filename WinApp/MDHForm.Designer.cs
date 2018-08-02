@@ -70,6 +70,7 @@
             this.Name = "MDHForm";
             this.Opacity = 0.8D;
             this.Text = "시스템정보";
+            this.Load += new System.EventHandler(this.Form_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MDHForm_Paint);
             this.ResumeLayout(false);
 

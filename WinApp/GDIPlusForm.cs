@@ -6,8 +6,13 @@
 //#define PENALIGN
 //#define HATCHBRUSH
 //#define LINEARGRADIENT
-#define TEXTUREBRUSH
+//#define TEXTUREBRUSH
 //#define DRAWXXX
+//#define COLOR_DIALOG
+//#define GET_GRAPHICS
+//#define GET_GRAPHICS_byMEASUREITEM
+//#define GET_GRAPHICS_byDRAWITEM
+#define GET_GRAPHICS_byFROMIMAGE
 
 using System;
 using System.Collections.Generic;
@@ -15,6 +20,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +45,21 @@ namespace WinApp
 #elif DRAWXXX
         public string DrawType { get; private set; }
         public float Tension { get; private set; }
+#elif COLOR_DIALOG
+        Button btnForeground, btnBackground;
+#elif GET_GRAPHICS
+        Button btnGraphics;
+#elif GET_GRAPHICS_byFROMIMAGE
+        Button btnGraphicsFromImage;
+        Image m_img = null;
+#elif GET_GRAPHICS_byMEASUREITEM
+        ListBox lbx;
+        //ComboBox cbx;
+        //CheckedListBox ckb;
+        //TabControl tab;
+#elif GET_GRAPHICS_byDRAWITEM
+        ListBox lbx;
+        //ComboBox cbx;       
 #else
         public int Alpha { get; private set; }
 #endif
@@ -60,11 +81,232 @@ namespace WinApp
 #elif DRAWXXX
             DrawType = "Curve";
             Tension = 0;
+#elif COLOR_DIALOG
+            btnForeground = new Button();
+            btnForeground.Name = "btnForeground";
+            btnForeground.Text = "전경색 설정";
+            btnForeground.SetBounds(120, 150, 100, 50);
+            btnForeground.Click += ColorDialogButton_Click;
+
+            btnBackground = new Button();
+            btnBackground.Name = "btnBackground";
+            btnBackground.Text = "배경색 설정";
+            btnBackground.SetBounds(10, 150, 100, 50);
+            btnBackground.Click += ColorDialogButton_Click;
+
+            this.Controls.Add(btnBackground);
+            this.Controls.Add(btnForeground);
+#elif GET_GRAPHICS
+
+            this.Paint += GDIPlusForm_PaintEventHandler;
+
+            btnGraphics = new Button();
+            btnGraphics.Name = "btnGetGraphics";
+            btnGraphics.Text = "버튼위에 GDI+ 출력";
+            btnGraphics.SetBounds(10, 10, 200, 100);
+            btnGraphics.Click += GraphicsButton_Click;
+            this.Controls.Add(btnGraphics);
+
+#elif GET_GRAPHICS_byFROMIMAGE
+
+            btnGraphicsFromImage = new Button();
+            btnGraphicsFromImage.Name = "btnGraphicsFromImage";
+            btnGraphicsFromImage.Text = "그림위에 GDI+ 출력";
+            btnGraphicsFromImage.SetBounds(10, 50, 200, 100);
+            btnGraphicsFromImage.Click += GraphicsButton_Click;
+            this.Controls.Add(btnGraphicsFromImage);
+
+#elif GET_GRAPHICS_byMEASUREITEM
+
+            lbx = new ListBox();
+            lbx.SetBounds(10, 10, 200, 100);
+            lbx.Items.Add("사과");
+            lbx.Items.Add("포도");
+            lbx.Items.Add("수박");
+            lbx.DrawMode = DrawMode.OwnerDrawVariable;// MeasureItem 이벤트 호출 ---> DrawItem 이벤트 호출
+            lbx.MeasureItem += ListBox_MeasureItemEvent;
+            lbx.DrawItem += ListBox_DrawItemEvent;
+            this.Controls.Add(lbx);
+
+#elif GET_GRAPHICS_byDRAWITEM
+
+            lbx = new ListBox();
+            lbx.SetBounds(10, 10, 200, 100);
+            lbx.Items.Add("사과");
+            lbx.Items.Add("포도");
+            lbx.Items.Add("수박");
+            lbx.DrawMode = DrawMode.OwnerDrawFixed;// DrawItem 이벤트만 호출
+            lbx.DrawItem += ListBox_DrawItemEvent;
+            this.Controls.Add(lbx);
 #else
             Alpha = 128;
 #endif
         }
 
+        private void BtnGetGraphicsFromImage_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+#if GET_GRAPHICS_byMEASUREITEM
+
+        private void ListBox_MeasureItemEvent(object sender, MeasureItemEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Console.WriteLine($"{e} : MeasureItem 이벤트 실행");
+        }
+
+        private void ListBox_DrawItemEvent(object sender, DrawItemEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Brush brush = Brushes.Black;
+
+            switch (e.Index)
+            {
+                case 0:
+                    brush = Brushes.Red;
+                    break;
+
+                case 1:
+                    brush = Brushes.Violet;
+                    break;
+
+                case 2:
+                    brush = Brushes.Green;
+                    break;
+            }
+
+            g.DrawString($"{lbx.Items[e.Index]}", e.Font, brush, e.Bounds, StringFormat.GenericDefault);
+            Console.WriteLine($"{e} : DrawItem 이벤트 실행");
+        }
+#endif
+
+#if GET_GRAPHICS_byDRAWITEM
+        private void ListBox_DrawItemEvent(object sender, DrawItemEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Brush brush = Brushes.Black;
+
+            switch (e.Index)
+            {
+                case 0:
+                    brush = Brushes.Red;
+                    break;
+
+                case 1:
+                    brush = Brushes.Violet;
+                    break;
+
+                case 2:
+                    brush = Brushes.Green;
+                    break;
+            }
+
+            g.DrawString($"{lbx.Items[e.Index]}", e.Font, brush, e.Bounds, StringFormat.GenericDefault);
+            Console.WriteLine($"{e} : DrawItem 이벤트 실행");
+        }
+#endif
+
+#if GET_GRAPHICS
+        /// <summary>
+        /// Paint 이벤트 핸들러를 통해 Graphics 객체 얻기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GDIPlusForm_PaintEventHandler(object sender, PaintEventArgs e)
+        {
+            //Graphics g = e.Graphics;
+            //g.FillRectangle(new SolidBrush(Color.Green), this.ClientRectangle);
+        }
+
+        /// <summary>
+        /// Control 클래스의 CreateGraphics 메서드를 통해 Graphics 객체 얻기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GraphicsButton_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn == null) return;
+
+            switch (btn.Name)
+            {
+                case "btnGraphics":
+                    using (Graphics g = btnGraphics.CreateGraphics())
+                    {
+                        g.FillRectangle(new SolidBrush(Color.Yellow), btnGraphics.ClientRectangle);
+                    }//g.Dispose() 반드시 필요
+                    break;
+            }
+        }
+#endif
+#if GET_GRAPHICS_byFROMIMAGE
+        /// <summary>
+        /// Control 클래스의 CreateGraphics 메서드를 통해 Graphics 객체 얻기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GraphicsButton_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn == null) return;
+
+            switch (btn.Name)
+            {
+                case "btnGraphicsFromImage":
+                    Image img = Image.FromFile(Application.StartupPath.Substring(0, Application.StartupPath.LastIndexOf(@"\bin")) + @"\Images\Baby.jpg");
+                    using (Graphics g = Graphics.FromImage(img))
+                    {
+                        Font font = new Font("돋움", 20);
+                        Brush brush = Brushes.Pink;
+                        g.DrawString("이미지에 글씨쓰기", font, brush, 10, 10);
+                    }//g.Dispose() 반드시 필요
+
+                    if(m_img == null)
+                    {
+                        FileInfo file = new FileInfo(Application.StartupPath.Substring(0, Application.StartupPath.LastIndexOf(@"\bin")) + @"\Images\Baby_copied.png");
+                        if (file.Exists) file.Delete();
+
+                        img.Save(Application.StartupPath.Substring(0, Application.StartupPath.LastIndexOf(@"\bin")) + @"\Images\Baby_copied.png", System.Drawing.Imaging.ImageFormat.Png);//@"D:\downloads\temp\Images\Baby_copied.png"
+                        this.m_img = Image.FromFile(Application.StartupPath.Substring(0, Application.StartupPath.LastIndexOf(@"\bin")) + @"\Images\Baby_copied.png");
+                    }
+                    this.Invalidate(this.ClientRectangle);
+                    break;
+            }
+        }
+#endif 
+
+#if COLOR_DIALOG
+        private void ColorDialogButton_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if(btn != null)
+            {
+                ColorDialog dlg = new ColorDialog();
+                dlg.AllowFullOpen = false;//사용자지정 비활성
+                dlg.ShowHelp = true;//도움말출력
+
+                switch (btn.Name)
+                {
+                    case "btnForeground":
+                        dlg.Color = this.ForeColor;
+                        if(dlg.ShowDialog() == DialogResult.OK)
+                        {
+                            this.ForeColor = dlg.Color;
+                        }
+                        break;
+
+                    case "btnBackground":
+                        dlg.Color = this.BackColor;
+                        if (dlg.ShowDialog() == DialogResult.OK)
+                        {
+                            this.BackColor = dlg.Color;
+                        }
+                        break;
+                }
+            }
+        }
+#endif
 
         private void GDIPlusForm_Load(object sender, EventArgs e)
         {
@@ -73,6 +315,11 @@ namespace WinApp
 #endif
         }
 
+        /// <summary>
+        /// Control 클래스의 OnPaint 메서드 재정의하여 Graphics 객체 얻기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GDIPlusForm_Paint(object sender, PaintEventArgs e)
         {
 #if PEN
@@ -291,6 +538,19 @@ namespace WinApp
                 e.Graphics.DrawString("장력: " + Tension, Font, Brushes.Black, 0, 220);
             }
 
+#elif COLOR_DIALOG
+            Graphics g = e.Graphics;
+            SolidBrush brush = new SolidBrush(this.ForeColor);
+            Font font = new Font("돋움", 20);
+            g.DrawString("글자색 변경", font, brush, 10, 20);
+#elif GET_GRAPHICS
+            Graphics g = e.Graphics;
+            g.FillRectangle(new SolidBrush(Color.Blue), this.ClientRectangle);
+#elif GET_GRAPHICS_byFROMIMAGE
+            Graphics g = e.Graphics;
+            if (m_img != null) g.DrawImage(m_img, 0, 0);
+#elif GET_GRAPHICS_byMEASUREITEM
+#elif GET_GRAPHICS_byDRAWITEM
 #else
             e.Graphics.FillEllipse(Brushes.Blue, 10, 10, 150, 100);
             SolidBrush brush = new SolidBrush(Color.FromArgb(Alpha, 255, 0, 0));
@@ -335,6 +595,11 @@ namespace WinApp
                     Invalidate();
                     break;
             }
+#elif COLOR_DIALOG
+#elif GET_GRAPHICS
+#elif GET_GRAPHICS_byFROMIMAGE
+#elif GET_GRAPHICS_byMEASUREITEM
+#elif GET_GRAPHICS_byDRAWITEM
 #else
             switch (e.KeyCode)
             {
