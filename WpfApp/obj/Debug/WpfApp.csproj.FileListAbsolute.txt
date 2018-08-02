@@ -20,3 +20,5 @@ D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WpfApp.csprojResolveAssemblyReference.c
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WpfApp.csproj.ResolveComReference.cache
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinExcel.g.cs
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinExcel.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinControlTransform.g.cs
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinControlTransform.baml

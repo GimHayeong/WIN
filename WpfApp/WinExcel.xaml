@@ -24,7 +24,7 @@
     </Window.Resources>
     <StackPanel x:Name="stpnlParent">
         <Label x:Name="lblMsg" HorizontalAlignment="Center" Foreground="{Binding Foreground, ElementName=btnForeground}">WPF Unleashed (Version 3.0)</Label>
-        <Button x:Name="btnExcel" Content="엑셀실행하기" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnExcel_Click" Margin="0,20,0,10" Padding="5">
+        <Button x:Name="btnExcel" Content="엑셀실행하기" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="btnExcel_Click" Margin="20,20,20,10" Padding="5">
             <Button.ToolTip>
                 <ToolTip>
                     엑셀을 실행하고 데이터와 차트를 생성하려면 클릭하세요.
@@ -47,9 +47,16 @@
                     <Color x:Key="2" A="0" R="0" G="0" B="0"/>
                 </ResourceDictionary>
             </ListBox.Resources>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
             <ListBox.Items>
-                <ListBoxItem Content="Item 1"/>
-                <ListBoxItem Content="Item 2"/>
+                <ListBoxItem TextSearch.Text="3" Content="Item 3"/>
+                <ListBoxItem TextSearch.Text="1" Content="Item 1"/>
+                <ListBoxItem TextSearch.Text="4" Content="Item 4"/>
+                <ListBoxItem TextSearch.Text="2" Content="Item 2"/>
             </ListBox.Items>
         </ListBox>
         <Button Content="아이템추가" Click="AddItemButton_Click">
@@ -67,7 +74,7 @@
         <StackPanel Orientation="Horizontal">
             <Button Margin="5" Click="ButtonAndListBox_GenericHandler">클릭하세요</Button>
             <Button Margin="5" Command="Help" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"></Button>
-            <CheckBox Margin="5" ToolTipService.ShowDuration="3000" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
+            <CheckBox x:Name="cbxDisabled" Margin="5" ToolTipService.ShowDuration="3000" IsEnabled="False" ToolTipService.ShowOnDisabled="True">
                 <CheckBox.ToolTip>
                     <ToolTip>
                         <StackPanel>
@@ -155,15 +162,162 @@
                 </StackPanel>
             </StackPanel>
         </GroupBox>
-        <Expander Header="날짜">
-            <ListBox DisplayMemberPath="DayOfWeek">
-                <sys:DateTime>1/1/2016</sys:DateTime>
-                <sys:DateTime>1/1/2017</sys:DateTime>
-                <sys:DateTime>1/1/2018</sys:DateTime>
-            </ListBox>
-        </Expander>
-        <Expander Header="Daum">
-            <Frame Source="http://www.daum.net" MinHeight="200"></Frame>  
-        </Expander>
+        <TabControl>
+            <TabItem Header="ListBox">
+                <Expander Header="날짜">
+                    <!-- 비활성화된 엘리먼트의 컨텍스트메뉴 보이려면 ContextMenuService.ShowOnDisabled="True"-->
+                    <!--<ListBox DisplayMemberPath="DayOfWeek" IsEnabled="False" ContextMenuService.ShowOnDisabled="True">-->
+                    <ListBox DisplayMemberPath="DayOfWeek">
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <TextBlock>Select date</TextBlock>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                        <sys:DateTime>1/1/2016</sys:DateTime>
+                        <sys:DateTime>1/1/2017</sys:DateTime>
+                        <sys:DateTime>1/1/2018</sys:DateTime>
+                    </ListBox>
+                </Expander>
+            </TabItem>
+            <TabItem Header="ListView">
+                <ListView>
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Date Information">
+                            <GridViewColumn Header="Date"/>
+                            <GridViewColumn Header="Day of week"
+                                    DisplayMemberBinding="{Binding DayOfWeek}"/>
+                            <GridViewColumn Header="Year"
+                                    DisplayMemberBinding="{Binding Year}"/>
+                        </GridView>
+                    </ListView.View>
+                    <sys:DateTime>1/1/2016</sys:DateTime>
+                    <sys:DateTime>1/1/2017</sys:DateTime>
+                    <sys:DateTime>1/1/2018</sys:DateTime>
+                </ListView>
+            </TabItem>
+            <TabItem Header="Frame">
+                <Expander Header="Daum">
+                    <Frame Source="http://www.daum.net" MinHeight="200"></Frame>
+                </Expander>
+            </TabItem>
+            <TabItem Header="Menu">
+                <Menu>
+                    <!-- 메뉴를 세로로 변형하려면 -->
+                    <!--<Menu.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </Menu.ItemsPanel>-->
+                    <MenuItem Header="_File">
+                        <MenuItem Header="_New"/>
+                        <MenuItem Header="_Open"/>
+                        <Separator/>
+                        <MenuItem Header="Sen_d To">
+                            <MenuItem Header="Mail Recipient"/>
+                            <MenuItem Header="My Documents"/>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="_Edit">
+                        <MenuItem Header="_Copy"/>
+                        <MenuItem Header="_Cut"/>
+                        <MenuItem Header="_Paste"/>
+                    </MenuItem>
+                    <MenuItem Header="_View">
+                        <MenuItem Header="Zoom _In"/>
+                        <MenuItem Header="Zoom _Out"/>
+                    </MenuItem>
+                </Menu>
+            </TabItem>
+            <TabItem Header="TreeView">
+                <TreeView>
+                    <TreeViewItem Header="Desktop">
+                        <TreeViewItem Header="Computer"></TreeViewItem>
+                        <TreeViewItem Header="Recyle Bin"></TreeViewItem>
+                        <TreeViewItem Header="Control Panel">
+                            <TreeViewItem Header="Program"></TreeViewItem>
+                            <TreeViewItem Header="Security"></TreeViewItem>
+                            <TreeViewItem Header="User Accounts"></TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Network"></TreeViewItem>
+                    </TreeViewItem>
+                </TreeView>
+            </TabItem>
+            <TabItem Header="ToolBar">
+                <ToolBar>
+                    <Button>
+                        <Image Source="D:\Projects\2015\WpfApp\WinApp\Resources\MyIcon.ico"/>
+                    </Button>
+                    <Separator/>
+                    <ToggleButton FontWeight="Bold" Margin="5,0">B</ToggleButton>
+                    <ToggleButton FontStyle="Oblique" Margin="5,0">I</ToggleButton>
+                    <ToggleButton Margin="5,0">U</ToggleButton>
+                    <Separator/>
+                    <ToggleButton>Left</ToggleButton>
+                    <ToggleButton>Right</ToggleButton>
+                    <ToggleButton>Justify</ToggleButton>
+                    <Separator/>
+                    <Label VerticalAlignment="Center">Zoom</Label>
+                    <ComboBox MinWidth="40">
+                        <ComboBoxItem>100%</ComboBoxItem>
+                        <ComboBoxItem>90%</ComboBoxItem>
+                        <ComboBoxItem>80%</ComboBoxItem>
+                        <ComboBoxItem>70%</ComboBoxItem>
+                        <ComboBoxItem>60%</ComboBoxItem>
+                        <ComboBoxItem>50%</ComboBoxItem>
+                    </ComboBox>
+                    <Separator/>
+                </ToolBar>
+            </TabItem>
+            <TabItem Header="StatusBar">
+                <StatusBar>
+                    <Label>27 Items</Label>
+                    <Separator/>
+                    <Label VerticalAlignment="Center">Zoom</Label>
+                    <Button Width="20">
+                        <Image Source="D:\Projects\2015\WpfApp\WinApp\Resources\MyIcon.ico"/>
+                    </Button>
+                    <!-- <ProgressBar Value="80" Width="100" Height="5" IsIndeterminate="True" Orientation="Vertical"/> -->
+                    <ProgressBar Value="80" Width="100" Height="5" IsIndeterminate="True"/>
+                </StatusBar>
+            </TabItem>
+            <TabItem Header="Slider">
+                <StackPanel x:Name="spnlSlider">
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold" Margin="5">R:</Label>
+                        <Slider x:Name="sldR" MinWidth="100" Minimum="0" Maximum="255" TickPlacement="BottomRight" TickFrequency="20" IsSnapToTickEnabled="True" ValueChanged="ColorSlider_ValueChanged"/>
+                        <TextBox MinWidth="30" VerticalAlignment="Center" Padding="3" Text="{Binding ElementName=sldR, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold" Margin="5">G:</Label>
+                        <Slider x:Name="sldG" MinWidth="100" Minimum="0" Maximum="255" TickPlacement="BottomRight" TickFrequency="20" IsSnapToTickEnabled="True" ValueChanged="ColorSlider_ValueChanged"/>
+                        <TextBox MinWidth="30" VerticalAlignment="Center" Padding="3" Text="{Binding ElementName=sldG, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold" Margin="5">B:</Label>
+                        <Slider x:Name="sldB" MinWidth="100" Minimum="0" Maximum="255" TickPlacement="BottomRight" TickFrequency="20" IsSnapToTickEnabled="True" ValueChanged="ColorSlider_ValueChanged"/>
+                        <TextBox MinWidth="30" VerticalAlignment="Center" Padding="3" Text="{Binding ElementName=sldB, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        <StackPanel Orientation="Horizontal">
+            <RichTextBox MinHeight="70" Margin="5" MinWidth="200" Height="124">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text="내용을 입력하세요."/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            <PasswordBox MinWidth="70" Margin="5" VerticalAlignment="Center"/>
+            <Grid>
+                <InkCanvas MinWidth="100" MinHeight="100">
+                    <Image Width="100" Source="D:\Projects\2015\WpfApp\WinApp\Resources\singers.jpg"/>
+                </InkCanvas>
+            </Grid>
+        </StackPanel>
+
+
+
     </StackPanel>
 </Window>

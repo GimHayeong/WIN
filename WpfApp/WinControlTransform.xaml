@@ -1,0 +1,251 @@
+﻿<Window x:Class="WpfApp.WinControlTransform"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="WinControlTransform" Height="500" Width="500">
+    <TabControl>
+        <TabItem Header="Render">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <Label>화면배치 전(기준점없음)</Label>
+                    <Button Background="Red">Red</Button>
+                    <Button Background="Orange">
+                        <Button.LayoutTransform>
+                            <RotateTransform Angle="45"/>
+                        </Button.LayoutTransform>
+                        Layout-Orange
+                    </Button>
+                    <Button Background="Yellow" Content="Yellow"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label>화면배치후 렌더링 전</Label>
+                    <Button Background="Red">Red</Button>
+                    <Button RenderTransformOrigin="0.5,0.5" Background="Orange">
+                        <Button.RenderTransform>
+                            <RotateTransform Angle="45"/>
+                        </Button.RenderTransform>
+                        Render-Orange
+                    </Button>
+                    <Button Background="Yellow" Content="Yellow"/>
+                    <Label Margin="0,55,0,0" HorizontalAlignment="Center">기준점: 0.5,0.5</Label>
+                    <Label HorizontalAlignment="Center">(버튼의 가운데)</Label>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Rotate">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <Label>기준점 (0,0)</Label>
+                    <Button Background="Red">
+                        <Button.Content>
+                            <TextBlock>0˚
+                                <TextBlock.RenderTransform>
+                                    <RotateTransform Angle="0"/>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+                    <Button Background="Orange">
+                        <Button.Content>
+                            <TextBlock>45˚
+                                <TextBlock.RenderTransform>
+                                    <RotateTransform Angle="45"/>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+                    <Button Background="Yellow">
+                        <Button.Content>
+                            <TextBlock>90˚
+                                <TextBlock.RenderTransform>
+                                    <RotateTransform Angle="90"/>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+                    <Label Margin="0,55,0,0" HorizontalAlignment="Center">기준점: 0,0</Label>
+                    <Label HorizontalAlignment="Center">(버튼의 좌측상단)</Label>
+                </StackPanel>
+                <StackPanel>
+                    <Label>기준점 (0,0)</Label>
+                    <Button Background="Red">
+                        <Button.Content>
+                            <TextBlock RenderTransformOrigin="0.5,0.5">0˚
+                                <TextBlock.RenderTransform>
+                                    <RotateTransform Angle="0"/>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+                    <Button Background="Orange">
+                        <Button.Content>
+                            <TextBlock RenderTransformOrigin="0.5,0.5">45˚
+                                <TextBlock.RenderTransform>
+                                    <RotateTransform Angle="45"/>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+                    <Button Background="Yellow">
+                        <Button.Content>
+                            <TextBlock RenderTransformOrigin="0.5,0.5">90˚
+                                <TextBlock.RenderTransform>
+                                    <RotateTransform Angle="90"/>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+                    <Label Margin="0,55,0,0" HorizontalAlignment="Center">기준점: 0.5,0.5</Label>
+                    <Label HorizontalAlignment="Center">(버튼의 가운데)</Label>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Scale">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="100" Margin="0,0,150,0">
+                    <Button Background="Red">No scaling</Button>
+                    <Button Background="Orange">
+                        <Button.RenderTransform>
+                            <ScaleTransform ScaleX="2"/>
+                        </Button.RenderTransform>
+                        가로 2배
+                    </Button>
+                    <Button Background="Violet">
+                        <Button.RenderTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                        </Button.RenderTransform>
+                        가로 X 세로 2배
+                    </Button>
+                    <Button Background="YellowGreen">
+                        <Button.RenderTransform>
+                            <ScaleTransform ScaleY="2"/>
+                        </Button.RenderTransform>
+                        세로 2배
+                    </Button>
+                </StackPanel>
+                <StackPanel Width="100" Margin="0,0,150,0">
+                    <Button Background="Red">No scaling</Button>
+                    <Button Background="Orange">
+                        <Button.RenderTransform>
+                            <!-- Scale이 1보다 클 경우만 Center 적용가능 -->
+                            <ScaleTransform ScaleX="2" CenterY="70"/>
+                        </Button.RenderTransform>
+                        가로 2배
+                    </Button>
+                    <Button Background="Violet">
+                        <Button.RenderTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2" CenterY="-10" CenterX="-10"/>
+                        </Button.RenderTransform>
+                        가로 X 세로 2배
+                    </Button>
+                    <Button Background="YellowGreen">
+                        <Button.RenderTransform>
+                            <ScaleTransform ScaleY="2" CenterY="-70"/>
+                        </Button.RenderTransform>
+                        세로 2배
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Skew">
+            <StackPanel Margin="30">
+                <Button Background="Red" Content="AngleX=20, AngleY=0">
+                    <Button.RenderTransform>
+                        <SkewTransform AngleX="20" AngleY="0"/>
+                    </Button.RenderTransform>
+                </Button>
+                <Button Background="Orange" Content="AngleX=-20, AngleY=0">
+                    <Button.RenderTransform>
+                        <SkewTransform AngleX="-20" AngleY="0"/>
+                    </Button.RenderTransform>
+                </Button>
+                <Button Background="LemonChiffon" Content="AngleX=-0, AngleY=20">
+                    <Button.RenderTransform>
+                        <SkewTransform AngleX="0" AngleY="20"/>
+                    </Button.RenderTransform>
+                </Button>
+                <Button Background="YellowGreen" Content="AngleX=0, AngleY=-20">
+                    <Button.RenderTransform>
+                        <SkewTransform AngleX="0" AngleY="-20"/>
+                    </Button.RenderTransform>
+                </Button>
+                <Button Background="Aqua" Content="AngleX=-20, AngleY=20">
+                    <Button.RenderTransform>
+                        <SkewTransform AngleX="-20" AngleY="20"/>
+                    </Button.RenderTransform>
+                </Button>
+                <Button Width="20">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="45"/>
+                            <ScaleTransform ScaleX="5" ScaleY="1"/>
+                            <SkewTransform AngleX="30"/>
+                            <TranslateTransform Y="150"/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    OK
+                </Button>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Canvas">
+            <Canvas>
+                <Button Background="Red" Padding="5" Panel.ZIndex="1">Left = 0, Top = 0</Button>
+                <Button Background="Orange" Padding="5" Canvas.Left="18" Canvas.Top="18">Left = 18, Top = 18</Button>
+                <Button x:Name="btnYellow" Background="Yellow" Padding="5" Canvas.Right="18" Canvas.Bottom="18">Right = 18, Bottom = 18</Button>
+                <Button Background="Lime" Padding="5" Canvas.Right="0" Canvas.Bottom="0">Right = 0, Bottom = 0</Button>
+                <Button Background="Aqua" Padding="5" Canvas.Right="0" Canvas.Top="0">Right = 0, Top = 0</Button>
+                <Button Background="Magenta" Padding="5" Canvas.Left="0" Canvas.Bottom="0">Left = 0, Bottom = 0</Button>
+            </Canvas>
+        </TabItem>
+        <TabItem Header="Wrap">
+            <ListBox x:Name="lbxButtonList" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" ItemWidth="70" ItemHeight="70" FlowDirection="RightToLeft"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </TabItem>
+        <TabItem Header="Dock">
+            <DockPanel>
+                <!-- 남은 공간의 좌/우/위/아래 방향에 도킹 -->
+                <Button Background="Red">1 (Left)</Button>
+                <Button Background="Orange">2 (Left)</Button>
+                <Button Background="Yellow">3 (Left)</Button>
+                <Button Background="YellowGreen" DockPanel.Dock="Top">4 (Top)</Button>
+                <Button Background="Aqua" DockPanel.Dock="Top">5 (Top)</Button>
+                <Button Background="Magenta" DockPanel.Dock="Bottom">6 (Bottom)</Button>
+                <Button Background="Goldenrod" DockPanel.Dock="Bottom">7 (Bottom)</Button>
+                <Button Background="WhiteSmoke">8</Button>
+            </DockPanel>
+        </TabItem>
+        <TabItem Header="Grid">
+            <Grid Background="AliceBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Gold" FontWeight="DemiBold" FontSize="20" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">시작페이지</Label>
+                <Label Grid.Row="1">최근에 사용한 프로젝트</Label>
+                <Label Grid.Row="2">시작</Label>
+                <Label Grid.Row="3">Visual Studio 헤드라인</Label>
+                <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3">
+                    <Label>Visual Studio 개발자 뉴스</Label>
+                    <ListView>
+                        
+                    </ListView>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>

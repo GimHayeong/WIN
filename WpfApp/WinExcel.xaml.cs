@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Windows.Automation.Peers;
+using System.ComponentModel;
 
 namespace WpfApp
 {
@@ -30,10 +31,17 @@ namespace WpfApp
             InitializeComponent();
 
             InitAttachedProperty(stpnlParent);
+
+            //ToolTipShowOnDisabled();
+
+            //ItemsPanelTemplateVirtualizingHorizontal();
+
+            SortListBoxItems();
         }
 
         /// <summary>
-        /// 첨부프로퍼티: 임의의 객체에 추가하기 위해 사용하는 특별한 의존프로퍼티
+        /// 첨부프로퍼티(Attached Property): 임의의 객체에 추가하기 위해 사용하는 특별한 의존프로퍼티
+        ///   (예: TextElement 에 있는 FontStyle과 FontWeight 속성을 Button 에 적용)
         /// </summary>
         private void InitAttachedProperty(Panel parent)
         {
@@ -322,10 +330,20 @@ namespace WpfApp
 
         private void AddItemButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            lbxProduct.Items.Add($"Item {lbxProduct.Items.Count + 1}");
-            ListBoxItem item = new ListBoxItem();
-            item.Content = $"Item {lbxProduct.Items.Count + 1}";
+            //lbxProduct.Items.Add($"Item {lbxProduct.Items.Count + 1}");
+
+            int num = lbxProduct.Items.Count + 1;
+            ListBoxItem item;
+
+            item = new ListBoxItem();
+            item.Content = $"Item {num}";
+            TextSearch.SetText(item, num.ToString());
+            lbxProduct.Items.Add(item);
+
+            num = lbxProduct.Items.Count + 1;
+            item = new ListBoxItem();
+            item.Content = $"Item {num}";
+            TextSearch.SetText(item, num.ToString());
             lbxProduct.Items.Add(item);
         }
 
@@ -452,16 +470,47 @@ namespace WpfApp
 
         /// <summary>
         /// 비활성화된 컨트롤의 툴팁보이기
-        ///   - 컨트롤의 IsEnabled="False" 
-        ///   - 컨트롤의 ToolTipService.ShowOnDisabled="True"
+        ///   - XAML 컨트롤의 속성 ToolTipService.ShowOnDisabled="True"
         /// 툴팁이 보이는 시간 지정
-        ///   - ToolTipService.ShowDuration="3000" 
+        ///   - XAML 컨트롤의 속성 ToolTipService.ShowDuration="3000" 
         /// 툴팁이 처음 나타났다 사라질 때까지 시간간격
-        ///   - ToolTipService.InitialShowDelay="3000"
+        ///   - XAML 컨트롤의 속성 ToolTipService.InitialShowDelay="3000"
         /// </summary>
         private void ToolTipShowOnDisabled()
         {
+            cbxDisabled.IsEnabled = false;
 
+            // XAML 대신 비활성화된 컨트롤의 툴팁보이기
+            ToolTipService.SetShowOnDisabled(cbxDisabled, true);
+        }
+
+        /// <summary>
+        /// ListBox 아이템을 수평으로 보이기
+        ///   - 방법1) XAML 컨트롤의 ItemsPanel 아이템속성 설정
+        ///     <ListBox.ItemsPanel>
+        ///        <ItemsPanelTemplate>
+        ///            <VirtualizingStackPanel Orientation = "Horizontal" />
+        ///        </ ItemsPanelTemplate >
+        ///     </ ListBox.ItemsPanel >
+        ///    - 방법2) FrameworkElementFactory 를 이용해 프로그래밍 코드로 설정 
+        /// </summary>
+        private void ItemsPanelTemplateVirtualizingHorizontal()
+        {
+            FrameworkElementFactory factory = new FrameworkElementFactory(typeof(VirtualizingStackPanel));
+            factory.SetValue(VirtualizingStackPanel.OrientationProperty, Orientation.Horizontal);
+            lbxProduct.ItemsPanel = new ItemsPanelTemplate(factory);
+        }
+
+        private void SortListBoxItems()
+        {
+            lbxProduct.Items.SortDescriptions.Clear();
+            lbxProduct.Items.SortDescriptions.Add(new SortDescription("Content", ListSortDirection.Ascending));
+        }
+
+        private void ColorSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Color color = Color.FromRgb((byte)sldR.Value, (byte)sldG.Value, (byte)sldB.Value);
+            spnlSlider.Background = new SolidColorBrush(color);
         }
 
 #if WIN_APP

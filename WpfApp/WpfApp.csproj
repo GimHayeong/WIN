@@ -63,6 +63,9 @@
     <Compile Include="Photos.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Sample.cs" />
+    <Compile Include="WinControlTransform.xaml.cs">
+      <DependentUpon>WinControlTransform.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinExcel.xaml.cs">
       <DependentUpon>WinExcel.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WinControlTransform.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WinExcel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
