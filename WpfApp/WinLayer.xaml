@@ -31,12 +31,15 @@
                     <MenuItem Header="기존웹사이트(_B)"/>
                 </MenuItem>
                 <Separator/>
+                <MenuItem Header="다른이름으로 저장(_A)" Click="Menu_Click" Tag="renameFile"/>
                 <MenuItem Header="닫기(_C)"/>
-                <MenuItem Header="솔루션닫기(_T)">
+                <MenuItem Header="솔루션닫기(_T)" Click="Menu_Click" Tag="closeAll">
                     <MenuItem.Icon>
                         <Image Source="pack://application:,,,/Resources/close.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
+                <Separator/>
+                <MenuItem Header="인쇄(_P)" Click="Menu_Click" Tag="print"></MenuItem>
             </MenuItem>
             <MenuItem Header="편집(_E)"/>
             <MenuItem Header="보기(_V)"/>

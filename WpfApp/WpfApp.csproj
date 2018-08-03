@@ -48,6 +48,10 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="TallComponents.PDF.Rasterizer, Version=3.0.172.0, Culture=neutral, PublicKeyToken=76bf2dedaa68ccb5, processorArchitecture=MSIL">
+      <HintPath>..\packages\TallComponents.PDFRasterizer.3.0.172\lib\net40\TallComponents.PDF.Rasterizer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -59,6 +63,9 @@
     </ApplicationDefinition>
     <Compile Include="ControlWindow.xaml.cs">
       <DependentUpon>ControlWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DlgRename.xaml.cs">
+      <DependentUpon>DlgRename.xaml</DependentUpon>
     </Compile>
     <Compile Include="Photos.cs" />
     <Compile Include="User.cs" />
@@ -76,6 +83,10 @@
       <DependentUpon>WinNickname.xaml</DependentUpon>
     </Compile>
     <Page Include="ControlWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DlgRename.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,6 +138,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

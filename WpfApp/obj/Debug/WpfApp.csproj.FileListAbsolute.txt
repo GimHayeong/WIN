@@ -30,3 +30,7 @@ D:\Projects\2015\WpfApp\WpfApp\bin\Debug\Resources\newCode.png
 D:\Projects\2015\WpfApp\WpfApp\bin\Debug\Resources\newFile.png
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WpfApp_Content.g.cs
 D:\Projects\2015\WpfApp\WpfApp\bin\Debug\Resources\closeIcon.ico
+D:\Projects\2015\WpfApp\WpfApp\bin\Debug\TallComponents.PDF.Rasterizer.dll
+D:\Projects\2015\WpfApp\WpfApp\bin\Debug\TallComponents.PDF.Rasterizer.xml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\DlgRename.g.cs
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\DlgRename.baml

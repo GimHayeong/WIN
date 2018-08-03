@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
+using System.Xml.Linq;
+using TallComponents.PDF.Rasterizer;
+using TallComponents.PDF.Rasterizer.Configuration;
 
 namespace WpfApp
 {
@@ -269,6 +275,122 @@ namespace WpfApp
                         }
                         break;
                 }
+            }
+        }
+
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menu = sender as MenuItem;
+
+            if(menu != null)
+            {
+                string menuName = menu.Tag as String;
+                if(menuName != null)
+                {
+                    switch (menuName)
+                    {
+                        case "renameFile":
+                            DlgRename dlg = new DlgRename();
+                            if(dlg.ShowDialog() == true)
+                            {
+                                string oldFilename = @"D:\downloads\temp\oldfile.txt";
+                                if(RenameFile(oldFilename, dlg.FileName))
+                                {
+                                    MessageBox.Show($"{oldFilename} 파일의 이름을 {System.IO.Path.Combine(System.IO.Path.GetDirectoryName(oldFilename), dlg.FileName) + System.IO.Path.GetExtension(oldFilename)}으로 변경하였습니다");
+                                }
+                            }
+                            break;
+
+                        case "closeAll":
+                            this.Close();
+                            break;
+
+                        case "print":
+                            StartPrint();
+                            break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 파일열기
+        /// </summary>
+        private void OpenPdfFile()
+        {
+            OpenFileDialog dlg = new OpenFileDialog { DefaultExt = ".pdf", Filter = "PDF files (*.pdf)|*.pdf|All files(*.*)|*.*" };
+
+            bool? dlgResult = dlg.ShowDialog();
+            if( dlgResult != true)
+            {
+                return;
+            }
+        }
+
+        private void StartPrint()
+        {
+            PrintDialog dlg = new PrintDialog();
+            dlg.PageRangeSelection = PageRangeSelection.AllPages;
+            dlg.UserPageRangeEnabled = true;
+
+            if(dlg.ShowDialog() != true)
+            {
+                return;
+            }
+
+            //프린트작업 ....
+        }
+
+        /// <summary>
+        /// 파일 인쇄
+        /// </summary>
+        /// <param name="fileName"></param>
+        private void StartPrint(string fileName)
+        {
+            PrintDialog dlg = new PrintDialog();
+            dlg.PageRangeSelection = PageRangeSelection.AllPages;
+            dlg.UserPageRangeEnabled = true;
+
+            bool? dlgResult = dlg.ShowDialog();
+            if( dlgResult != true)
+            {
+                return;
+            }
+
+            FixedDocument fixedDoc;
+            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                Document doc = new Document(fs);
+                RenderSettings renderSettings = new RenderSettings();
+                ConvertToWpfOptions renderOptions = new ConvertToWpfOptions { ConvertToImages = false };
+                renderSettings.RenderPurpose = RenderPurpose.Print;
+                renderSettings.ColorSettings.TransformationMode = ColorTransformationMode.HighQuality;
+                fixedDoc = doc.ConvertToWpf(renderSettings, renderOptions);
+            }
+
+            dlg.PrintDocument(fixedDoc.DocumentPaginator, "Print");
+        }
+
+        /// <summary>
+        /// 파일명 변경
+        /// </summary>
+        /// <param name="oldName">기존 파일명</param>
+        /// <param name="newName">바꿀 파일명</param>
+        private bool RenameFile(string oldName, string newName)
+        {
+            try
+            {
+                File.Move(oldName
+                        , System.IO.Path.Combine(System.IO.Path.GetDirectoryName(oldName), newName) + System.IO.Path.GetExtension(oldName));
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message
+                              , "Cannot rename file."
+                              , MessageBoxButton.OK
+                              , MessageBoxImage.Error);
+                return false;
             }
         }
     }
