@@ -222,30 +222,90 @@
                 <Button Background="WhiteSmoke">8</Button>
             </DockPanel>
         </TabItem>
+        <!-- <TabItem Header="Grid" Grid.IsSharedSizeScope="True"> -->
         <TabItem Header="Grid">
+            <!-- Grid.IsSharedSizeScope="True" : 서로 떨어져 있는 셀끼리 사이즈를 동일하게 유지 -->
             <Grid Background="AliceBlue">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition MinHeight="30"/>
+                    <!-- SharedSizeGroup : 사이즈를 동일하게 유지할 셀 그룹명
+                    <RowDefinition MinHeight="30" Height="100" SharedSizeGroup="My"/>
+                    <RowDefinition MinHeight="30" SharedSizeGroup="My"/>
+                    <RowDefinition MinHeight="30" SharedSizeGroup="My"/>
+                    -->
+                    <RowDefinition MinHeight="30"/>
+                    <RowDefinition MinHeight="30"/>
+                    <RowDefinition MinHeight="30"/>
+
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                <Grid.ColumnDefinitions> 
+                    <ColumnDefinition Width="1*" MinWidth="100"/>
+                    <ColumnDefinition Width="2*" MinWidth="100"/>
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="Gold" FontWeight="DemiBold" FontSize="20" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">시작페이지</Label>
                 <Label Grid.Row="1">최근에 사용한 프로젝트</Label>
                 <Label Grid.Row="2">시작</Label>
                 <Label Grid.Row="3">Visual Studio 헤드라인</Label>
-                <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3">
-                    <Label>Visual Studio 개발자 뉴스</Label>
-                    <ListView>
-                        
+                <!-- HorizontalAlignment 기본: Right, VerticalAlignment 기본: Stretch, With/Height -->
+                <GridSplitter Grid.RowSpan="4" HorizontalAlignment="Right" Width="1"/>
+                <GridSplitter Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1"/>
+                <GridSplitter Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="1"/>
+                <GridSplitter Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="1"/>
+                <DockPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="3">
+                    <Label DockPanel.Dock="Top">Visual Studio 개발자 뉴스</Label>
+                    <ListView Margin="5">
+                        <ListViewItem>Article #1</ListViewItem>
+                        <ListViewItem>Article #2</ListViewItem>
+                        <ListViewItem>Article #3</ListViewItem>
+                        <ListViewItem>Article #4</ListViewItem>
                     </ListView>
-                </StackPanel>
+                </DockPanel>
             </Grid>
+        </TabItem>
+        <TabItem Header="ViewBox">
+            <StackPanel Orientation="Horizontal">
+                <ScrollViewer Margin="5,5,20,5" VerticalScrollBarVisibility="Hidden">
+                    <StackPanel>
+                        <Label>스크롤뷰</Label>
+                        <Button Background="LimeGreen" Padding="10">Button 01</Button>
+                        <Button Background="LemonChiffon" Padding="10">Button 02</Button>
+                        <Button Background="Olive" Padding="10">Button 03</Button>
+                        <Button Background="LavenderBlush" Padding="10">Button 04</Button>
+                        <Button Background="Lavender" Padding="10">Button 05</Button>
+                        <Button Background="RoyalBlue" Padding="10">Button 06</Button>
+                        <Button Background="RosyBrown" Padding="10">Button 07</Button>
+                        <Button Background="YellowGreen" Padding="10">Button 08</Button>
+                        <Button Background="Yellow" Padding="10">Button 09</Button>
+                        <Button Background="OrangeRed" Padding="10">Button 10</Button>
+                        <Button Background="Orange" Padding="10">Button 11</Button>
+                        <Button Background="BlueViolet" Padding="10">Button 12</Button>
+                        <Button Background="Blue" Padding="10">Button 13</Button>
+                        <Button Background="Khaki" Padding="10">Button 14</Button>
+                        <Button Background="CadetBlue" Padding="10">Button 15</Button>
+                    </StackPanel>
+                </ScrollViewer>
+                <Viewbox Margin="5,5,20,5">
+                    <StackPanel>
+                        <Label>맞춰 뷰박스</Label>
+                        <Button Background="LimeGreen" Padding="10">Button 01</Button>
+                        <Button Background="LemonChiffon" Padding="10">Button 02</Button>
+                        <Button Background="Olive" Padding="10">Button 03</Button>
+                        <Button Background="LavenderBlush" Padding="10">Button 04</Button>
+                        <Button Background="Lavender" Padding="10">Button 05</Button>
+                        <Button Background="RoyalBlue" Padding="10">Button 06</Button>
+                        <Button Background="RosyBrown" Padding="10">Button 07</Button>
+                        <Button Background="YellowGreen" Padding="10">Button 08</Button>
+                        <Button Background="Yellow" Padding="10">Button 09</Button>
+                        <Button Background="OrangeRed" Padding="10">Button 10</Button>
+                        <Button Background="Orange" Padding="10">Button 11</Button>
+                        <Button Background="BlueViolet" Padding="10">Button 12</Button>
+                        <Button Background="Blue" Padding="10">Button 13</Button>
+                        <Button Background="Khaki" Padding="10">Button 14</Button>
+                        <Button Background="CadetBlue" Padding="10">Button 15</Button>
+                    </StackPanel>
+                </Viewbox>
+            </StackPanel>
         </TabItem>
     </TabControl>
 </Window>

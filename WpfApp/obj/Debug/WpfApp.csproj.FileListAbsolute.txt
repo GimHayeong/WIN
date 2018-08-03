@@ -22,3 +22,11 @@ D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinExcel.g.cs
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinExcel.baml
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinControlTransform.g.cs
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinControlTransform.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinLayer.g.cs
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinLayer.baml
+D:\Projects\2015\WpfApp\WpfApp\bin\Debug\Resources\docking.png
+D:\Projects\2015\WpfApp\WpfApp\bin\Debug\Resources\newFolder.png
+D:\Projects\2015\WpfApp\WpfApp\bin\Debug\Resources\newCode.png
+D:\Projects\2015\WpfApp\WpfApp\bin\Debug\Resources\newFile.png
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WpfApp_Content.g.cs
+D:\Projects\2015\WpfApp\WpfApp\bin\Debug\Resources\closeIcon.ico

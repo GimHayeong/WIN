@@ -1,0 +1,190 @@
+﻿<Window x:Class="WpfApp.WinLayer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="비주얼스튜디오 스타일 창" Height="500" Width="700">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="파일(_F)">
+                <MenuItem Header="새로만들기(_N)">
+                    <MenuItem Header="프로젝트(_P)"/>
+                    <MenuItem Header="웹사이트(_W)"/>
+                    <MenuItem Header="팀프로젝트(_T)"/>
+                    <MenuItem Header="파일(_F)"/>
+                </MenuItem>
+                <MenuItem Header="열기(_O)">
+                    <MenuItem Header="프로젝트/솔루션(_P)"/>
+                    <MenuItem Header="웹사이트(_E)"/>
+                    <Separator/>
+                    <MenuItem Header="소스제어에서열기(_O)"/>
+                    <MenuItem Header="팀프로젝트(_T)"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="추가(_D)">
+                    <MenuItem Header="새프로젝트(_N)"/>
+                    <MenuItem Header="새웹사이트(_K)"/>
+                    <Separator/>
+                    <MenuItem Header="기존프로젝트(_E)"/>
+                    <MenuItem Header="기존웹사이트(_B)"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="닫기(_C)"/>
+                <MenuItem Header="솔루션닫기(_T)">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Resources/close.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="편집(_E)"/>
+            <MenuItem Header="보기(_V)"/>
+            <MenuItem Header="프로젝트(_P)"/>
+            <MenuItem Header="빌드(V)"/>
+            <MenuItem Header="디버그(_D)"/>
+            <MenuItem Header="팀(_M)"/>
+            <MenuItem Header="도구(_T)"/>
+            <MenuItem Header="테스트(_S)"/>
+            <MenuItem Header="분석(_N)"/>
+            <MenuItem Header="창(_W)"/>
+            <MenuItem Header="도움말(_H)"/>
+        </Menu>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+            <StackPanel.LayoutTransform>
+                <RotateTransform Angle="90"/>
+            </StackPanel.LayoutTransform>
+            <Button x:Name="btnToolbox" MouseEnter="PanelButton_MouseEnter">ToolBox</Button>
+            <Button x:Name="btnSolutionExplorer" MouseEnter="PanelButton_MouseEnter">Solution Explorer</Button>
+        </StackPanel>
+        <Grid Grid.IsSharedSizeScope="True">
+            <Grid x:Name="grdLayer0" MouseEnter="MainLayer_MouseEnter">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="100" Width="*"/>
+                    <ColumnDefinition MinWidth="100" Width="2*"/>
+                    <!-- 레이어1의 도킹창이 추가되는 영역크기 : 도킹시 추가 -->
+                    <!--<ColumnDefinition SharedSizeGroup="colToolbox"/>-->
+                    <!-- 레이어2의 도킹창이 추가되는 영역크기 : 도킹시 추가 -->
+                    <!--<ColumnDefinition SharedSizeGroup="colSolutionExplorer"/>-->
+                </Grid.ColumnDefinitions>
+                <Label Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="DarkCyan" Foreground="WhiteSmoke" FontSize="20" FontWeight="ExtraBold">Start Page</Label>
+                <Label Grid.Row="1">Recent Projects</Label>
+                <Label Grid.Row="2">Getting Started</Label>
+                <Label Grid.Row="3">Headlines</Label>
+                <DockPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="3">
+                    <Label DockPanel.Dock="Top">Online Article</Label>
+                    <ListView Margin="5">
+                        <ListViewItem>Article #1</ListViewItem>
+                        <ListViewItem>Article #2</ListViewItem>
+                        <ListViewItem>Article #3</ListViewItem>
+                        <ListViewItem>Article #4</ListViewItem>
+                    </ListView>
+                </DockPanel>
+            </Grid>
+            <Grid x:Name="grdLayer1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="colToolbox"/>
+                    <!-- 레이어2의 도킹창이 추가되는 영역크기 : 도킹시 추가 -->
+                    <!--<ColumnDefinition SharedSizeGroup="colSolutionExplorer"/>-->
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1" 
+                      x:Name="grdPanelToolbox"
+                      MouseEnter="PanelArea_MouseEnter"
+                      Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <Button x:Name="btnToolboxPin" Width="26" DockPanel.Dock="Right" Background="White" Foreground="Gray" Height="20" RenderTransformOrigin="0.5,0.5" Click="PinButton_Click">
+                            <!--<Button.RenderTransform>
+                                <RotateTransform Angle="-90"/>
+                            </Button.RenderTransform>-->
+                            <Image Source="pack://application:,,,/Resources/docking.png"/>
+                        </Button>
+                        <TextBlock Padding="8" 
+                               TextTrimming="CharacterEllipsis" 
+                               Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}">ToolBox</TextBlock>
+                    </DockPanel>
+                    <StackPanel Grid.Row="1"
+                                Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                        <Label>Button</Label>
+                        <Label>CheckBox</Label>
+                        <Label>ComboBox</Label>
+                        <Label>Label</Label>
+                        <Label>ListBox</Label>
+                    </StackPanel>
+                </Grid>
+                <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Width="5"/>
+            </Grid>
+            <Grid x:Name="grdLayer2" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="colSolutionExplorer"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1"
+                      x:Name="grdPanelSolutionExplorer"
+                      MouseEnter="PanelArea_MouseEnter"
+                      Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <Button x:Name="btnSolutionExplorerPin" Width="26" DockPanel.Dock="Right" Background="White" Height="20" RenderTransformOrigin="0.5,0.5" Click="PinButton_Click">
+                            <!--<Button.RenderTransform>
+                                <RotateTransform Angle="-90"/>
+                            </Button.RenderTransform>-->
+                            <Image Source="pack://application:,,,/Resources/docking.png"/>
+                        </Button>
+                        <TextBlock Padding="8" 
+                                   TextTrimming="CharacterEllipsis"
+                                   Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}">Solution Explorer</TextBlock>
+                    </DockPanel>
+                    <ToolBarPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button Width="20" Height="20" Background="White">
+                            <Image Source="pack://application:,,,/Resources/newFolder.png"/>
+                        </Button>
+                        <Button Width="20" Height="20">
+                            <Image Source="pack://application:,,,/Resources/newFile.png"/>
+                        </Button>
+                        <Button Width="20" Height="20" Background="White">
+                            <Image Source="pack://application:,,,/Resources/newCode.png"/>
+                        </Button>
+                    </ToolBarPanel>
+                    <StackPanel Grid.Row="2"
+                                Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                        <TreeView BorderThickness="0">
+                            <TreeViewItem Header="My Solution1" IsExpanded="True">
+                                <TreeViewItem Header="Project1"/>
+                                <TreeViewItem Header="Project2"/>
+                                <TreeViewItem Header="Project3"/>
+                                <TreeViewItem Header="Project4"/>
+                            </TreeViewItem>
+                            <TreeViewItem Header="My Solution2">
+                                <TreeViewItem Header="Project1"/>
+                                <TreeViewItem Header="Project2"/>
+                            </TreeViewItem>
+                            <TreeViewItem Header="My Solution3">
+                                <TreeViewItem Header="Project1"/>
+                                <TreeViewItem Header="Project2"/>
+                                <TreeViewItem Header="Project3"/>
+                                <TreeViewItem Header="Project4"/>
+                                <TreeViewItem Header="Project5"/>
+                            </TreeViewItem>
+                        </TreeView>
+                    </StackPanel>
+                </Grid>
+                <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Left"/>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>
