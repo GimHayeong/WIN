@@ -10,4 +10,16 @@
         <GradientStop Offset=".9" Color="#FF222222"/>
         <GradientStop Offset="1" Color="Gray"/>
     </LinearGradientBrush>
+    <LinearGradientBrush x:Key="bgButtonBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="LightBlue"/>
+        <GradientStop Offset="1" Color="AliceBlue"/>
+    </LinearGradientBrush>
+    <Style x:Key="MenuItemStyle" TargetType="{x:Type MenuItem}">
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#FF999999"/>
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
 </ResourceDictionary>

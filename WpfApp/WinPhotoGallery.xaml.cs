@@ -344,12 +344,7 @@ namespace WpfApp
                     {
                         // BitmapFrame 에 연결된 축소판 이미지가 없는 경우,
                         // 프로그램에서 이미지의 경로를 직접 사용하는 경우 이름변경이 안되므로, Cache옵션을 설정해 해결
-                        bmp = new BitmapImage();
-                        bmp.BeginInit();
-                        bmp.CacheOption = BitmapCacheOption.OnLoad;
-                        bmp.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-                        bmp.UriSource = uri;
-                        bmp.EndInit();
+                        bmp = GetBitmapImage(uri);
 
                         img.Source = bmp;// new BitmapImage(uri);
                         imgTooltip = null;
@@ -373,15 +368,42 @@ namespace WpfApp
             catch (IOException) { }
         }
 
+        private BitmapImage GetBitmapImage(string filename)
+        {
+            return GetBitmapImage(new Uri(filename));
+        }
+
         /// <summary>
-        /// 고정이면 이미지 회전/삭제 버튼 숨김
+        /// 프로그램에서 이미지의 경로를 직접 사용하는 경우 이름변경이 안되므로, Cache옵션을 설정해 해결
         /// </summary>
-        /// <param name="showFixeBar"></param>
+        /// <param name="uri"></param>
+        /// <returns></returns>
+        private BitmapImage GetBitmapImage(Uri uri)
+        {
+            BitmapImage bmp = new BitmapImage();
+            bmp.BeginInit();
+            bmp.CacheOption = BitmapCacheOption.OnLoad;
+            bmp.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+            bmp.UriSource = uri;
+            bmp.EndInit();
+
+            return bmp;
+        }
+
+
+
+        /// <summary>
+        /// 이미지 팝업창 보이기
+        /// </summary>
+        /// <param name="showFixeBar">
+        ///   우측의 버튼바 보이기 여부
+        /// </param>
         private void ShowPhoto(bool? showFixeBar)
         {
             string fileName = (lbxPicture.SelectedItem as ListBoxItem).Tag as String;
-            imgViewer.Visibility = Visibility.Visible;
+            pnlImageView.Visibility = Visibility.Visible;
             btnBack.Visibility = Visibility.Visible;
+            imgViewer.Source = GetBitmapImage(fileName);
 
             if (showFixeBar == true)
             {
@@ -408,8 +430,9 @@ namespace WpfApp
                 switch (btn.Name)
                 {
                     case "btnBack":
-                        imgViewer.Visibility = Visibility.Hidden;
+                        pnlImageView.Visibility = Visibility.Hidden;
                         btnBack.Visibility = Visibility.Hidden;
+                        (imgViewer.LayoutTransform as RotateTransform).Angle = 0;
                         break;
 
                     case "btnZoom":
@@ -427,7 +450,7 @@ namespace WpfApp
                         break;
 
                     case "btnSliddShow":
-                        MessageBox.Show("NYI");
+                        MessageBox.Show("서비스 준비중입니다.");
                         break;
 
                     case "btnNext":
@@ -447,10 +470,26 @@ namespace WpfApp
                     case "btnDelete":
                         DeletePhoto();
                         break;
+
+                    case "btnRotateCW":
+                        RotateImage(imgViewer.LayoutTransform as RotateTransform, 90);
+                        break;
+
+                    case "btnRotateCCW":
+                        RotateImage(imgViewer.LayoutTransform as RotateTransform, -90);
+                        break;
+
+                    case "btnRotateSave":
+                        MessageBox.Show("서비스 준비중입니다.");
+                        break;
                 }
             }
         }
 
+        /// <summary>
+        /// 선택된 이미지 팝업보기
+        /// </summary>
+        /// <param name="selectedIndex"></param>
         private void SelectedPhoto(int selectedIndex)
         {
             (lbxPicture.Items[selectedIndex] as ListBoxItem).IsSelected = true;
@@ -462,13 +501,30 @@ namespace WpfApp
             }
         }
 
+        /// <summary>
+        /// 선택된 이미지 회전(CW/CCW)
+        /// </summary>
+        /// <param name="angle">
+        ///  CW: +angle
+        ///  CCW: -angle
+        /// </param>
         private void ClockWise(int angle)
         {
             if(lbxPicture.SelectedItem != null)
             {
                 RotateTransform rotate = ((lbxPicture.SelectedItem as ListBoxItem).LayoutTransform as TransformGroup).Children[1] as RotateTransform;
-                rotate.Angle += angle;
+                RotateImage(rotate, angle);
             }
+        }
+
+        /// <summary>
+        /// 이미지 회전
+        /// </summary>
+        /// <param name="rotate"></param>
+        /// <param name="angle">양의값: CW, 음의값: CCW</param>
+        private void RotateImage(RotateTransform rotate, int angle)
+        {
+                rotate.Angle += angle;
         }
 
         /// <summary>
@@ -668,6 +724,10 @@ namespace WpfApp
             System.Diagnostics.Process.Start("mspaint.exe", fileName);
         }
 
+        private void Popup_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popZoom.IsOpen = false;
+        }
     }
 
     
