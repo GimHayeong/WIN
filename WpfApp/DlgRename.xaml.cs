@@ -19,10 +19,17 @@ namespace WpfApp
     /// </summary>
     public partial class DlgRename : Window
     {
-        public string FileName { get; set; }
+        public string FileName { get; private set; }
+        public string NewFileName { get; private set; }
         public DlgRename()
         {
             InitializeComponent();
+        }
+
+        public DlgRename(string fileName)
+            : this()
+        {
+            FileName = fileName;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -41,7 +48,7 @@ namespace WpfApp
                             return;
                         }
 
-                        FileName = tbxNewName.Text.Trim();
+                        NewFileName = tbxNewName.Text.Trim();
                         this.DialogResult = true;
                         break;
 

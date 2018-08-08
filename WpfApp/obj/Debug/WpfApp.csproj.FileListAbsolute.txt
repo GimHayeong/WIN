@@ -34,3 +34,16 @@ D:\Projects\2015\WpfApp\WpfApp\bin\Debug\TallComponents.PDF.Rasterizer.dll
 D:\Projects\2015\WpfApp\WpfApp\bin\Debug\TallComponents.PDF.Rasterizer.xml
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\DlgRename.g.cs
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\DlgRename.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinPhotoGallery.g.cs
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinPhotoGallery.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\NaviWin.g.cs
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\NaviWin.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\PagPhotoGallery.g.cs
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\PagPhotoGallery.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\PagHistory.g.cs
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\PagHistory.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\pgFncAbout.g.cs
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\pgFncAbout.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\resFile01.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\resFile02.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\resPhotoGallery.baml

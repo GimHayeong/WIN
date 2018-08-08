@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Projects\2015\WpfApp\WpfApp\App.xaml
-71903728367
+15-1414343814
 5-787818051
-191587380254
+24-1196753817
 19490343551
-ControlWindow.xaml;DlgRename.xaml;MainWindow.xaml;WinControlTransform.xaml;WinExcel.xaml;WinLayer.xaml;WinNickname.xaml;
+ControlWindow.xaml;DlgRename.xaml;MainWindow.xaml;NaviWin.xaml;PagHistory.xaml;PagPhotoGallery.xaml;pgFncAbout.xaml;resFile01.xaml;resFile02.xaml;resPhotoGallery.xaml;WinControlTransform.xaml;WinExcel.xaml;WinLayer.xaml;WinNickname.xaml;WinPhotoGallery.xaml;
 
-False
+True
 
