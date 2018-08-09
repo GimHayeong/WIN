@@ -32,20 +32,21 @@
         
         <Menu Grid.ColumnSpan="3" HorizontalAlignment="Center" Background="Transparent" Foreground="White" Margin="0, 10">
             <MenuItem Header="파일(_F)" Style="{StaticResource MenuItemStyle}">
-                <MenuItem x:Name="mnuAdd" Header="즐겨찾기에 추가(_A)" Click="MenuItem_Click"/>
-                <MenuItem x:Name="mnuDelete" Header="삭제(_L)" Click="MenuItem_Click"/>
-                <MenuItem x:Name="mnuRename" Header="이름바꾸기(_M)" Click="MenuItem_Click"/>
+                <MenuItem x:Name="mnuAdd" Header="즐겨찾기에 추가(_A)" Style="{StaticResource SubMenuItemStyle}" IsEnabled="False" Click="MenuItem_Click"/>
+                <MenuItem x:Name="mnuDelete" Header="삭제(_L)" Style="{StaticResource SubMenuItemStyle}" IsEnabled="False" Click="MenuItem_Click"/>
+                <MenuItem x:Name="mnuRename" Header="이름바꾸기(_M)" Style="{StaticResource SubMenuItemStyle}" IsEnabled="False" Click="MenuItem_Click"/>
                 <Separator/>
-                <MenuItem x:Name="mnuRefresh" Header="새로고침(_R)" Click="MenuItem_Click"/>
+                <MenuItem x:Name="mnuRefresh" Header="새로고침(_R)" Style="{StaticResource SubMenuItemStyle}" Click="MenuItem_Click"/>
                 <Separator/>
-                <MenuItem x:Name="mnuExit" Header="종료(_X)" Click="MenuItem_Click"/>
+                <MenuItem x:Name="mnuExit" Header="종료(_X)" Style="{StaticResource SubMenuItemStyle}" Click="MenuItem_Click"/>
             </MenuItem>
             <MenuItem x:Name="mnuFix"  Header="고정(_I)" Style="{StaticResource MenuItemStyle}" IsEnabled="False" Click="MenuItem_Click"/>
             <MenuItem x:Name="mnuPrint" Header="인쇄(_P)" Style="{StaticResource MenuItemStyle}" IsEnabled="False" Click="MenuItem_Click"/>
             <MenuItem x:Name="mnuEdit" Header="편집(_E)" Style="{StaticResource MenuItemStyle}" IsEnabled="False" Click="MenuItem_Click"/>
         </Menu>
         <Button x:Name="btnBack" Click="Button_Click" Visibility="Hidden">Back To Gallery</Button>
-        
+
+        <!-- 레이어 #1 -->
         <TreeView x:Name="trvFolderExplorer" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedItemChanged="TreeView_SelectedItemChanged">
             <TreeViewItem x:Name="trvItmFavorites" Header="Favorites">
                 <!--<TreeViewItem Header="C:\Users\Adam\Pictures" Tag="C:\Users\Adam\Pictures"/>-->
@@ -56,6 +57,7 @@
                 <TreeViewItem Header="E:\" Tag="E:\"/>-->
             </TreeViewItem>
         </TreeView>
+        <GridSplitter Grid.Column="1" Grid.Row="1" ResizeBehavior="PreviousAndNext"/>
         <ListBox x:Name="lbxPicture" Grid.Row="1" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListBox_SelectionChanged">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -80,6 +82,9 @@
                 </Image>
             </Grid>
         </DockPanel>
+        
+        
+        <!-- 하단버튼 -->
         <Grid Grid.Row="2" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -90,7 +95,7 @@
                 <Button x:Name="btnZoom" VerticalAlignment="Center" ClickMode="Press" ToolTip="확대/축소" Click="Button_Click">
                     <Image Height="22" Source="images\zoom.gif"/>
                 </Button>
-                <!-- 확대/축소 버튼의 가운데를 기준으로 팝업창 -->
+                <!-- 확대/축소 버튼의 가운데를 기준으로 슬라이더 팝업창 -->
                 <Popup x:Name="popZoom" PlacementTarget="{Binding ElementName=btnZoom}" Placement="Center" StaysOpen="False" MouseLeave="Popup_MouseLeave">
                     <Grid Background="White">
                         <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5">

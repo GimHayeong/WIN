@@ -22,4 +22,12 @@
         </Style.Triggers>
         <Setter Property="Foreground" Value="White"/>
     </Style>
+    <Style x:Key="SubMenuItemStyle" TargetType="{x:Type MenuItem}">
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#66999999"/>
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
 </ResourceDictionary>

@@ -47,6 +47,10 @@ namespace WpfApp
             //btnDelete.BorderBrush = (Brush)this.FindResource("borderBrush");
         }
 
+
+
+        #region [ 컨트롤 이벤트 ]
+
         /// <summary>
         /// 프로그램 종료 여부 확인하여 종료할지 결정
         /// </summary>
@@ -96,23 +100,6 @@ namespace WpfApp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             InitFolderTreeViewItem();
-        }
-
-        /// <summary>
-        /// 디렉토리 트리뷰를 시스템의 디렉토리로 초기화
-        /// </summary>
-        private void InitFolderTreeViewItem()
-        {
-            TreeViewItem item;
-            foreach (var dir in Directory.GetLogicalDrives())
-            {
-                item = new TreeViewItem();
-                item.Header = dir;
-                item.Tag = dir;
-                item.Items.Add(null);
-                item.Expanded += TreeViewItem_Expanded;
-                trvItmFolder.Items.Add(item);
-            }
         }
 
         /// <summary>
@@ -198,17 +185,166 @@ namespace WpfApp
             }
         }
 
-        private void EnableButton(Button btn, bool isEnabled)
+        /// <summary>
+        /// 확대/축소 슬라이드를 변경할 때
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ZoomSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (isEnabled)
+            m_3XScale.ScaleX = sldZoom.Value;
+            m_3XScale.ScaleY = sldZoom.Value;
+        }
+
+        /// <summary>
+        /// 마우스가 확대/축소 슬라이더 팝업창을 벗어나면 슬라이더 숨기기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Popup_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popZoom.IsOpen = false;
+        }
+
+        /// <summary>
+        /// 하단 버튼 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            int selectedIndex;
+
+            if (btn != null)
             {
-                btn.IsEnabled = isEnabled;
-                btn.Opacity = 1;
+                switch (btn.Name)
+                {
+                    case "btnBack":
+                        pnlImageView.Visibility = Visibility.Hidden;
+                        btnBack.Visibility = Visibility.Hidden;
+                        mnuFix.IsEnabled = lbxPicture.SelectedItems.Count > 0;
+                        (imgViewer.LayoutTransform as RotateTransform).Angle = 0;
+                        break;
+
+                    case "btnZoom":
+                        popZoom.IsOpen = true;
+                        break;
+
+                    case "btnDefaultSize":
+                        sldZoom.Value = 3;
+                        break;
+
+                    case "btnPrev":
+                        selectedIndex = lbxPicture.SelectedIndex - 1;
+                        if (selectedIndex < 0) selectedIndex = lbxPicture.Items.Count - 1;
+                        ShowPhoto(selectedIndex);
+                        break;
+
+                    case "btnSliddShow":
+                        MessageBox.Show("서비스 준비중입니다.");
+                        break;
+
+                    case "btnNext":
+                        selectedIndex = lbxPicture.SelectedIndex + 1;
+                        if (selectedIndex == lbxPicture.Items.Count) selectedIndex = 0;
+                        ShowPhoto(selectedIndex);
+                        break;
+
+                    case "btnCounterClockWise":
+                        ClockWise(-90);
+                        break;
+
+                    case "btnClockWise":
+                        ClockWise(90);
+                        break;
+
+                    case "btnDelete":
+                        DeletePhoto();
+                        break;
+
+                    case "btnRotateCW":
+                        RotateImage(imgViewer.LayoutTransform as RotateTransform, 90);
+                        break;
+
+                    case "btnRotateCCW":
+                        RotateImage(imgViewer.LayoutTransform as RotateTransform, -90);
+                        break;
+
+                    case "btnRotateSave":
+                        MessageBox.Show("서비스 준비중입니다.");
+                        break;
+                }
             }
-            else
+        }
+
+        /// <summary>
+        /// 상단 메뉴 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem mnu = sender as MenuItem;
+            if (mnu != null)
             {
-                btn.IsEnabled = isEnabled;
-                btn.Opacity = .5;
+                switch (mnu.Name)
+                {
+                    case "mnuAdd":
+                        UpdateFavoritesTreeViewItem();
+                        break;
+
+                    case "mnuDelete":
+                        DeletePhoto();
+                        break;
+
+                    case "mnuRename":
+                        RenamePhoto();
+                        break;
+
+                    case "mnuRefresh":
+                        RefreshImageViewer();
+                        break;
+
+                    case "mnuExit":
+                        this.Close();
+                        break;
+
+                    case "mnuFix":
+                        ShowPhoto(true);
+                        break;
+
+                    case "mnuPrint":
+                        PrintPhoto();
+                        break;
+
+                    case "mnuEdit":
+                        EditPhoto();
+                        break;
+                }
+            }
+        }
+
+        #endregion
+
+
+
+        #region [ 즐겨찾기 트리뷰 아이템 초기화 / 저장 ]
+
+        /// <summary>
+        /// 디렉토리 트리뷰를 시스템의 디렉토리로 초기화
+        /// </summary>
+        private void InitFolderTreeViewItem()
+        {
+            TreeViewItem item;
+            foreach (var dir in Directory.GetLogicalDrives())
+            {
+                item = new TreeViewItem();
+                item.Header = dir;
+                item.Tag = dir;
+                item.Items.Add(null);
+                item.Expanded += TreeViewItem_Expanded;
+                trvItmFolder.Items.Add(item);
             }
         }
 
@@ -258,40 +394,18 @@ namespace WpfApp
             (trvFolderExplorer.Items[0] as TreeViewItem).IsSelected = true;
         }
 
-        /// <summary>
-        /// 해당 폴더 즐겨찾기에 추가
-        /// </summary>
-        /// <param name="folder"></param>
-        private void AddFavoritesTreeViewItem(string folder)
-        {
-            TreeViewItem trvItm = new TreeViewItem();
-            trvItm.Header = folder;
-            trvItm.Tag = folder;
+        #endregion
 
-            trvItmFavorites.Items.Add(trvItm);
-        }
 
-        /// <summary>
-        /// 해당 폴더 즐겨찾기에서 제거
-        /// </summary>
-        /// <param name="folder"></param>
-        private void RemoveFavorite(string folder)
-        {
-            for (int i = 0; i < trvItmFavorites.Items.Count; i++)
-            {
-                if ((trvItmFavorites.Items[i] as TreeViewItem).Header as String == folder)
-                {
-                    trvItmFavorites.Items.RemoveAt(i);
-                    break;
-                }
-            }
-        }
 
+        #region [ 이미지 리스트박스 아이템 초기화 ]
 
         /// <summary>
         /// 해당 폴더의 JPEG 이미지 파일을 PictureListBox 목록에 추가
-        ///   + BitmapFrame 에 연결된 썸네일이미지가 있으면 해당 이미지 사용
         /// </summary>
+        /// <remarks>
+        ///   + BitmapFrame 에 연결된 썸네일이미지가 있으면 해당 이미지 사용
+        /// </remarks>
         /// <param name="folderPath"></param>
         private void AddPhotosListBox(string folderPath)
         {
@@ -314,7 +428,7 @@ namespace WpfApp
 
                     item = new ListBoxItem();
                     item.Padding = new Thickness(3, 8, 3, 8);
-                    item.MouseDoubleClick += delegate { ShowPhoto(false); };
+                    item.MouseDoubleClick += delegate { ShowPhoto(true); };
                     tfg = new TransformGroup();
                     tfg.Children.Add(m_3XScale);
                     tfg.Children.Add(new RotateTransform());// 회전각도 초기화
@@ -368,6 +482,11 @@ namespace WpfApp
             catch (IOException) { }
         }
 
+        /// <summary>
+        /// 프로그램에서 이미지의 경로를 직접 사용하는 경우 이름변경이 안되므로, Cache옵션을 설정해 해결
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         private BitmapImage GetBitmapImage(string filename)
         {
             return GetBitmapImage(new Uri(filename));
@@ -390,7 +509,82 @@ namespace WpfApp
             return bmp;
         }
 
+        #endregion
 
+
+
+        #region [ 상단 메뉴 ]
+
+        #region File
+
+
+        /// <summary>
+        /// 해당 폴더 즐겨찾기에 추가
+        /// </summary>
+        /// <param name="folder"></param>
+        private void AddFavoritesTreeViewItem(string folder)
+        {
+            TreeViewItem trvItm = new TreeViewItem();
+            trvItm.Header = folder;
+            trvItm.Tag = folder;
+
+            trvItmFavorites.Items.Add(trvItm);
+        }
+
+        /// <summary>
+        /// 해당 폴더 즐겨찾기에서 제거
+        /// </summary>
+        /// <param name="folder"></param>
+        private void RemoveFavorite(string folder)
+        {
+            for (int i = 0; i < trvItmFavorites.Items.Count; i++)
+            {
+                if ((trvItmFavorites.Items[i] as TreeViewItem).Header as String == folder)
+                {
+                    trvItmFavorites.Items.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 하단 버튼 활성화/비활성화
+        /// </summary>
+        /// <param name="btn"></param>
+        /// <param name="isEnabled"></param>
+        private void EnableButton(Button btn, bool isEnabled)
+        {
+            if (isEnabled)
+            {
+                btn.IsEnabled = isEnabled;
+                btn.Opacity = 1;
+            }
+            else
+            {
+                btn.IsEnabled = isEnabled;
+                btn.Opacity = .5;
+            }
+        }
+
+        /// <summary>
+        /// 현재 선택된 폴더 즐겨찾기에 추가 / 삭제
+        /// </summary>
+        private void UpdateFavoritesTreeViewItem()
+        {
+            string folder = (trvFolderExplorer.SelectedItem as TreeViewItem).Tag as string;
+            if (mnuAdd.Header as string == "즐겨찾기에 추가(_A)")
+            {
+                AddFavoritesTreeViewItem(folder);
+                mnuAdd.Header = "즐겨찾기에서 제거(_D)";
+            }
+            else
+            {
+                RemoveFavorite(folder);
+                mnuAdd.Header = "즐겨찾기에 추가(_A)";
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// 이미지 팝업창 보이기
@@ -408,81 +602,12 @@ namespace WpfApp
             if (showFixeBar == true)
             {
                 pnlFixbar.Visibility = Visibility.Visible;
+                mnuFix.IsEnabled = false;
             }
             else if (showFixeBar == false)
             {
                 pnlFixbar.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        /// <summary>
-        /// 하단 버튼 클릭
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            int selectedIndex;
-
-            if (btn != null)
-            {
-                switch (btn.Name)
-                {
-                    case "btnBack":
-                        pnlImageView.Visibility = Visibility.Hidden;
-                        btnBack.Visibility = Visibility.Hidden;
-                        (imgViewer.LayoutTransform as RotateTransform).Angle = 0;
-                        break;
-
-                    case "btnZoom":
-                        popZoom.IsOpen = true;
-                        break;
-
-                    case "btnDefaultSize":
-                        sldZoom.Value = 3;
-                        break;
-
-                    case "btnPrev":
-                        selectedIndex = lbxPicture.SelectedIndex - 1;
-                        if (selectedIndex < 0) selectedIndex = lbxPicture.Items.Count - 1;
-                        SelectedPhoto(selectedIndex);
-                        break;
-
-                    case "btnSliddShow":
-                        MessageBox.Show("서비스 준비중입니다.");
-                        break;
-
-                    case "btnNext":
-                        selectedIndex = lbxPicture.SelectedIndex + 1;
-                        if (selectedIndex == lbxPicture.Items.Count) selectedIndex = 0;
-                        SelectedPhoto(selectedIndex);
-                        break;
-
-                    case "btnCounterClockWise":
-                        ClockWise(-90);
-                        break;
-
-                    case "btnClockWise":
-                        ClockWise(90);
-                        break;
-
-                    case "btnDelete":
-                        DeletePhoto();
-                        break;
-
-                    case "btnRotateCW":
-                        RotateImage(imgViewer.LayoutTransform as RotateTransform, 90);
-                        break;
-
-                    case "btnRotateCCW":
-                        RotateImage(imgViewer.LayoutTransform as RotateTransform, -90);
-                        break;
-
-                    case "btnRotateSave":
-                        MessageBox.Show("서비스 준비중입니다.");
-                        break;
-                }
+                mnuFix.IsEnabled = true;
             }
         }
 
@@ -490,16 +615,48 @@ namespace WpfApp
         /// 선택된 이미지 팝업보기
         /// </summary>
         /// <param name="selectedIndex"></param>
-        private void SelectedPhoto(int selectedIndex)
+        private void ShowPhoto(int selectedIndex)
         {
             (lbxPicture.Items[selectedIndex] as ListBoxItem).IsSelected = true;
             lbxPicture.ScrollIntoView(lbxPicture.SelectedItem);
 
-            if(pnlImageView.Visibility == Visibility.Visible)
+            if (pnlImageView.Visibility == Visibility.Visible)
             {
                 ShowPhoto(null);
             }
         }
+
+        /// <summary>
+        /// 선택된 이미지 인쇄
+        /// </summary>
+        private void PrintPhoto()
+        {
+            string fileName = (lbxPicture.SelectedItem as ListBoxItem).Tag as String;
+            Image img = new Image();
+            img.Source = new BitmapImage(new Uri(fileName, UriKind.RelativeOrAbsolute));
+
+            PrintDialog dlg = new PrintDialog();
+            if (dlg.ShowDialog() == true)
+            {
+                dlg.PrintVisual(img, $"{ System.IO.Path.GetFileName(fileName)} from Photo Gallery.");
+            }
+        }
+
+        /// <summary>
+        /// 선택된 이미지 편집 : MSPaint 실행
+        /// </summary>
+        private void EditPhoto()
+        {
+            string fileName = (lbxPicture.SelectedItem as ListBoxItem).Tag as String;
+            System.Diagnostics.Process.Start("mspaint.exe", fileName);
+        }
+
+        #endregion
+
+
+
+
+        #region [ 하단 버튼 ]
 
         /// <summary>
         /// 선택된 이미지 회전(CW/CCW)
@@ -528,84 +685,6 @@ namespace WpfApp
         }
 
         /// <summary>
-        /// 확대/축소 슬라이드를 변경할 때
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ZoomSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            m_3XScale.ScaleX = sldZoom.Value;
-            m_3XScale.ScaleY = sldZoom.Value;
-        }
-
-        /// <summary>
-        /// 상단 메뉴 클릭
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            MenuItem mnu = sender as MenuItem;
-            if (mnu != null)
-            {
-                switch (mnu.Name)
-                {
-                    case "mnuAdd":
-                        UpdateFavoritesTreeViewItem();
-                        break;
-
-                    case "mnuDelete":
-                        DeletePhoto();
-                        break;
-
-                    case "mnuRename":
-                        RenamePhoto();
-                        break;
-
-                    case "mnuRefresh":
-                        RefreshImageViewer();
-                        break;
-
-                    case "mnuExit":
-                        this.Close();
-                        break;
-
-                    case "mnuFix":
-                        ShowPhoto(true);
-                        break;
-
-                    case "mnuPrint":
-                        PrintPhoto();
-                        break;
-
-                    case "mnuEdit":
-                        EditPhoto();
-                        break;
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// 현재 선택된 폴더 즐겨찾기에 추가 / 삭제
-        /// </summary>
-        private void UpdateFavoritesTreeViewItem()
-        {
-            string folder = (trvFolderExplorer.SelectedItem as TreeViewItem).Tag as string;
-            if (mnuAdd.Header as string == "즐겨찾기에 추가(_A)")
-            {
-                AddFavoritesTreeViewItem(folder);
-                mnuAdd.Header = "즐겨찾기에서 제거(_D)";
-            }
-            else
-            {
-                RemoveFavorite(folder);
-                mnuAdd.Header = "즐겨찾기에 추가(_A)";
-            }
-        }
-
-
-        /// <summary>
         /// 선택된 이미지 파일 삭제
         /// </summary>
         private void DeletePhoto()
@@ -623,7 +702,6 @@ namespace WpfApp
                 }
             }
         }
-
 
         /// <summary>
         /// 선택된 이미지 파일명 변경
@@ -648,11 +726,12 @@ namespace WpfApp
             }
         }
 
-
         /// <summary>
         /// 현재 선택된 디렉토리폴더나 즐겨찾기 폴더의 이미지 목록으로 PictureListBox 새로고치기
-        ///   + 선택된 디렉토리폴더가 즐겨찾기에 이미 추가된 폴더이면 [즐겨찾기에서 제거] 메뉴, 아니면 [즐겨찾기에 추가] 메뉴
         /// </summary>
+        /// <remarks>
+        ///   + 선택된 디렉토리폴더가 즐겨찾기에 이미 추가된 폴더이면 [즐겨찾기에서 제거] 메뉴, 아니면 [즐겨찾기에 추가] 메뉴
+        /// </remarks>
         private void RefreshImageViewer()
         {
             try
@@ -697,37 +776,9 @@ namespace WpfApp
             }
         }
 
-
-        /// <summary>
-        /// 선택된 이미지 인쇄
-        /// </summary>
-        private void PrintPhoto()
-        {
-            string fileName = (lbxPicture.SelectedItem as ListBoxItem).Tag as String;
-            Image img = new Image();
-            img.Source = new BitmapImage(new Uri(fileName, UriKind.RelativeOrAbsolute));
-
-            PrintDialog dlg = new PrintDialog();
-            if(dlg.ShowDialog() == true)
-            {
-                dlg.PrintVisual(img, $"{ System.IO.Path.GetFileName(fileName)} from Photo Gallery.");
-            }
-        }
+        #endregion
 
 
-        /// <summary>
-        /// 선택된 이미지 편집 : MSPaint 실행
-        /// </summary>
-        private void EditPhoto()
-        {
-            string fileName = (lbxPicture.SelectedItem as ListBoxItem).Tag as String;
-            System.Diagnostics.Process.Start("mspaint.exe", fileName);
-        }
-
-        private void Popup_MouseLeave(object sender, MouseEventArgs e)
-        {
-            popZoom.IsOpen = false;
-        }
     }
 
     
