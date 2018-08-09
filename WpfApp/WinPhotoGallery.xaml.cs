@@ -59,7 +59,7 @@ namespace WpfApp
         {
             base.OnClosing(e);
 
-            if (MessageBox.Show("포토 갤러리 창을 닫으시겠습니까?"
+            if (MessageBox.Show("포토 갤러리 프로그램을 종료하시겠습니까?"
                              , "알림내용"
                              , MessageBoxButton.YesNo
                              , MessageBoxImage.Question) == MessageBoxResult.No)
@@ -762,11 +762,11 @@ namespace WpfApp
                     {
                         if (item.Header as string == selectedFolder)
                         {
-                            mnuAdd.Header = "즐겨찾기에서 제거";
+                            mnuAdd.Header = "즐겨찾기에서 제거(_D)";
                             return;
                         }
                     }
-                    mnuAdd.Header = "즐겨찾기에 추가";
+                    mnuAdd.Header = "즐겨찾기에 추가(_A)";
                 }
             }
             catch { }

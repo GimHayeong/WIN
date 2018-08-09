@@ -47,7 +47,7 @@
         <Button x:Name="btnBack" Click="Button_Click" Visibility="Hidden">Back To Gallery</Button>
 
         <!-- 레이어 #1 -->
-        <TreeView x:Name="trvFolderExplorer" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedItemChanged="TreeView_SelectedItemChanged">
+        <TreeView x:Name="trvFolderExplorer" Grid.Row="1" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedItemChanged="TreeView_SelectedItemChanged">
             <TreeViewItem x:Name="trvItmFavorites" Header="Favorites">
                 <!--<TreeViewItem Header="C:\Users\Adam\Pictures" Tag="C:\Users\Adam\Pictures"/>-->
             </TreeViewItem>
@@ -57,8 +57,8 @@
                 <TreeViewItem Header="E:\" Tag="E:\"/>-->
             </TreeViewItem>
         </TreeView>
-        <GridSplitter Grid.Column="1" Grid.Row="1" ResizeBehavior="PreviousAndNext"/>
-        <ListBox x:Name="lbxPicture" Grid.Row="1" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListBox_SelectionChanged">
+        <GridSplitter Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="2" ResizeBehavior="PreviousAndNext"/>
+        <ListBox x:Name="lbxPicture" Grid.Row="1" Grid.Column="2" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListBox_SelectionChanged">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
