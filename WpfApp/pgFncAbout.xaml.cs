@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp
+namespace WpfPhotoGallery
 {
     /// <summary>
     /// pgFncAbout.xaml에 대한 상호 작용 논리

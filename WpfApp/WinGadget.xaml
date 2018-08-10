@@ -1,0 +1,21 @@
+﻿<Window x:Class="WpfPhotoGallery.WinGadget"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfPhotoGallery"
+        mc:Ignorable="d"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStyle="None"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="가젯 스타일 응용프로그램" Height="300" Width="300">
+    <Grid>
+        <Ellipse Fill="Red" Opacity=".5" Margin="20">
+            <Ellipse.BitmapEffect>
+                <DropShadowBitmapEffect/>
+            </Ellipse.BitmapEffect>
+        </Ellipse>
+        <Button Margin="100" Click="CloseButton_Click" Content="Close"/>
+    </Grid>
+</Window>

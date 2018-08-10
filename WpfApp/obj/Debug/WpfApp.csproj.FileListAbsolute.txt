@@ -47,3 +47,7 @@ D:\Projects\2015\WpfApp\WpfApp\obj\Debug\pgFncAbout.baml
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\resFile01.baml
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\resFile02.baml
 D:\Projects\2015\WpfApp\WpfApp\obj\Debug\resPhotoGallery.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinGadget.g.cs
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinGlass.g.cs
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinGadget.baml
+D:\Projects\2015\WpfApp\WpfApp\obj\Debug\WinGlass.baml

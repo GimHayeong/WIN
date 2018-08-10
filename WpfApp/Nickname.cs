@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApp
+namespace WpfPhotoGallery
 {
     public class Nickname : INotifyPropertyChanged
     {

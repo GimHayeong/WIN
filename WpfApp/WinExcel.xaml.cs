@@ -19,7 +19,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Windows.Automation.Peers;
 using System.ComponentModel;
 
-namespace WpfApp
+namespace WpfPhotoGallery
 {
     /// <summary>
     /// WinExcel.xaml에 대한 상호 작용 논리

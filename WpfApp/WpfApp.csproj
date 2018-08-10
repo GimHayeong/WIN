@@ -67,6 +67,7 @@
     <Compile Include="DlgRename.xaml.cs">
       <DependentUpon>DlgRename.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GlassHelper.cs" />
     <Compile Include="NaviWin.xaml.cs">
       <DependentUpon>NaviWin.xaml</DependentUpon>
     </Compile>
@@ -80,6 +81,7 @@
       <DependentUpon>pgFncAbout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Photos.cs" />
+    <Compile Include="TaskDialog.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Sample.cs" />
     <Compile Include="WinControlTransform.xaml.cs">
@@ -87,6 +89,12 @@
     </Compile>
     <Compile Include="WinExcel.xaml.cs">
       <DependentUpon>WinExcel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGadget.xaml.cs">
+      <DependentUpon>WinGadget.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGlass.xaml.cs">
+      <DependentUpon>WinGlass.xaml</DependentUpon>
     </Compile>
     <Compile Include="WinLayer.xaml.cs">
       <DependentUpon>WinLayer.xaml</DependentUpon>
@@ -153,6 +161,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WinGadget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGlass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WinLayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,7 +209,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\IconFile.ico" />
