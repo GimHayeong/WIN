@@ -4,7 +4,7 @@
 //#define FORMEVENT
 //#define EVENTVIEW
 //#define TIMER
-#define GDIPLUS
+//#define GDIPLUS
 //#define IMAGE
 //#define MENU
 //#define CONTROLS
@@ -21,7 +21,7 @@
 //#define VALIDATION
 //#define SEARCH_FILE
 //#define THREAD_INVOKE
-//#define THREAD_BGWORKER
+#define THREAD_BGWORKER
 
 using System;
 using System.Collections.Generic;

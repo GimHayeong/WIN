@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinAppVideoRentalStore", "W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfPhotoGallery", "WpfPhotoGallery\WpfPhotoGallery.csproj", "{770B1705-5950-4F3A-8AED-1947C7115818}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf", "Wpf\Wpf.csproj", "{62EE0909-114E-4081-8712-A50DA5C61A43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppExam", "..\WpfAppProject\WpfAppExam\WpfAppExam.csproj", "{2C3BCAA1-9BD5-4573-87DF-CDC807D5CC7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,14 @@ Global
 		{770B1705-5950-4F3A-8AED-1947C7115818}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{770B1705-5950-4F3A-8AED-1947C7115818}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{770B1705-5950-4F3A-8AED-1947C7115818}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62EE0909-114E-4081-8712-A50DA5C61A43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62EE0909-114E-4081-8712-A50DA5C61A43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62EE0909-114E-4081-8712-A50DA5C61A43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62EE0909-114E-4081-8712-A50DA5C61A43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C3BCAA1-9BD5-4573-87DF-CDC807D5CC7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C3BCAA1-9BD5-4573-87DF-CDC807D5CC7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C3BCAA1-9BD5-4573-87DF-CDC807D5CC7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C3BCAA1-9BD5-4573-87DF-CDC807D5CC7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
