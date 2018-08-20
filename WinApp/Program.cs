@@ -21,7 +21,10 @@
 //#define VALIDATION
 //#define SEARCH_FILE
 //#define THREAD_INVOKE
-#define THREAD_BGWORKER
+//#define THREAD_BGWORKER
+//#define DIRECTORY_SEARCHER
+//#define BACKGROUNDWORKER_PERCENTAGE
+#define BACKGROUNDWORKER_FIBONACCI
 
 using System;
 using System.Collections.Generic;
@@ -91,6 +94,12 @@ namespace WinApp
             Application.Run(new ThreadInvokeForm());
 #elif THREAD_BGWORKER
             Application.Run(new ThreadBgWorkerForm());
+#elif DIRECTORY_SEARCHER
+            Application.Run(new DirectorySearcherForm());
+#elif BACKGROUNDWORKER_PERCENTAGE
+            Application.Run(new ThreadBgWorkerPercentageForm());
+#elif BACKGROUNDWORKER_FIBONACCI
+            Application.Run(new ThreadBgWorkerFibonacciForm());
 #else
             Application.Run(new MDHForm());
 #endif

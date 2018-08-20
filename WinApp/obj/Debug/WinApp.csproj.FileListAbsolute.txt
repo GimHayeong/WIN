@@ -46,3 +46,6 @@ D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.ValidationForm.resources
 D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.FileExplorerForm.resources
 D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.ThreadInvokeForm.resources
 D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.ThreadBgWorkerForm.resources
+D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.DirectorySearcherForm.resources
+D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.ThreadBgWorkerFibonacciForm.resources
+D:\Projects\2015\WpfApp\WinApp\obj\Debug\WinApp.ThreadBgWorkerPercentageForm.resources

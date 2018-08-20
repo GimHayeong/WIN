@@ -66,6 +66,18 @@
     <Compile Include="ADOForm.Designer.cs">
       <DependentUpon>ADOForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThreadBgWorkerPercentageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThreadBgWorkerPercentageForm.Designer.cs">
+      <DependentUpon>ThreadBgWorkerPercentageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CCDirectorySearcher.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CCDirectorySearcher.Designer.cs">
+      <DependentUpon>CCDirectorySearcher.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClipboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +101,12 @@
     </Compile>
     <Compile Include="DataSetForm.Designer.cs">
       <DependentUpon>DataSetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DirectorySearcherForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DirectorySearcherForm.Designer.cs">
+      <DependentUpon>DirectorySearcherForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EventViewerForm.cs">
       <SubType>Form</SubType>
@@ -182,6 +200,12 @@
     <Compile Include="RegistryForm.Designer.cs">
       <DependentUpon>RegistryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThreadBgWorkerFibonacciForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThreadBgWorkerFibonacciForm.Designer.cs">
+      <DependentUpon>ThreadBgWorkerFibonacciForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ThreadBgWorkerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +248,12 @@
     <EmbeddedResource Include="ADOForm.resx">
       <DependentUpon>ADOForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ThreadBgWorkerFibonacciForm.resx">
+      <DependentUpon>ThreadBgWorkerFibonacciForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThreadBgWorkerPercentageForm.resx">
+      <DependentUpon>ThreadBgWorkerPercentageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ClipboardForm.resx">
       <DependentUpon>ClipboardForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataSetForm.resx">
       <DependentUpon>DataSetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DirectorySearcherForm.resx">
+      <DependentUpon>DirectorySearcherForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EventViewerForm.resx">
       <DependentUpon>EventViewerForm.cs</DependentUpon>

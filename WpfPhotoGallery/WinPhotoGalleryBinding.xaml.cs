@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using WpfPhotoGallery.ViewModel;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace WpfPhotoGallery
 {
@@ -108,26 +109,16 @@ namespace WpfPhotoGallery
         /// <param name="e"></param>
         private void TreeViewItem_Expanded(object sender, RoutedEventArgs e)
         {
+            var item = e.OriginalSource as TreeViewItem;
+            if (item == null || !item.HasItems) return;
             
-            //TreeViewItem item = sender as TreeViewItem;
-            //if (item != null && item.Items.Count == 1 && item.Items[0] == null)
-            //{
-            //    item.Items.Clear();
-            //    try
-            //    {
-            //        TreeViewItem subitem;
-            //        foreach (var fullPath in Directory.GetDirectories(item.Tag.ToString()))
-            //        {
-            //            subitem = new TreeViewItem();
-            //            subitem.Header = fullPath.Substring(fullPath.LastIndexOf(@"\") + 1);
-            //            subitem.Tag = fullPath;
-            //            subitem.Items.Add(null);
-            //            subitem.Expanded += TreeViewItem_Expanded;
-            //            item.Items.Add(subitem);
-            //        }
-            //    }
-            //    catch (UnauthorizedAccessException) { }//IO오류 또는 보안오류 등으로 OS 액세스거부
-            //}
+            foreach(Folder dir in item.Items)
+            {
+                foreach(Folder f in dir.SubFolders)
+                {
+                    Folder.AddSubFolders(f);
+                }
+            }
         }
 
         /// <summary>
