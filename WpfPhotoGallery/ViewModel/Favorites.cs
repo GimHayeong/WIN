@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
@@ -140,6 +141,31 @@ namespace WpfPhotoGallery.ViewModel
         public override string ToString()
         {
             return FullPath;
+        }
+    }
+
+
+    /// <summary>
+    /// DevExpress 바인딩 시, 바인딩 데이터 변환
+    /// </summary>
+    public class FavoriteToFullPathConverter : System.Windows.Markup.MarkupExtension, System.Windows.Data.IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var obj = value as Favorite;
+            if (obj != null) return obj.FullPath;
+
+            return System.Windows.Data.Binding.DoNothing;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using WpfPhotoGallery.ViewModel;
 
 namespace WpfPhotoGallery
@@ -27,27 +29,230 @@ namespace WpfPhotoGallery
         private ScaleTransform m_3XScale = new ScaleTransform(3, 3);
         private const string FILE_PATH = "myFile";
         public Photos PhotoList { get; private set; }
+        public bool m_isExpanding = false;
 
         public WinPhotoGalleryDevExpress()
         {
             InitializeComponent();
+
+            PhotoList = new Photos();
+
+            PhotoList.PhotoItemUpdateEvent += delegate
+            {
+                this.Dispatcher.Invoke(DispatcherPriority.Normal
+                                     , new ThreadStart(RefreshImageViewer));
+            };
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        
         private void TreeList_SelectedChanged(object sender, DevExpress.Xpf.Grid.SelectedItemChangedEventArgs e)
         {
             Folder folder = e.Source.SelectedItem as Folder;
 
-            if (folder != null && folder.ParentID > 1)
+            if (folder == null) return;
+            RefreshImageViewer();
+        }
+
+        private void TreeListView_NodeExpanding(object sender, DevExpress.Xpf.Grid.TreeList.TreeListNodeAllowEventArgs e)
+        {
+            if (m_isExpanding) return;
+            var item = e.Row as Folder;
+            if (item == null || !e.Node.HasChildren) return;
+
+            m_isExpanding = true;
+
+            foreach (Folder f in item.SubFolders)
             {
-                RefreshImageViewer();
+                Folder.AddSubFolders(f);
             }
         }
 
+        private void TreeListView_NodeExpanded(object sender, DevExpress.Xpf.Grid.TreeList.TreeListNodeEventArgs e)
+        {
+            m_isExpanding = false;
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count == 0)
+            {
+                mnuDelete.IsEnabled = false;
+                mnuRename.IsEnabled = false;
+                mnuFix.IsEnabled = false;
+                mnuPrint.IsEnabled = false;
+                mnuEdit.IsEnabled = false;
+                btnPrev.IsEnabled = false;
+                btnPrev.Opacity = .5;
+                btnNext.IsEnabled = false;
+                btnNext.Opacity = .5;
+                btnCounterClockWise.IsEnabled = false;
+                btnCounterClockWise.Opacity = .5;
+                btnClockWise.IsEnabled = false;
+                btnClockWise.Opacity = .5;
+                btnDelete.IsEnabled = false;
+                btnDelete.Opacity = .5;
+            }
+            else
+            {
+                mnuDelete.IsEnabled = true;
+                mnuRename.IsEnabled = true;
+                mnuFix.IsEnabled = true;
+                mnuPrint.IsEnabled = true;
+                mnuEdit.IsEnabled = true;
+                btnPrev.IsEnabled = true;
+                btnPrev.Opacity = 1;
+                btnNext.IsEnabled = true;
+                btnNext.Opacity = 1;
+                btnCounterClockWise.IsEnabled = true;
+                btnCounterClockWise.Opacity = 1;
+                btnClockWise.IsEnabled = true;
+                btnClockWise.Opacity = 1;
+                btnDelete.IsEnabled = true;
+                btnDelete.Opacity = 1;
+            }
+        }
+
+
+        /// <summary>
+        /// 확대/축소 슬라이드를 변경할 때
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ZoomSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            m_3XScale.ScaleX = sldZoom.Value;
+            m_3XScale.ScaleY = sldZoom.Value;
+        }
+
+        /// <summary>
+        /// 마우스가 확대/축소 슬라이더 팝업창을 벗어나면 슬라이더 숨기기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Popup_MouseLeave(object sender, MouseEventArgs e)
+        {
+            popZoom.IsOpen = false;
+        }
+
+        /// <summary>
+        /// 하단 버튼 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            int selectedIndex;
+
+            if (btn != null)
+            {
+                switch (btn.Name)
+                {
+                    case "btnBack":
+                        pnlImageView.Visibility = Visibility.Hidden;
+                        btnBack.Visibility = Visibility.Hidden;
+                        mnuFix.IsEnabled = lbxPicture.SelectedItems.Count > 0;
+                        (imgViewer.LayoutTransform as RotateTransform).Angle = 0;
+                        break;
+
+                    case "btnZoom":
+                        popZoom.IsOpen = true;
+                        break;
+
+                    case "btnDefaultSize":
+                        sldZoom.Value = 3;
+                        break;
+
+                    case "btnPrev":
+                        selectedIndex = lbxPicture.SelectedIndex - 1;
+                        if (selectedIndex < 0) selectedIndex = lbxPicture.Items.Count - 1;
+                        ShowPhoto(selectedIndex);
+                        break;
+
+                    case "btnSliddShow":
+                        MessageBox.Show("서비스 준비중입니다.");
+                        break;
+
+                    case "btnNext":
+                        selectedIndex = lbxPicture.SelectedIndex + 1;
+                        if (selectedIndex == lbxPicture.Items.Count) selectedIndex = 0;
+                        ShowPhoto(selectedIndex);
+                        break;
+
+                    case "btnCounterClockWise":
+                        ClockWise(-90);
+                        break;
+
+                    case "btnClockWise":
+                        ClockWise(90);
+                        break;
+
+                    case "btnDelete":
+                        DeletePhoto();
+                        break;
+
+                    case "btnRotateCW":
+                        RotateImage(imgViewer.LayoutTransform as RotateTransform, 90);
+                        break;
+
+                    case "btnRotateCCW":
+                        RotateImage(imgViewer.LayoutTransform as RotateTransform, -90);
+                        break;
+
+                    case "btnRotateSave":
+                        MessageBox.Show("서비스 준비중입니다.");
+                        break;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 상단 메뉴 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuItem_Click(object sender, ItemClickEventArgs e)
+        {
+            BarItem mnu = sender as BarItem;
+            if (mnu != null)
+            {
+                switch (mnu.Name)
+                {
+                    case "mnuAdd":
+                        UpdateFavoritesTreeViewItem();
+                        break;
+
+                    case "mnuDelete":
+                        DeletePhoto();
+                        break;
+
+                    case "mnuRename":
+                        RenamePhoto();
+                        break;
+
+                    case "mnuRefresh":
+                        RefreshImageViewer();
+                        break;
+
+                    case "mnuExit":
+                        this.Close();
+                        break;
+
+                    case "mnuFix":
+                        ShowPhoto(true);
+                        break;
+
+                    case "mnuPrint":
+                        PrintPhoto();
+                        break;
+
+                    case "mnuEdit":
+                        EditPhoto();
+                        break;
+                }
+            }
+        }
 
         #region [ 이미지 리스트박스 아이템 초기화 ]
 
@@ -175,9 +380,9 @@ namespace WpfPhotoGallery
         /// <param name="folder"></param>
         private void AddFavoritesTreeViewItem(string folder)
         {
-            TreeViewItem trvItm = new TreeViewItem();
-            trvItm.Header = folder;
-            trvItm.Tag = folder;
+            //TreeViewItem trvItm = new TreeViewItem();
+            //trvItm.Header = folder;
+            //trvItm.Tag = folder;
 
             //trvItmFavorites.Items.Add(trvItm);
         }
@@ -222,15 +427,20 @@ namespace WpfPhotoGallery
         /// </summary>
         private void UpdateFavoritesTreeViewItem()
         {
-            string folder = (trvFolderExplorer.SelectedItem as BarButtonItem).Tag as string;
+            Folder favorite = trvFolderExplorer.GetRow(0) as Folder;
+            if (favorite == null) return;
+
+            Folder folder = trvFolderExplorer.SelectedItem as Folder;
             if (mnuAdd.Content as string == "즐겨찾기에 추가(_A)")
             {
-                AddFavoritesTreeViewItem(folder);
+                favorite.SubFolders.Add(folder);
+                //AddFavoritesTreeViewItem(folder);
                 mnuAdd.Content = "즐겨찾기에서 제거(_D)";
             }
             else
             {
-                RemoveFavorite(folder);
+                //RemoveFavorite(folder);
+                favorite.SubFolders.Remove(folder);
                 mnuAdd.Content = "즐겨찾기에 추가(_A)";
             }
         }
@@ -395,30 +605,32 @@ namespace WpfPhotoGallery
                 lbxPicture.Items.Clear();
                 PhotoList.Clear();
 
-                //Folder selectedFolder = trvFolderExplorer.SelectedItem as Folder;
-                //if (selectedFolder.ParentID == 1)
-                //{
-                //    mnuAdd.IsEnabled = false;
-                //}
-                //else if (selectedFolder.ParentID != 1)
-                //{
-                //    mnuAdd.IsEnabled = true;
-                //}
+                Folder selectedFolder = trvFolderExplorer.SelectedItem as Folder;
+                if (selectedFolder == null) return;
 
-                //if (trvFolderExplorer.SelectedItem == trvItmFavorites)
-                //{
-                //    foreach (TreeViewItem item in trvItmFavorites.Items)
-                //    {
-                //        AddPhotosListBox(item.Tag as String);
-                //    }
-                //    mnuAdd.IsEnabled = false;
-                //}
-                //else if (trvFolderExplorer.SelectedItem != trvItmFolder)
-                //{
-                //    string selectedFolder = (trvFolderExplorer.SelectedItem as TreeViewItem).Tag as String;
-                //    AddPhotosListBox(selectedFolder);
+                if(selectedFolder.FullPath == "Favorites" || selectedFolder.FullPath == "Folders")
+                {
+                    mnuAdd.IsEnabled = false;
+                }
+                else
+                {
+                    mnuAdd.IsEnabled = true;
+                }
 
-                //    mnuAdd.IsEnabled = true;
+                if (selectedFolder.FullPath == "Favorites")
+                {
+                    foreach(var item in selectedFolder.SubFolders)
+                    {
+                        AddPhotosListBox(item.FullPath);
+                    }
+                    mnuAdd.IsEnabled = false;
+                }
+                else if(selectedFolder.IsFavorite)
+                {
+                    AddPhotosListBox(selectedFolder.FullPath);
+                    mnuAdd.IsEnabled = true;
+
+                    //기존 즐겨찾기이면 즐겨찾기에서 제거
                 //    foreach (TreeViewItem item in trvItmFavorites.Items)
                 //    {
                 //        if (item.Header as string == selectedFolder)
@@ -426,17 +638,25 @@ namespace WpfPhotoGallery
                 //            mnuAdd.Header = "즐겨찾기에서 제거(_D)";
                 //            return;
                 //        }
-                //    }
-                //    mnuAdd.Header = "즐겨찾기에 추가(_A)";
-                //}
+
+                    mnuAdd.Content = "즐겨찾기에 추가(_A)";
+                }
             }
-            catch { }
+            catch (Exception){ }
             finally
             {
                 this.Cursor = Cursors.Arrow;
             }
         }
 
+
+
+
+
+
+
         #endregion
+
+       
     }
 }
