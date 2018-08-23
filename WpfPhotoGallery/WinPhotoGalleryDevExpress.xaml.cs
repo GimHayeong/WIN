@@ -44,7 +44,21 @@ namespace WpfPhotoGallery
             };
         }
 
-        
+        /// <summary>
+        /// 프로그램이 종료될때, 즐겨찾기 아이템 저장
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            // 프로그램이 종료될 때마다 저장할 아이템 처리
+            Folder favorites = trvFolderExplorer.GetRow(0) as Folder;
+            if (favorites == null) return;
+            FavoriteFolder subFolders = new FavoriteFolder();
+            subFolders.SaveFavoriteList(favorites.SubFolders);
+        }
+
         private void TreeList_SelectedChanged(object sender, DevExpress.Xpf.Grid.SelectedItemChangedEventArgs e)
         {
             Folder folder = e.Source.SelectedItem as Folder;
@@ -377,30 +391,25 @@ namespace WpfPhotoGallery
         /// <summary>
         /// 해당 폴더 즐겨찾기에 추가
         /// </summary>
-        /// <param name="folder"></param>
-        private void AddFavoritesTreeViewItem(string folder)
+        /// <param name="fullPath"></param>
+        private void AddFavoritesTreeViewItem(string fullPath)
         {
-            //TreeViewItem trvItm = new TreeViewItem();
-            //trvItm.Header = folder;
-            //trvItm.Tag = folder;
+            Folder favorite = trvFolderExplorer.GetRow(0) as Folder;
+            if (favorite == null) return;
 
-            //trvItmFavorites.Items.Add(trvItm);
+            favorite.SubFolders.Add(new Folder(fullPath, -1, true));
         }
 
         /// <summary>
         /// 해당 폴더 즐겨찾기에서 제거
         /// </summary>
         /// <param name="folder"></param>
-        private void RemoveFavorite(string folder)
+        private void RemoveFavorite(Folder folder)
         {
-            //for (int i = 0; i < trvItmFavorites.Items.Count; i++)
-            //{
-            //    if ((trvItmFavorites.Items[i] as TreeViewItem).Header as String == folder)
-            //    {
-            //        trvItmFavorites.Items.RemoveAt(i);
-            //        break;
-            //    }
-            //}
+            Folder favorite = trvFolderExplorer.GetRow(0) as Folder;
+            if (favorite == null) return;
+
+            favorite.SubFolders.Remove(folder);
         }
 
         /// <summary>
@@ -427,20 +436,15 @@ namespace WpfPhotoGallery
         /// </summary>
         private void UpdateFavoritesTreeViewItem()
         {
-            Folder favorite = trvFolderExplorer.GetRow(0) as Folder;
-            if (favorite == null) return;
-
             Folder folder = trvFolderExplorer.SelectedItem as Folder;
             if (mnuAdd.Content as string == "즐겨찾기에 추가(_A)")
             {
-                favorite.SubFolders.Add(folder);
-                //AddFavoritesTreeViewItem(folder);
+                AddFavoritesTreeViewItem(folder.FullPath);
                 mnuAdd.Content = "즐겨찾기에서 제거(_D)";
             }
             else
             {
-                //RemoveFavorite(folder);
-                favorite.SubFolders.Remove(folder);
+                RemoveFavorite(folder);
                 mnuAdd.Content = "즐겨찾기에 추가(_A)";
             }
         }
@@ -625,20 +629,27 @@ namespace WpfPhotoGallery
                     }
                     mnuAdd.IsEnabled = false;
                 }
-                else if(selectedFolder.IsFavorite)
+                else
                 {
                     AddPhotosListBox(selectedFolder.FullPath);
                     mnuAdd.IsEnabled = true;
 
                     //기존 즐겨찾기이면 즐겨찾기에서 제거
-                //    foreach (TreeViewItem item in trvItmFavorites.Items)
-                //    {
-                //        if (item.Header as string == selectedFolder)
-                //        {
-                //            mnuAdd.Header = "즐겨찾기에서 제거(_D)";
-                //            return;
-                //        }
-
+                    if (selectedFolder.IsFavorite)
+                    {
+                        Folder favorite = trvFolderExplorer.GetRow(0) as Folder;
+                        if(favorite != null)
+                        {
+                            foreach(var item in favorite.SubFolders)
+                            {
+                                if(item.FolderInfo.FullName == selectedFolder.FolderInfo.FullName)
+                                {
+                                    mnuAdd.Content = "즐겨찾기에서 제거(_D)";
+                                    return;
+                                }
+                            }
+                        }
+                    }
                     mnuAdd.Content = "즐겨찾기에 추가(_A)";
                 }
             }

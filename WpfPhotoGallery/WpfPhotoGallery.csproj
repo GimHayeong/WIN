@@ -72,6 +72,7 @@
     <Compile Include="DlgRename.xaml.cs">
       <DependentUpon>DlgRename.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\FavoriteFolders.cs" />
     <Compile Include="ViewModel\Favorites.cs" />
     <Compile Include="ViewModel\Folders.cs" />
     <Compile Include="ViewModel\Photos.cs" />
