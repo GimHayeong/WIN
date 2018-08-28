@@ -1,5 +1,4 @@
-﻿using ServerLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +10,15 @@ namespace ClientApp
     {
         static void Main(string[] args)
         {
-            int a = 3, b = 2;
-            Console.WriteLine("{0} + {1} = {2}", a, b, IntCalc.Add(a, b));
-            Console.WriteLine("{0} - {1} = {2}", a, b, IntCalc.Sub(a, b));
+            CallBll();
 
             Console.ReadLine();
+        }
+
+        static void CallBll()
+        {
+            ReferenceBll bll = new ReferenceBll();
+            bll.CallServerLib();
         }
     }
 }

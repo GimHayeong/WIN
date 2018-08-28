@@ -1,0 +1,12 @@
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\bin\Debug\ConAppTransferSerialData.exe.config
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\bin\Debug\ConAppTransferSerialData.exe
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\bin\Debug\ConAppTransferSerialData.pdb
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\bin\Debug\DAL.dll
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\bin\Debug\MySql.Data.dll
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\bin\Debug\Google.Protobuf.dll
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\bin\Debug\DAL.pdb
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\bin\Debug\MySql.Data.xml
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\bin\Debug\Google.Protobuf.xml
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\obj\Debug\ConAppTransferSerialData.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\obj\Debug\ConAppTransferSerialData.exe
+D:\Projects\2015\WpfApp\ConAppTransferSerialData\obj\Debug\ConAppTransferSerialData.pdb

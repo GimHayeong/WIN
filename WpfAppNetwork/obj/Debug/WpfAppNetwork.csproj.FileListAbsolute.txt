@@ -1,0 +1,16 @@
+D:\Projects\2015\WpfApp\WpfAppNetwork\bin\Debug\WpfAppNetwork.exe.config
+D:\Projects\2015\WpfApp\WpfAppNetwork\bin\Debug\WpfAppNetwork.exe
+D:\Projects\2015\WpfApp\WpfAppNetwork\bin\Debug\WpfAppNetwork.pdb
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\WpfAppNetwork.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\MainWindow.g.cs
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\TimeServerWind.g.cs
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\App.g.cs
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\WpfAppNetwork_MarkupCompile.cache
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\WpfAppNetwork_MarkupCompile.lref
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\MainWindow.baml
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\TimeServerWind.baml
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\WpfAppNetwork.g.resources
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\WpfAppNetwork.Properties.Resources.resources
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\WpfAppNetwork.csproj.GenerateResource.Cache
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\WpfAppNetwork.exe
+D:\Projects\2015\WpfApp\WpfAppNetwork\obj\Debug\WpfAppNetwork.pdb

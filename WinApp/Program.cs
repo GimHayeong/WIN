@@ -4,7 +4,7 @@
 //#define FORMEVENT
 //#define EVENTVIEW
 //#define TIMER
-//#define GDIPLUS
+#define GDIPLUS
 //#define IMAGE
 //#define MENU
 //#define CONTROLS
@@ -24,7 +24,7 @@
 //#define THREAD_BGWORKER
 //#define DIRECTORY_SEARCHER
 //#define BACKGROUNDWORKER_PERCENTAGE
-#define BACKGROUNDWORKER_FIBONACCI
+//#define BACKGROUNDWORKER_FIBONACCI
 
 using System;
 using System.Collections.Generic;

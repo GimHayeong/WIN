@@ -1,0 +1,6 @@
+D:\Projects\2015\WpfApp\ConAppTcpServer\bin\Debug\ConAppTcpServer.exe.config
+D:\Projects\2015\WpfApp\ConAppTcpServer\bin\Debug\ConAppTcpServer.exe
+D:\Projects\2015\WpfApp\ConAppTcpServer\bin\Debug\ConAppTcpServer.pdb
+D:\Projects\2015\WpfApp\ConAppTcpServer\obj\Debug\ConAppTcpServer.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\ConAppTcpServer\obj\Debug\ConAppTcpServer.exe
+D:\Projects\2015\WpfApp\ConAppTcpServer\obj\Debug\ConAppTcpServer.pdb

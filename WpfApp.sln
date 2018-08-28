@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{A03975F7-D134-4332-A4CE-5B49BAEF10AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerLib", "ServerLib\ServerLib.csproj", "{DDB197AF-63DB-4562-A70B-2D8BB428BDF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSCommonLib", "ServerLib\CSCommonLib.csproj", "{DDB197AF-63DB-4562-A70B-2D8BB428BDF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApp", "ClientApp\ClientApp.csproj", "{0592FC0A-1E1E-4389-A3EC-3555106D0421}"
 EndProject
@@ -32,6 +32,26 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf", "Wpf\Wpf.csproj", "{62EE0909-114E-4081-8712-A50DA5C61A43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppExam", "..\WpfAppProject\WpfAppExam\WpfAppExam.csproj", "{2C3BCAA1-9BD5-4573-87DF-CDC807D5CC7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConApp", "ConApp\ConApp.csproj", "{A6547214-3986-4CE7-A0C6-C3E91CA2B245}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConAppTcpServer", "ConAppTcpServer\ConAppTcpServer.csproj", "{0D88DDD0-38E7-448D-8F61-231EBF23073B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConAppTcpClient", "ConAppTcpClient\ConAppTcpClient.csproj", "{B084460D-76E5-4117-BA95-CDB56016F899}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConAppUdpServer", "ConAppUdpServer\ConAppUdpServer.csproj", "{133C6427-2206-4E7E-80D1-A626271BA220}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConAppUdpClient", "ConAppUdpClient\ConAppUdpClient.csproj", "{9A011BB5-ABF3-404E-B6D3-51AD2112F5B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppNetwork", "WpfAppNetwork\WpfAppNetwork.csproj", "{95102A49-3C0B-45BE-8765-6CBBB56B9112}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppNetClient", "WpfAppNetClient\WpfAppNetClient.csproj", "{630B2F02-4BA6-4F83-80DE-5C837607237F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConAppTransferSerialData", "ConAppTransferSerialData\ConAppTransferSerialData.csproj", "{ED26073C-FD39-4F98-8A86-920CE267A07D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConAppReceiveSerialData", "ConAppReceiveSerialData\ConAppReceiveSerialData.csproj", "{E9C8F7BD-403E-4ECA-BF02-B99E2F83A30D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppChatSocket", "WpfAppChatSocket\WpfAppChatSocket.csproj", "{92B52164-3E9A-4CC0-A30E-AAD76503A4D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +119,46 @@ Global
 		{2C3BCAA1-9BD5-4573-87DF-CDC807D5CC7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C3BCAA1-9BD5-4573-87DF-CDC807D5CC7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C3BCAA1-9BD5-4573-87DF-CDC807D5CC7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6547214-3986-4CE7-A0C6-C3E91CA2B245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6547214-3986-4CE7-A0C6-C3E91CA2B245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6547214-3986-4CE7-A0C6-C3E91CA2B245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6547214-3986-4CE7-A0C6-C3E91CA2B245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D88DDD0-38E7-448D-8F61-231EBF23073B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D88DDD0-38E7-448D-8F61-231EBF23073B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D88DDD0-38E7-448D-8F61-231EBF23073B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D88DDD0-38E7-448D-8F61-231EBF23073B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B084460D-76E5-4117-BA95-CDB56016F899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B084460D-76E5-4117-BA95-CDB56016F899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B084460D-76E5-4117-BA95-CDB56016F899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B084460D-76E5-4117-BA95-CDB56016F899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{133C6427-2206-4E7E-80D1-A626271BA220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{133C6427-2206-4E7E-80D1-A626271BA220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{133C6427-2206-4E7E-80D1-A626271BA220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{133C6427-2206-4E7E-80D1-A626271BA220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A011BB5-ABF3-404E-B6D3-51AD2112F5B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A011BB5-ABF3-404E-B6D3-51AD2112F5B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A011BB5-ABF3-404E-B6D3-51AD2112F5B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A011BB5-ABF3-404E-B6D3-51AD2112F5B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95102A49-3C0B-45BE-8765-6CBBB56B9112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95102A49-3C0B-45BE-8765-6CBBB56B9112}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95102A49-3C0B-45BE-8765-6CBBB56B9112}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95102A49-3C0B-45BE-8765-6CBBB56B9112}.Release|Any CPU.Build.0 = Release|Any CPU
+		{630B2F02-4BA6-4F83-80DE-5C837607237F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{630B2F02-4BA6-4F83-80DE-5C837607237F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{630B2F02-4BA6-4F83-80DE-5C837607237F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{630B2F02-4BA6-4F83-80DE-5C837607237F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED26073C-FD39-4F98-8A86-920CE267A07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED26073C-FD39-4F98-8A86-920CE267A07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED26073C-FD39-4F98-8A86-920CE267A07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED26073C-FD39-4F98-8A86-920CE267A07D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9C8F7BD-403E-4ECA-BF02-B99E2F83A30D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9C8F7BD-403E-4ECA-BF02-B99E2F83A30D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9C8F7BD-403E-4ECA-BF02-B99E2F83A30D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9C8F7BD-403E-4ECA-BF02-B99E2F83A30D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92B52164-3E9A-4CC0-A30E-AAD76503A4D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92B52164-3E9A-4CC0-A30E-AAD76503A4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92B52164-3E9A-4CC0-A30E-AAD76503A4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92B52164-3E9A-4CC0-A30E-AAD76503A4D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

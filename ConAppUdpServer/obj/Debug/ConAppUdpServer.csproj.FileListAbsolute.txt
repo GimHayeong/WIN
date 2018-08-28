@@ -1,0 +1,6 @@
+D:\Projects\2015\WpfApp\ConAppUdpServer\bin\Debug\ConAppUdpServer.exe.config
+D:\Projects\2015\WpfApp\ConAppUdpServer\bin\Debug\ConAppUdpServer.exe
+D:\Projects\2015\WpfApp\ConAppUdpServer\bin\Debug\ConAppUdpServer.pdb
+D:\Projects\2015\WpfApp\ConAppUdpServer\obj\Debug\ConAppUdpServer.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\ConAppUdpServer\obj\Debug\ConAppUdpServer.exe
+D:\Projects\2015\WpfApp\ConAppUdpServer\obj\Debug\ConAppUdpServer.pdb

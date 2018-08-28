@@ -1,0 +1,4 @@
+D:\Projects\2015\WpfApp\ServerLib\bin\Debug\CSCommonLib.dll
+D:\Projects\2015\WpfApp\ServerLib\bin\Debug\CSCommonLib.pdb
+D:\Projects\2015\WpfApp\ServerLib\obj\Debug\CSCommonLib.dll
+D:\Projects\2015\WpfApp\ServerLib\obj\Debug\CSCommonLib.pdb

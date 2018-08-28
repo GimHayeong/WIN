@@ -19,7 +19,7 @@
 //#define THREAD_START_LOCK
 //#define THREAD_MONITOR
 //#define THREAD_MUTEX
-#define SYNCTHREAD
+//#define SYNCTHREAD
 //#define WEBAPI
 //#define DELEGATE
 //#define ATTRIBUTE_DLLIMPORT

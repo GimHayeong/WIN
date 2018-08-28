@@ -119,9 +119,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServerLib\ServerLib.csproj">
-      <Project>{DDB197AF-63DB-4562-A70B-2D8BB428BDF5}</Project>
-      <Name>ServerLib</Name>
+    <ProjectReference Include="..\ServerLib\CSCommonLib.csproj">
+      <Project>{ddb197af-63db-4562-a70b-2d8bb428bdf5}</Project>
+      <Name>CSCommonLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

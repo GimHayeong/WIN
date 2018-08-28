@@ -1,0 +1,6 @@
+D:\Projects\2015\WpfApp\ConAppUdpClient\bin\Debug\ConAppUdpClient.exe.config
+D:\Projects\2015\WpfApp\ConAppUdpClient\bin\Debug\ConAppUdpClient.exe
+D:\Projects\2015\WpfApp\ConAppUdpClient\bin\Debug\ConAppUdpClient.pdb
+D:\Projects\2015\WpfApp\ConAppUdpClient\obj\Debug\ConAppUdpClient.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\ConAppUdpClient\obj\Debug\ConAppUdpClient.exe
+D:\Projects\2015\WpfApp\ConAppUdpClient\obj\Debug\ConAppUdpClient.pdb

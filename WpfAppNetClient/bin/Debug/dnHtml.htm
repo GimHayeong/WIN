@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="BHAhxRRd-GdHqxPKfJIo2oaolw5vfmt1CoCk4D_QVS0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Home Page - 방탄소년단</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet"/>
+<link href="/Content/Slideshow.css" rel="stylesheet"/>
+<link href="/Content/site.css" rel="stylesheet"/>
+
+    <script src="/Scripts/modernizr-2.8.3.js"></script>
+
+    
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" onclick="this.classList.toggle('change');">
+                    <span class="icon-bar bar1"></span>
+                    <span class="icon-bar bar2"></span>
+                    <span class="icon-bar bar3"></span>
+                </button>
+                <a class="navbar-brand" href="/">BTS</a>
+                
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
+                    <li><a href="/Home/About"><i class="fa fa-info-circle"></i> 소개</a></li>
+                    <li><a href="/Home/Audition"><i class="fa fa-calendar-o"></i> 오디션</a></li>
+                    <li><a href="/Album/Video"><i class="fa fa-youtube"></i> 비디오</a></li>
+                    <li><a href="/Artist"><i class="fa fa-lock"></i> 아티스트</a></li>
+                    <li>
+                        <a class="dropdown-toggle" id="mnuAdmin" data-toggle="dropdown">
+                            <i class="fa fa-lock"></i> 관리자 <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="mnuAdmin">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Artist"><i class="fa fa-unlock"></i> 아티스트</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Album"><i class="fa fa-lock"></i> 앨범</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/Member"><i class="fa fa-lock"></i> 멤버</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                    <!---->
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="/Account/Login" id="loginLink"><i class="fa fa-sign-in"></i> 로그인</a>
+        </li>
+    </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        
+
+
+
+
+
+
+
+
+<div class="slideshow-container">
+    <div class="slideItem fade">
+        <div class="numbertext">1 / 8</div>
+        <img src="/Content/Images/Artist/1/ly-o-7-jm.jpg" class="img-responsive center-block" />
+        <div class="captiontext">Boys Meet Evil "놓치긴 싫었어 악마의 손길을"</div>
+    </div>
+    <div class="slideItem fade">
+        <div class="numbertext">2 / 8</div>
+        <img src="/Content/Images/Artist/1/ly-o-0-bts.jpg" class="img-responsive center-block" />
+        <div class="captiontext">피 땀 눈물 "나를 부드럽게 죽여줘"</div>
+    </div>
+    <div class="slideItem fade">
+        <div class="numbertext">3 / 8</div>
+        <img src="/Content/Images/Artist/1/ly-o-1-v.jpg" class="img-responsive center-block" />
+        <div class="captiontext">Begin "죽을 것 같아, 형이 슬프면..."</div>
+    </div>
+    <div class="slideItem fade">
+        <div class="numbertext">4 / 8</div>
+        <img src="/Content/Images/Artist/1/ly-o-2-suga.jpg" class="img-responsive center-block" />
+        <div class="captiontext">Lie "너무나 커져버린 거짓이 나를 삼키려 해"</div>
+    </div>
+    <div class="slideItem fade">
+        <div class="numbertext">5 / 8</div>
+        <img src="/Content/Images/Artist/1/ly-o-3-jk.jpg" class="img-responsive center-block" />
+        <div class="captiontext">Stigma "그때 나한테 왜 그랬어?"</div>
+    </div>
+    <div class="slideItem fade">
+        <div class="numbertext">6 / 8</div>
+        <img src="/Content/Images/Artist/1/ly-o-4-rm.jpg" class="img-responsive center-block"/>
+        <div class="captiontext">Awake "믿는게 아냐, 버텨보는 거야"</div>
+    </div>
+    <div class="slideItem fade">
+        <div class="numbertext">7 / 8</div>
+        <img src="/Content/Images/Artist/1/ly-o-5-jin.jpg" class="img-responsive center-block"/>
+        <div class="captiontext">21세기 소녀 "말해 너는 강하다고, 말해 넌 충분하다고"</div>
+    </div>
+    <div class="slideItem fade">
+        <div class="numbertext">8 / 8</div>
+        <img src="/Content/Images/Artist/1/ly-o-6-jhope.jpg" class="img-responsive center-block"/>
+        <div class="captiontext">Wings "점점 더 무거워지는 공기를 뚫고 날아"</div>
+    </div>
+
+    <a class="prev" onclick="nextSlideItem(-1)">&#10094;</a>
+    <a class="next" onclick="nextSlideItem(1)">&#10095;</a>
+
+</div>
+<br />
+<div style="text-align: center">
+    <span class="dot" onclick="currentSlideItem(1)"></span>
+    <span class="dot" onclick="currentSlideItem(2)"></span>
+    <span class="dot" onclick="currentSlideItem(3)"></span>
+    <span class="dot" onclick="currentSlideItem(4)"></span>
+    <span class="dot" onclick="currentSlideItem(5)"></span>
+    <span class="dot" onclick="currentSlideItem(6)"></span>
+    <span class="dot" onclick="currentSlideItem(7)"></span>
+    <span class="dot" onclick="currentSlideItem(8)"></span>
+</div>
+
+
+
+<div style="text-align: center; margin-bottom: 4em;" id="main-title" name="main-title">
+    <h1>방탄소년단, 그들의 음악 이야기</h1>
+    <h4>We love music</h4>
+</div>
+
+
+
+        <div class="col-md-3 album-list">
+            <ul>
+                <li>
+                    <div class="img-thumbnail-circle img-innerborder img-circle img-innerborder-red"><img src="/Content/Images/Album/bts-LOVEYOURSELF.png" /></div>
+                    <div class="clearfix"></div>
+                </li>
+
+                <li class="list-main-title">
+                    <div class="category-title">
+                        <h4>LOVE YOURSELF 承 &#39;HER&#39;</h4>
+                        <hr class="border-red" style="min-width: 100px;" />
+                    </div>
+                </li>
+
+                <li class="list-sub-title">
+다섯번째 미니 앨범                </li>
+
+                <li class="list-item">
+                    (발매일: 2017-09-18)
+                </li>
+
+                <li class="list-description">
+                    4개의 버전으로 출시.
+&quot;DNA&quot;를 포함 9개의 트랙으로 구성.
+사랑을 통해 성장하는 소년의 개인적 경험을 통해 현재의 우리 사회에 보내는 화합과 통합의 메시지.&nbsp;
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-3 album-list">
+            <ul>
+                <li>
+                    <div class="img-thumbnail-circle img-innerborder img-circle img-innerborder-green"><img src="/Content/Images/Album/bts-WINGS.png" /></div>
+                    <div class="clearfix"></div>
+                </li>
+
+                <li class="list-main-title">
+                    <div class="category-title">
+                        <h4>WINGS</h4>
+                        <hr class="border-green" style="min-width: 100px;" />
+                    </div>
+                </li>
+
+                <li class="list-sub-title">
+두번째 정규 음반                </li>
+
+                <li class="list-item">
+                    (발매일: 2016-10-10)
+                </li>
+
+                <li class="list-description">
+                    유혹을 마주한 청춘에게 유혹과 욕망, 악을 깨닫는 것도 성장의 일부라는 메시지.&nbsp;
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+<div class='clearfix visible-sm visible-xs'></div>        <div class="col-md-3 album-list">
+            <ul>
+                <li>
+                    <div class="img-thumbnail-circle img-innerborder img-circle img-innerborder-blue"><img src="/Content/Images/Album/bts-YOUTH.png" /></div>
+                    <div class="clearfix"></div>
+                </li>
+
+                <li class="list-main-title">
+                    <div class="category-title">
+                        <h4>YOUTH</h4>
+                        <hr class="border-blue" style="min-width: 100px;" />
+                    </div>
+                </li>
+
+                <li class="list-sub-title">
+일본버전앨범                </li>
+
+                <li class="list-item">
+                    (발매일: 2016-09-07)
+                </li>
+
+                <li class="list-description">
+                    화양연화 PT.1 ~ YOUNG FOREVER 앨범 수록곡들을 믹스한 일본버전 앨범.&nbsp;
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-3 album-list">
+            <ul>
+                <li>
+                    <div class="img-thumbnail-circle img-innerborder img-circle img-innerborder-yellow"><img src="/Content/Images/Album/bts-YOUNGFOREVER.png" /></div>
+                    <div class="clearfix"></div>
+                </li>
+
+                <li class="list-main-title">
+                    <div class="category-title">
+                        <h4>화양연화 YOUNG FOREVER</h4>
+                        <hr class="border-yellow" style="min-width: 100px;" />
+                    </div>
+                </li>
+
+                <li class="list-sub-title">
+두번째 리패키지 음반                </li>
+
+                <li class="list-item">
+                    (발매일: 2016-05-02)
+                </li>
+
+                <li class="list-description">
+                    화양연화 시리즈의 대장정을 마무리하는 스패셜 앨범.
+불안하고 위태로운 현실 &lt;화양연화 PT.1&gt; 속에서 앞을 향해 달려 나가는 &lt;화양연화 PT.2&gt; 그 청춘들의 마지막 이야기...&nbsp;
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+<div class='clearfix visible-lg visible-md'></div>        <div class="col-md-3 album-list">
+            <ul>
+                <li>
+                    <div class="img-thumbnail-circle img-innerborder img-circle img-innerborder-red"><img src="/Content/Images/Album/bts-BUTTERFLY.png" /></div>
+                    <div class="clearfix"></div>
+                </li>
+
+                <li class="list-main-title">
+                    <div class="category-title">
+                        <h4>화양연화 PT.2</h4>
+                        <hr class="border-red" style="min-width: 100px;" />
+                    </div>
+                </li>
+
+                <li class="list-sub-title">
+네번째 미니 음반                </li>
+
+                <li class="list-item">
+                    (발매일: 2015-11-30)
+                </li>
+
+                <li class="list-description">
+                    &quot;화양연화&quot; 시리즈의 두번째.
+&quot;RUN&quot;은 뜨겁게 타오르나 지나고 나면 한낱 꿈에 불과한 청춘의 순간 &lt;화양연화 PT.1&gt;, 그래도 멈출 수 없는 한줄기 빛을 향한 질주 &lt;화양연화 PT.2&gt;.
+인생의 가장 아름다운 순간을 살아가고 있는 청춘에게 헌사.&nbsp;
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-3 album-list">
+            <ul>
+                <li>
+                    <div class="img-thumbnail-circle img-innerborder img-circle img-innerborder-green"><img src="/Content/Images/Album/bts-MOODFORLOVE.png" /></div>
+                    <div class="clearfix"></div>
+                </li>
+
+                <li class="list-main-title">
+                    <div class="category-title">
+                        <h4>화양연화 PT.1</h4>
+                        <hr class="border-green" style="min-width: 100px;" />
+                    </div>
+                </li>
+
+                <li class="list-sub-title">
+세번째 미니 음반                </li>
+
+                <li class="list-item">
+                    (발매일: 2015-04-29)
+                </li>
+
+                <li class="list-description">
+                    인생의 가장 아름다운 순간 속에 있는 청춘들의 이야기 &quot;화양연화&quot; 시리즈의 첫번째 앨범.
+&quot;I NEED U&quot;는 이전과는 상반된 감성적인 동양적 멜로디와 힙합의 만남을 시도했다. 불안하고 위태로운 현실속의 청춘들의 이야기를 노래한다.&nbsp;
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+<div class='clearfix visible-sm visible-xs'></div>        <div class="col-md-3 album-list">
+            <ul>
+                <li>
+                    <div class="img-thumbnail-circle img-innerborder img-circle img-innerborder-blue"><img src="/Content/Images/Album/bts-WAKEUP.png" /></div>
+                    <div class="clearfix"></div>
+                </li>
+
+                <li class="list-main-title">
+                    <div class="category-title">
+                        <h4>WAKE UP</h4>
+                        <hr class="border-blue" style="min-width: 100px;" />
+                    </div>
+                </li>
+
+                <li class="list-sub-title">
+                </li>
+
+                <li class="list-item">
+                    (발매일: 2014-12-24)
+                </li>
+
+                <li class="list-description">
+                    준비중&nbsp;
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-3 album-list">
+            <ul>
+                <li>
+                    <div class="img-thumbnail-circle img-innerborder img-circle img-innerborder-yellow"><img src="/Content/Images/Album/bts-DARKWILD.png" /></div>
+                    <div class="clearfix"></div>
+                </li>
+
+                <li class="list-main-title">
+                    <div class="category-title">
+                        <h4>DARK&amp;WILD</h4>
+                        <hr class="border-yellow" style="min-width: 100px;" />
+                    </div>
+                </li>
+
+                <li class="list-sub-title">
+첫번째 정규 앨범                </li>
+
+                <li class="list-item">
+                    (발매일: 2014-08-19)
+                </li>
+
+                <li class="list-description">
+                    &quot;Danger&quot;는 연인 사이의 갈등을 펑크록 기타 사운드에 담은 하이브리드 힙합곡이다. 
+파워풀한 후렴구와 시원한 샤우팅에 빈틈없는 구성이 돋보인다.&nbsp;
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+<div class='clearfix visible-lg visible-md'></div>        <div class="col-md-3 album-list">
+            <ul>
+                <li>
+                    <div class="img-thumbnail-circle img-innerborder img-circle img-innerborder-red"><img src="/Content/Images/Album/bts-SCHOOLLUVAFFAIR.png" /></div>
+                    <div class="clearfix"></div>
+                </li>
+
+                <li class="list-main-title">
+                    <div class="category-title">
+                        <h4>SKOOL LUV AFFAIR</h4>
+                        <hr class="border-red" style="min-width: 100px;" />
+                    </div>
+                </li>
+
+                <li class="list-sub-title">
+첫번째 리패키지 음반                 </li>
+
+                <li class="list-item">
+                    (발매일: 2014-03-12)
+                </li>
+
+                <li class="list-description">
+                    학교 3부작 중 마지막 앨범으로 10대들의 사랑이야기를 담은 타이틀 &quot;상남자&quot;는 한 소녀를 향해 전력질주하는 소년의 마음을 신나는 비트로 표현. &nbsp;
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-3 album-list">
+            <ul>
+                <li>
+                    <div class="img-thumbnail-circle img-innerborder img-circle img-innerborder-green"><img src="/Content/Images/Album/bts-ORUL8.png" /></div>
+                    <div class="clearfix"></div>
+                </li>
+
+                <li class="list-main-title">
+                    <div class="category-title">
+                        <h4>O!RUL8,2?</h4>
+                        <hr class="border-green" style="min-width: 100px;" />
+                    </div>
+                </li>
+
+                <li class="list-sub-title">
+첫번째 미니 음반                 </li>
+
+                <li class="list-item">
+                    (발매일: 2013-09-11)
+                </li>
+
+                <li class="list-description">
+                    &quot;N.O&quot;는 미래에 대한 계획을 세울 틈도 없이 학교라는 틀에 갇혀 자라나는 10대들에게 진정한 행복과 스스로의 인생에 대해 생각해 보라는 메시지. &nbsp;
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+<div class='clearfix visible-sm visible-xs'></div>        <div class="col-md-3 album-list">
+            <ul>
+                <li>
+                    <div class="img-thumbnail-circle img-innerborder img-circle img-innerborder-blue"><img src="/Content/Images/Album/bts-2School4skool.png" /></div>
+                    <div class="clearfix"></div>
+                </li>
+
+                <li class="list-main-title">
+                    <div class="category-title">
+                        <h4>2 COOL 4 SKOOL</h4>
+                        <hr class="border-blue" style="min-width: 100px;" />
+                    </div>
+                </li>
+
+                <li class="list-sub-title">
+첫번째 싱글 음반                 </li>
+
+                <li class="list-item">
+                    (발매일: 2013-06-12)
+                </li>
+
+                <li class="list-description">
+                    학교 3부작 중 첫번째 앨범 &quot;No More Dream&quot; 은 90년대 갱스터 힙합의 재해석한 곡이다. 
+10대의 시각에서 본인들의 미래와 꿈에 대한 메시지를 담았다. &nbsp;
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+        </div>
+<div class="clearfix"></div>
+
+
+
+
+
+
+
+
+<!---->
+
+<div style="background-color: black; min-height: 10em; color: #ccc; text-align: center; vertical-align: middle; padding: 2em;">
+    <h1>뮤직비디오</h1>
+    <h4></h4>
+<div style="text-align: center">
+    <div class="col-md-3 vdo-frame-border vdo-frame-background">
+        <fieldset>
+            <legend>FAKE LOVE</legend>
+            <div class="vdo-youtube"><iframe id="iframe_3" name="iframe_3" width="250" height="140" src="https://www.youtube.com/embed/7C2z4GqqS5E?rel=0&enablejsapi=1" frameborder="0" allowfullscreen="true"></iframe></div>
+        </fieldset>
+    </div>
+
+    <div class="col-md-3 vdo-frame-border vdo-frame-background">
+        <fieldset>
+            <legend>DNA</legend>
+            <div class="vdo-youtube"><iframe id="iframe_1" name="iframe_1" width="250" height="140" src="https://www.youtube.com/embed/MBdVXkSdhwU?rel=0&enablejsapi=1" frameborder="0" allowfullscreen="true"></iframe></div>
+        </fieldset>
+    </div>
+    <div class="col-md-3 vdo-frame-border vdo-frame-background">
+        <fieldset>
+            <legend>불타오르네</legend>
+            <div class="vdo-youtube"><iframe id="iframe_2" name="iframe_2" width="250" height="140" src="https://www.youtube.com/embed/ALj5MKjy2BU?rel=0&enablejsapi=1" frameborder="0" allowfullscreen="true"></iframe></div>
+        </fieldset>
+    </div>
+</div>
+<div class="clearfix"></div>
+</div>
+
+
+<div style="text-align: center; margin-bottom: 4em;">
+    <h1>방탄소년단</h1>
+    <h4>We love music</h4>
+</div>
+
+
+
+<div class='row'>    <div class="col-md-3  album-list">
+        <ul>
+            <li>
+                <img src="/Content/Images/Member/bts-v.png" class="img-thumbnail-circle img-circle" />
+                <div class="clearfix"></div>
+            </li>
+
+            <li class="list-main-title">
+                <div class="category-title">
+                    <h4>V</h4>
+                    <hr class="border-red" style="min-width: 100px;" />
+                </div>
+            </li>
+
+            <li class="list-sub-title">
+서브보컬            </li>
+
+            <li class="list-item">
+                본명: 김태형
+            </li>
+
+            <li class="list-item">
+                생년월일: 1995-12-30
+            </li>
+
+            <li class="list-item">
+                키: 178 cm
+            </li>
+
+            <li class="list-item">
+                몸무게: 63 kg
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-md-3  album-list">
+        <ul>
+            <li>
+                <img src="/Content/Images/Member/bts-suga.png" class="img-thumbnail-circle img-circle" />
+                <div class="clearfix"></div>
+            </li>
+
+            <li class="list-main-title">
+                <div class="category-title">
+                    <h4>SUGA</h4>
+                    <hr class="border-green" style="min-width: 100px;" />
+                </div>
+            </li>
+
+            <li class="list-sub-title">
+리드래퍼            </li>
+
+            <li class="list-item">
+                본명: 민윤기
+            </li>
+
+            <li class="list-item">
+                생년월일: 1993-03-09
+            </li>
+
+            <li class="list-item">
+                키: 174 cm
+            </li>
+
+            <li class="list-item">
+                몸무게: 59 kg
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-md-3  album-list">
+        <ul>
+            <li>
+                <img src="/Content/Images/Member/bts-jungkook.png" class="img-thumbnail-circle img-circle" />
+                <div class="clearfix"></div>
+            </li>
+
+            <li class="list-main-title">
+                <div class="category-title">
+                    <h4>JUNGKOOK</h4>
+                    <hr class="border-blue" style="min-width: 100px;" />
+                </div>
+            </li>
+
+            <li class="list-sub-title">
+메인보컬, 리드댄서            </li>
+
+            <li class="list-item">
+                본명: 전정국
+            </li>
+
+            <li class="list-item">
+                생년월일: 1997-09-01
+            </li>
+
+            <li class="list-item">
+                키: 178 cm
+            </li>
+
+            <li class="list-item">
+                몸무게: 61 kg
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-md-3  album-list">
+        <ul>
+            <li>
+                <img src="/Content/Images/Member/bts-rapmonster.png" class="img-thumbnail-circle img-circle" />
+                <div class="clearfix"></div>
+            </li>
+
+            <li class="list-main-title">
+                <div class="category-title">
+                    <h4>RAP MONSTER</h4>
+                    <hr class="border-yellow" style="min-width: 100px;" />
+                </div>
+            </li>
+
+            <li class="list-sub-title">
+[리더]메인레퍼            </li>
+
+            <li class="list-item">
+                본명: 김남준
+            </li>
+
+            <li class="list-item">
+                생년월일: 1994-09-12
+            </li>
+
+            <li class="list-item">
+                키: 181 cm
+            </li>
+
+            <li class="list-item">
+                몸무게: 64 kg
+            </li>
+
+        </ul>
+    </div>
+</div><div class='clearfix'></div><div class='row'>    <div class="col-md-3  album-list">
+        <ul>
+            <li>
+                <img src="/Content/Images/Member/bts-jin.png" class="img-thumbnail-circle img-circle" />
+                <div class="clearfix"></div>
+            </li>
+
+            <li class="list-main-title">
+                <div class="category-title">
+                    <h4>JIN</h4>
+                    <hr class="border-red" style="min-width: 100px;" />
+                </div>
+            </li>
+
+            <li class="list-sub-title">
+서브보컬            </li>
+
+            <li class="list-item">
+                본명: 김석진
+            </li>
+
+            <li class="list-item">
+                생년월일: 1992-12-04
+            </li>
+
+            <li class="list-item">
+                키: 179 cm
+            </li>
+
+            <li class="list-item">
+                몸무게: 64 kg
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-md-3  album-list">
+        <ul>
+            <li>
+                <img src="/Content/Images/Member/bts-jhope.png" class="img-thumbnail-circle img-circle" />
+                <div class="clearfix"></div>
+            </li>
+
+            <li class="list-main-title">
+                <div class="category-title">
+                    <h4>J-HOPE</h4>
+                    <hr class="border-green" style="min-width: 100px;" />
+                </div>
+            </li>
+
+            <li class="list-sub-title">
+서브래퍼, 메인댄서            </li>
+
+            <li class="list-item">
+                본명: 정호석
+            </li>
+
+            <li class="list-item">
+                생년월일: 1994-02-18
+            </li>
+
+            <li class="list-item">
+                키: 177 cm
+            </li>
+
+            <li class="list-item">
+                몸무게: 59 kg
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-md-3  album-list">
+        <ul>
+            <li>
+                <img src="/Content/Images/Member/bts-jimin.png" class="img-thumbnail-circle img-circle" />
+                <div class="clearfix"></div>
+            </li>
+
+            <li class="list-main-title">
+                <div class="category-title">
+                    <h4>JIMIN</h4>
+                    <hr class="border-blue" style="min-width: 100px;" />
+                </div>
+            </li>
+
+            <li class="list-sub-title">
+리드보컬, 메인댄서            </li>
+
+            <li class="list-item">
+                본명: 박지민
+            </li>
+
+            <li class="list-item">
+                생년월일: 1995-10-13
+            </li>
+
+            <li class="list-item">
+                키: 173 cm
+            </li>
+
+            <li class="list-item">
+                몸무게: 60 kg
+            </li>
+
+        </ul>
+    </div>
+<div class="clearfix"></div>
+
+
+<!---->
+
+
+
+        <hr />
+        <footer style="margin-left: 1.5em;">
+            <div class="row">
+                <div class="col-md-4">&copy; 2018 - 빅히트 엔터테인먼트</div>
+                <div class="col-md-4"><a href="https://www.google.com.sg/maps/place/서울 강남 도산대로16길 13-20" target="_blank">서울 강남 도산대로16길 13-20</a></div>
+                <div class="col-md-4"><a href="tel:02-3456-7890" target="_blank">02-3456-7890</a></div>
+            </div>
+            <div class="row">
+                <button onclick="topFunction()" id="btnGotoTop" name="btnGotoTop" title="Go to top">Top</button>
+            </div>
+
+        </footer>
+    </div>
+
+
+
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+
+    <script src="/Scripts/bootstrap.js"></script>
+<script src="/Scripts/respond.js"></script>
+
+
+    <script src="/Scripts/scrollTop.js"></script>
+
+
+    
+    <script src="/Scripts/slideshow.js"></script>
+
+
+</body>
+</html>

@@ -12,7 +12,15 @@
 //#define GET_GRAPHICS
 //#define GET_GRAPHICS_byMEASUREITEM
 //#define GET_GRAPHICS_byDRAWITEM
-#define GET_GRAPHICS_byFROMIMAGE
+//#define GET_GRAPHICS_byFROMIMAGE
+//#define GET_GRAPHICS_byPrintPageEventArgs
+//#define GET_GRAPHICS_byFromHwnd
+//#define GET_GRAPHICS_byFromHdc
+//#define DRAW_Figure
+//#define DRAW_Polygon
+//#define FILLXXX
+//#define EXAM_GRADATION
+#define EXAM_TrafficLight
 
 using System;
 using System.Collections.Generic;
@@ -20,6 +28,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -59,7 +68,21 @@ namespace WinApp
         //TabControl tab;
 #elif GET_GRAPHICS_byDRAWITEM
         ListBox lbx;
-        //ComboBox cbx;       
+        //ComboBox cbx;  
+#elif GET_GRAPHICS_byPrintPageEventArgs
+        Button btnPrintDoc;   
+#elif GET_GRAPHICS_byFromHwnd
+        Button btnFromHwnd;
+#elif GET_GRAPHICS_byFromHdc
+        Button btnFromHdc;
+#elif DRAW_Polygon
+        Point[] ptFive = new Point[5];
+        Point[] ptThree = new Point[3];
+#elif FILLXXX
+        Point[] ptThree = new Point[3];
+#elif EXAM_TrafficLight
+        int signal = 0;
+        string[] signalNames = new string[] { "빨강", "노랑", "초록" };
 #else
         public int Alpha { get; private set; }
 #endif
@@ -138,10 +161,205 @@ namespace WinApp
             lbx.DrawMode = DrawMode.OwnerDrawFixed;// DrawItem 이벤트만 호출
             lbx.DrawItem += ListBox_DrawItemEvent;
             this.Controls.Add(lbx);
+#elif GET_GRAPHICS_byPrintPageEventArgs
+            this.Text = "PrintPageEventArgs를 통해 Graphics 객체 얻기";
+            btnPrintDoc = new Button();
+            btnPrintDoc.Text = "문서 인쇄";
+            btnPrintDoc.SetBounds(10, 10, 200, 100);
+            btnPrintDoc.Click += BtnPrintDoc_Click;
+            this.Controls.Add(btnPrintDoc);
+#elif GET_GRAPHICS_byFromHwnd
+            this.Text = "FromHwnd를 통해 Graphics 객체 얻기";
+            btnFromHwnd = new Button();
+            btnFromHwnd.Text = "Graphics.FromHwnd";
+            btnFromHwnd.SetBounds(10, 10, 200, 100);
+            btnFromHwnd.Click += BtnFromHwnd_Click;
+            this.Controls.Add(btnFromHwnd);
+#elif GET_GRAPHICS_byFromHdc
+            this.Text = "FromHdc를 통해 Graphics 객체 얻기";
+            btnFromHdc = new Button();
+            btnFromHdc.Text = "Graphics.FromHdc";
+            btnFromHdc.SetBounds(10, 130, 200, 100);
+            btnFromHdc.Click += BtnFromHdc_Click;
+            this.Controls.Add(btnFromHdc);
+#elif DRAW_Figure
+            this.Text = "그래픽 그리기";
+            this.Size = new Size(200, 200);
+#elif DRAW_Polygon
+            this.Text = "다각형과 타원 그리기";
+            this.Size = new Size(300, 400);
+            ptFive[0] = new Point(10, 20);
+            ptFive[1] = new Point(20, 70);
+            ptFive[2] = new Point(50, 100);
+            ptFive[3] = new Point(10, 150);
+            ptFive[4] = new Point(100, 100);
+
+            ptThree[0] = new Point(100, 10);
+            ptThree[1] = new Point(10, 100);
+            ptThree[2] = new Point(190, 100);
+#elif FILLXXX
+            this.Text = "FillXXX 계열 메서드";
+            ptThree[0] = new Point(100, 10);
+            ptThree[1] = new Point(10, 100);
+            ptThree[2] = new Point(190, 100);
+#elif EXAM_GRADATION
+            this.Text = "그라데이션 효과주기";
+#elif EXAM_TrafficLight
+            this.Text = "신호등";
+            this.Size = new Size(150, 400);
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Enabled = true;
+            timer.Tick += TrafficLightTimer_Tick;
 #else
             Alpha = 128;
 #endif
         }
+
+#if EXAM_TrafficLight
+        private void TrafficLightTimer_Tick(object sender, EventArgs e)
+        {
+            Random rand = new Random();
+            signal = rand.Next(3);
+
+            this.Invalidate(new Rectangle(10, 10, 120, 350));//신호등 이미지 새로고침
+
+            //this.Invalidate(new Rectangle(150, 10, 30, 20));//신호등 발생 메시지 영역 새로고침
+
+            //this.Invalidate();//화면 전체 새로고침
+
+            this.Update();
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.DrawString($"{signalNames[signal]} 발생", this.Font, Brushes.DarkGoldenrod, 150, 10);
+            g.DrawString($"Invalidate 영역 = {e.ClipRectangle}", this.Font, Brushes.DarkGoldenrod, 150, 40);
+            g.FillRectangle(Brushes.Black, 10, 10, 120, 350);
+            switch (signal)
+            {
+                case 0:
+                    g.FillEllipse(Brushes.Red, 20, 20, 100, 100);
+                    break;
+
+                case 1:
+                    g.FillEllipse(Brushes.Yellow, 20, 130, 100, 100);
+                    break;
+
+                case 2:
+                    g.FillEllipse(Brushes.Green, 20, 240, 100, 100);
+                    break;
+            }
+            DrawLine(g);
+        }
+
+        /// <summary>
+        /// 신호등 배경과 외각선모양
+        /// </summary>
+        /// <param name="g"></param>
+        private void DrawLine(Graphics g)
+        {
+            Pen pen = new Pen(Color.White, 4);
+            g.DrawEllipse(pen, 20, 20, 100, 100);
+            g.DrawEllipse(pen, 20, 130, 100, 100);
+            g.DrawEllipse(pen, 20, 240, 100, 100);
+        }
+#endif
+
+
+#if GET_GRAPHICS_byFromHwnd
+        private void BtnFromHwnd_Click(object sender, EventArgs e)
+        {
+            // 윈도우 포인터
+            IntPtr hwnd = new IntPtr();
+            hwnd = this.Handle;
+
+            using (Graphics gBg = Graphics.FromHwnd(hwnd))
+            {
+                gBg.FillRectangle(Brushes.Blue, this.ClientRectangle);
+            }//g.Dispose(); 반드시 필요
+
+            hwnd = btnFromHwnd.Handle;
+            using(Graphics gBtn = Graphics.FromHwnd(hwnd))
+            {
+                gBtn.DrawRectangle(new Pen(Color.IndianRed, 5), 10, 10, 180, 80);
+            }//g.Dispose(); 반드시 필요
+        }
+#elif GET_GRAPHICS_byFromHdc
+
+        // GDI API 가 제공하는 Ellipse 메서드 선언
+        /// <summary>
+        /// Win32 가 제공하는 표준함수(Ellipse)를 이용해 원그리기
+        /// </summary>
+        /// <param name="hdc">HDC</param>
+        /// <param name="nLeftRect">nLeftRect</param>
+        /// <param name="nTopRect">nTopRect</param>
+        /// <param name="nRightRect">nRightRect</param>
+        /// <param name="nBottomRect">nBottomRect</param>
+        /// <returns></returns>
+        [System.Runtime.InteropServices.DllImportAttribute("gdi32.dll")]
+        private static extern bool Ellipse(
+            IntPtr hdc
+            , int nLeftRect
+            , int nTopRect
+            , int nRightRect
+            , int nBottomRect
+        );
+
+        private void BtnFromHdc_Click(object sender, EventArgs e)
+        {
+            using (Graphics gBtn = btnFromHdc.CreateGraphics())
+            {
+                gBtn.DrawEllipse(Pens.Blue, 10, 10, 100, 70);
+                
+                IntPtr hdc = new IntPtr();
+                hdc = gBtn.GetHdc();
+                Ellipse(hdc, 100, 10, 50, 50);
+
+                using (Graphics gRect = Graphics.FromHdc(hdc))
+                {
+                    gRect.DrawRectangle(new Pen(Color.IndianRed, 5), 10, 10, 180, 80);
+                }//gRect.Dispose(); 반드시 필요
+
+            }//g.Dispose(); 반드시 필요
+        }
+#endif
+
+#if GET_GRAPHICS_byPrintPageEventArgs
+        private void BtnPrintDoc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PrintDocument doc = new PrintDocument();
+                doc.PrintPage += Doc_PrintPage;
+                doc.Print();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"프린터 중 예외 발생: {ex.ToString()}");
+            }
+        }
+
+        private void Doc_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            e.HasMorePages = false;
+
+            Graphics g = e.Graphics;
+            Pen pen = new Pen(Color.Black, 2);
+            for(int i=0; i < this.ClientSize.Width; i += 20)
+            {
+                g.DrawLine(pen, i, 0, i, this.ClientSize.Height);//세로 선
+            }
+
+            for(int i=0; i<this.ClientSize.Height; i += 20)
+            {
+                g.DrawLine(pen, 0, i, this.ClientSize.Width, i);//가로 선
+            }
+
+            g.DrawString($"{DateTime.Today} : 문서 작성자 [GilDong]", this.Font, Brushes.Black, 10, this.ClientSize.Height + 20);
+        }
+#endif
 
         private void BtnGetGraphicsFromImage_Click(object sender, EventArgs e)
         {
@@ -257,12 +475,14 @@ namespace WinApp
                     Image img = Image.FromFile(Application.StartupPath.Substring(0, Application.StartupPath.LastIndexOf(@"\bin")) + @"\Images\Baby.jpg");
                     using (Graphics g = Graphics.FromImage(img))
                     {
-                        Font font = new Font("돋움", 20);
+                        Font font = new Font("맑은 고딕", 20);
                         Brush brush = Brushes.Pink;
-                        g.DrawString("이미지에 글씨쓰기", font, brush, 10, 10);
+                        g.DrawString("꼬마야,", font, brush, 10, 180);
+                        g.DrawString("꽃신 신고", font, brush, 10, 210);
+                        g.DrawString("강가에 나가보렴", font, brush, 10, 240);
                     }//g.Dispose() 반드시 필요
 
-                    if(m_img == null)
+                    if (m_img == null)
                     {
                         FileInfo file = new FileInfo(Application.StartupPath.Substring(0, Application.StartupPath.LastIndexOf(@"\bin")) + @"\Images\Baby_copied.png");
                         if (file.Exists) file.Delete();
@@ -551,6 +771,71 @@ namespace WinApp
             if (m_img != null) g.DrawImage(m_img, 0, 0);
 #elif GET_GRAPHICS_byMEASUREITEM
 #elif GET_GRAPHICS_byDRAWITEM
+#elif GET_GRAPHICS_byPrintPageEventArgs
+#elif GET_GRAPHICS_byFromHwnd
+#elif GET_GRAPHICS_byFromHdc
+#elif DRAW_Figure
+            Graphics g = e.Graphics;
+            Pen pen = new Pen(Color.Black, 2);
+            g.DrawLine(pen, 10, 10, 190, 190);
+            g.DrawRectangle(pen, 10, 10, 100, 100);
+            g.DrawEllipse(pen, 50, 50, 100, 100);
+            g.DrawArc(pen, 100, 100, 80, 80, 0, -90);
+#elif DRAW_Polygon
+            Graphics g = e.Graphics;
+            Pen pen = new Pen(Color.Indigo, 2);
+            g.DrawPolygon(pen, ptFive);
+
+            pen.Color = Color.MediumAquamarine;
+            g.DrawPolygon(pen, ptThree);
+
+            pen.Color = Color.Khaki;
+            pen.Width = 1;
+
+            for(int i=0; i<200; i += 20)
+            {
+                g.DrawEllipse(pen, 70, 130, i, i + 50);
+            }
+#elif FILLXXX
+            Font font = new Font("맑은 고딕", 10);
+            Pen pen = new Pen(Brushes.DarkGreen, 1);
+            Graphics g = e.Graphics;
+            g.FillEllipse(Brushes.RosyBrown, 10, 100, 50, 50);
+            g.DrawString("위치: 10, 100, 크기: 50, 50, 원", font, Brushes.DarkGray, new Point(60, 120));
+            g.DrawLine(pen, 35, 125, 60, 130);
+
+            GraphicsPath gPath = new GraphicsPath();
+            gPath.AddEllipse(0, 0, 150, 100);
+            g.FillPath(Brushes.IndianRed, gPath);
+            //g.DrawString("위치: 0, 0, 크기: 150, 100, 타원", font, Brushes.DarkGray, new Point(150, 45));
+            g.DrawString("위치: 0, 0, 크기: 150, 100, 타원", font, Brushes.DarkGray, new Point(150, 0));
+            g.DrawLine(pen, 75, 50, 150, 10);
+
+            g.FillPie(Brushes.YellowGreen, 200, 10, 100, 100, 90, 180);
+            g.DrawString("위치: 200, 10, 크기: 100, 100, 파이", font, Brushes.DarkGray, new Point(300, 50));
+            g.DrawLine(pen, 225, 60, 300, 60);
+
+            g.FillPolygon(Brushes.Green, ptThree);
+            //g.DrawString("위치: 100, 10, 크기: 100, 100, 삼각", font, Brushes.DarkGray, new Point(200, 50));
+            g.DrawString("위치: 100, 10, 크기: 100, 100, 삼각", font, Brushes.DarkGray, new Point(270, 120));
+            g.DrawLine(pen, 150, 60, 270, 130);
+
+            g.FillRectangle(Brushes.Maroon, 50, 150, 100, 100);
+            g.DrawString("위치: 50, 150, 크기: 100, 100, 사각", font, Brushes.DarkGray, new Point(150, 300));
+            g.DrawLine(pen, 100, 200, 150, 310);
+
+            Rectangle rect = new Rectangle(150, 150, 100, 100);
+            Region region = new Region(rect);
+            g.FillRegion(Brushes.OrangeRed, region);
+            g.DrawString("위치: 150, 150, 크기: 100, 100, 사각", font, Brushes.DarkGray, new Point(250, 350));
+            g.DrawLine(pen, 200, 200, 250, 360);
+#elif EXAM_GRADATION
+            Graphics g = e.Graphics;
+            for(int i=0; i<256; i++)
+            {
+                g.DrawLine(new Pen(Color.FromArgb(i, 0, 0)), 10, 10, 256 - i, 10 + i);
+            }
+#elif EXAM_TrafficLight
 #else
             e.Graphics.FillEllipse(Brushes.Blue, 10, 10, 150, 100);
             SolidBrush brush = new SolidBrush(Color.FromArgb(Alpha, 255, 0, 0));
@@ -600,6 +885,14 @@ namespace WinApp
 #elif GET_GRAPHICS_byFROMIMAGE
 #elif GET_GRAPHICS_byMEASUREITEM
 #elif GET_GRAPHICS_byDRAWITEM
+#elif GET_GRAPHICS_byPrintPageEventArgs
+#elif GET_GRAPHICS_byFromHwnd
+#elif GET_GRAPHICS_byFromHdc
+#elif DRAW_Figure
+#elif DRAW_Polygon
+#elif FILLXXX
+#elif EXAM_GRADATION
+#elif EXAM_TrafficLight
 #else
             switch (e.KeyCode)
             {

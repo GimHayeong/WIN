@@ -1,0 +1,6 @@
+D:\Projects\2015\WpfApp\ConApp\bin\Debug\ConApp.exe.config
+D:\Projects\2015\WpfApp\ConApp\bin\Debug\ConApp.exe
+D:\Projects\2015\WpfApp\ConApp\bin\Debug\ConApp.pdb
+D:\Projects\2015\WpfApp\ConApp\obj\Debug\ConApp.exe
+D:\Projects\2015\WpfApp\ConApp\obj\Debug\ConApp.pdb
+D:\Projects\2015\WpfApp\ConApp\obj\Debug\ConApp.csprojResolveAssemblyReference.cache

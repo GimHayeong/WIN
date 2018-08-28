@@ -76,6 +76,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData.cs" />
     <Compile Include="Util.cs" />
+    <Compile Include="Utils\TcpSocketLib.cs" />
+    <Compile Include="Utils\UdpSocketLib.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

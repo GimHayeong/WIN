@@ -1,8 +1,8 @@
 D:\Projects\2015\WpfApp\ClientApp\bin\Debug\ClientApp.exe.config
 D:\Projects\2015\WpfApp\ClientApp\bin\Debug\ClientApp.exe
 D:\Projects\2015\WpfApp\ClientApp\bin\Debug\ClientApp.pdb
-D:\Projects\2015\WpfApp\ClientApp\bin\Debug\ServerLib.dll
-D:\Projects\2015\WpfApp\ClientApp\bin\Debug\ServerLib.pdb
 D:\Projects\2015\WpfApp\ClientApp\obj\Debug\ClientApp.csprojResolveAssemblyReference.cache
 D:\Projects\2015\WpfApp\ClientApp\obj\Debug\ClientApp.exe
 D:\Projects\2015\WpfApp\ClientApp\obj\Debug\ClientApp.pdb
+D:\Projects\2015\WpfApp\ClientApp\bin\Debug\CSCommonLib.dll
+D:\Projects\2015\WpfApp\ClientApp\bin\Debug\CSCommonLib.pdb
