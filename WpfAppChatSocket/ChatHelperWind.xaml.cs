@@ -159,7 +159,7 @@ namespace WpfAppChatSocket
                 {
                     tbxInfo.AppendText($"{msg}\r\n");
                     tbxInfo.ScrollToEnd();
-                    tbxInfo.Focus();
+                    tbxInput.Focus();
                 }
                 else
                 {

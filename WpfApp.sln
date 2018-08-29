@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConAppReceiveSerialData", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppChatSocket", "WpfAppChatSocket\WpfAppChatSocket.csproj", "{92B52164-3E9A-4CC0-A30E-AAD76503A4D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppWebBrowser", "WpfAppWebBrowser\WpfAppWebBrowser.csproj", "{5D180EC0-2185-46B4-8970-FD690579C642}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +161,10 @@ Global
 		{92B52164-3E9A-4CC0-A30E-AAD76503A4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92B52164-3E9A-4CC0-A30E-AAD76503A4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92B52164-3E9A-4CC0-A30E-AAD76503A4D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D180EC0-2185-46B4-8970-FD690579C642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D180EC0-2185-46B4-8970-FD690579C642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D180EC0-2185-46B4-8970-FD690579C642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D180EC0-2185-46B4-8970-FD690579C642}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

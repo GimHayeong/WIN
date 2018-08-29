@@ -21,7 +21,7 @@
 
         <TextBox x:Name="tbxIP" Margin="5"/>
         <Button x:Name="btnConnect" Grid.Column="1" Content="연결" Padding="10,0" Margin="5" Click="Button_Click"/>
-        <TextBox x:Name="tbxInfo" Grid.Row="1" Grid.ColumnSpan="2" Margin="5"/>
+        <TextBox x:Name="tbxInfo" Grid.Row="1" Grid.ColumnSpan="2" Margin="5" IsReadOnly="True"/>
         <TextBox x:Name="tbxInput" Grid.Row="2" Grid.ColumnSpan="2" Margin="5" KeyDown="InputTextBox_KeyDown"/>
     </Grid>
 </Window>

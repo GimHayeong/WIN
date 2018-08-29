@@ -170,18 +170,16 @@ namespace WpfAppChatSocket
         {
             try
             {
-                if(m_client != null)
+                if(m_client != null && m_client.Connected)
                 {
-                    if(m_client.Connected)
-                    {
-                        m_client.Close();
-                    }
-
-                    if (m_thread.IsAlive)
-                    {
-                        m_thread.Abort();
-                    }
+                    m_client.Close();
                 }
+
+                if (m_thread.IsAlive)
+                {
+                    m_thread.Abort();
+                }
+
                 m_wnd.AddMsg("채팅서버 연결 종료");
             }
             catch(Exception ex)

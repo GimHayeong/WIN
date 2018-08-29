@@ -1,0 +1,14 @@
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\bin\Debug\WpfAppWebBrowser.exe.config
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\bin\Debug\WpfAppWebBrowser.exe
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\bin\Debug\WpfAppWebBrowser.pdb
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\obj\Debug\WpfAppWebBrowser.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\obj\Debug\MainWindow.g.cs
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\obj\Debug\App.g.cs
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\obj\Debug\WpfAppWebBrowser_MarkupCompile.cache
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\obj\Debug\WpfAppWebBrowser_MarkupCompile.lref
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\obj\Debug\MainWindow.baml
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\obj\Debug\WpfAppWebBrowser.g.resources
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\obj\Debug\WpfAppWebBrowser.Properties.Resources.resources
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\obj\Debug\WpfAppWebBrowser.csproj.GenerateResource.Cache
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\obj\Debug\WpfAppWebBrowser.exe
+D:\Projects\2015\WpfApp\WpfAppWebBrowser\obj\Debug\WpfAppWebBrowser.pdb

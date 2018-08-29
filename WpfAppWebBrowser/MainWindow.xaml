@@ -1,0 +1,44 @@
+﻿<Window x:Class="WpfAppWebBrowser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppWebBrowser"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="웹과 어플리케이션 연동" Height="300" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="Padding" Value="10,0,10,0"/>
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Button x:Name="btnBack" Grid.Column="1" Content="뒤로" Click="Button_Click"/>
+        <Button x:Name="btnHome" Grid.Column="2" Content="홈" Click="Button_Click"/>
+        <Button x:Name="btnForward" Grid.Column="3" Content="앞으로" Click="Button_Click"/>
+        <Button x:Name="btnStop" Grid.Column="5" Content="정지" Click="Button_Click"/>
+        <Button x:Name="btnRefresh" Grid.Column="6" Grid.ColumnSpan="2" Content="새로고침" Click="Button_Click"/>
+        <TextBox x:Name="tbxUrl" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" Margin="5" KeyDown="TextBox_KeyDown"/>
+        <Button x:Name="btnGo" Grid.Row="1" Grid.Column="7" Content="이동" Click="Button_Click"/>
+        <WebBrowser x:Name="webView" Grid.Row="2" Grid.ColumnSpan="9" Margin="5" LoadCompleted="WebBrowser_LoadCompleted"/>
+    </Grid>
+</Window>
