@@ -1,0 +1,9 @@
+D:\Projects\2015\WpfApp\WinAppTcpPort\bin\Debug\WinAppTcpPort.exe.config
+D:\Projects\2015\WpfApp\WinAppTcpPort\obj\Debug\WinAppTcpPort.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\WinAppTcpPort\obj\Debug\WinAppTcpPort.frmTcpPort.resources
+D:\Projects\2015\WpfApp\WinAppTcpPort\obj\Debug\WinAppTcpPort.Properties.Resources.resources
+D:\Projects\2015\WpfApp\WinAppTcpPort\obj\Debug\WinAppTcpPort.csproj.GenerateResource.Cache
+D:\Projects\2015\WpfApp\WinAppTcpPort\bin\Debug\WinAppTcpPort.exe
+D:\Projects\2015\WpfApp\WinAppTcpPort\bin\Debug\WinAppTcpPort.pdb
+D:\Projects\2015\WpfApp\WinAppTcpPort\obj\Debug\WinAppTcpPort.exe
+D:\Projects\2015\WpfApp\WinAppTcpPort\obj\Debug\WinAppTcpPort.pdb

@@ -1,0 +1,22 @@
+﻿<Window x:Class="WpfAppTcpScan.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppTcpScan"
+        mc:Ignorable="d"
+        Title="서버 해킹 감시" Height="350" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="tbxInfo" Grid.ColumnSpan="2" Margin="5"/>
+        <Button x:Name="btnStart" Grid.Row="1" Content="서버 감시 시작" HorizontalAlignment="Center" Padding="10,5" Margin="5" Click="StartButton_Click"/>
+        <Button x:Name="btnExit" Grid.Row="1" Grid.Column="1" Content="프로그램 종료" HorizontalAlignment="Center" Padding="10,5" Margin="5" Click="ExitButton_Click"/>
+    </Grid>
+</Window>
