@@ -1,0 +1,14 @@
+D:\Projects\2015\WpfApp\WpfAppFTP\bin\Debug\WpfAppFTP.exe.config
+D:\Projects\2015\WpfApp\WpfAppFTP\bin\Debug\WpfAppFTP.exe
+D:\Projects\2015\WpfApp\WpfAppFTP\bin\Debug\WpfAppFTP.pdb
+D:\Projects\2015\WpfApp\WpfAppFTP\obj\Debug\WpfAppFTP.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\WpfAppFTP\obj\Debug\MainWindow.g.cs
+D:\Projects\2015\WpfApp\WpfAppFTP\obj\Debug\App.g.cs
+D:\Projects\2015\WpfApp\WpfAppFTP\obj\Debug\WpfAppFTP_MarkupCompile.cache
+D:\Projects\2015\WpfApp\WpfAppFTP\obj\Debug\WpfAppFTP_MarkupCompile.lref
+D:\Projects\2015\WpfApp\WpfAppFTP\obj\Debug\MainWindow.baml
+D:\Projects\2015\WpfApp\WpfAppFTP\obj\Debug\WpfAppFTP.g.resources
+D:\Projects\2015\WpfApp\WpfAppFTP\obj\Debug\WpfAppFTP.Properties.Resources.resources
+D:\Projects\2015\WpfApp\WpfAppFTP\obj\Debug\WpfAppFTP.csproj.GenerateResource.Cache
+D:\Projects\2015\WpfApp\WpfAppFTP\obj\Debug\WpfAppFTP.exe
+D:\Projects\2015\WpfApp\WpfAppFTP\obj\Debug\WpfAppFTP.pdb

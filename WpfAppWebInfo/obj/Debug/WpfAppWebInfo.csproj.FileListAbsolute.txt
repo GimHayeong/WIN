@@ -12,3 +12,7 @@ D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo.Properties.Resourc
 D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo.csproj.GenerateResource.Cache
 D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo.exe
 D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo.pdb
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WebReaderWind.g.cs
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WebReaderWind.baml
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WebInfoWind.g.cs
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WebInfoWind.baml
