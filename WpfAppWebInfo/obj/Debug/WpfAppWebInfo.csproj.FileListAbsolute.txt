@@ -1,0 +1,14 @@
+D:\Projects\2015\WpfApp\WpfAppWebInfo\bin\Debug\WpfAppWebInfo.exe.config
+D:\Projects\2015\WpfApp\WpfAppWebInfo\bin\Debug\WpfAppWebInfo.exe
+D:\Projects\2015\WpfApp\WpfAppWebInfo\bin\Debug\WpfAppWebInfo.pdb
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\MainWindow.g.cs
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\App.g.cs
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo_MarkupCompile.cache
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo_MarkupCompile.lref
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\MainWindow.baml
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo.g.resources
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo.Properties.Resources.resources
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo.csproj.GenerateResource.Cache
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo.exe
+D:\Projects\2015\WpfApp\WpfAppWebInfo\obj\Debug\WpfAppWebInfo.pdb

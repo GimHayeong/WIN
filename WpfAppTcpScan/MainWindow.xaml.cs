@@ -58,13 +58,29 @@ namespace WpfAppTcpScan
                 {
                     try
                     {
-                        if (m_threadArray[i].IsAlive) m_threadArray[i].Abort();
+                        if (m_threadArray[i].IsAlive) m_threadArray[i].Join(3000);
                     }
                     catch { }
                 }
             }
 
             this.Close();
+        }
+
+        private void StopThreadsByDispatcher()
+        {
+            Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Send, new Action(() =>
+            {
+                for (int i = 0; i < m_fakePortArray.Length; i++)
+                {
+                    try
+                    {
+                        if (m_threadArray[i].IsAlive) m_threadArray[i].Join(3000);
+                        AddMsg($"{i} 스레드 종료");
+                    }
+                    catch { }
+                }
+            }));
         }
 
         public void AddMsg(string msg)
