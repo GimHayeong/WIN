@@ -1,0 +1,47 @@
+﻿<Window x:Class="WpfAppChat.ChatWind"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppChat"
+        mc:Ignorable="d"
+        Closed="Window_Closed"
+        Title="이모티콘 채팅 Ver 1.0" Height="500" Width="300" MinHeight="300" MinWidth="300">
+    <DockPanel>
+        <DockPanel.Resources>
+            <ResourceDictionary>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="Padding" Value="10,5"/>
+                    <Setter Property="MinWidth" Value="130"/>
+                </Style>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </ResourceDictionary>
+        </DockPanel.Resources>
+        <GroupBox Header="옵션" DockPanel.Dock="Top" VerticalAlignment="Top">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="btnStart" Content="서버 시작" Click="StartButton_Click"/>
+                    <Button x:Name="btnConnect" Content="서버 연결" Click="ConnectButton_Click"/>
+                </StackPanel>
+                <DockPanel>
+                    <Label Content="서버 아이피:"/>
+                    <TextBox x:Name="tbxIP" Margin="5" KeyDown="IPTextBox_KeyDown"/>
+                </DockPanel>
+            </StackPanel>
+        </GroupBox>
+        <StatusBar x:Name="sbarStatus" DockPanel.Dock="Bottom" MinHeight="5" Margin="0,5,0,0">
+            <StatusBarItem>
+                <TextBlock x:Name="tbkCurrentStatus"/>
+            </StatusBarItem>
+        </StatusBar>
+        <RichTextBox x:Name="rtbxInput" DockPanel.Dock="Bottom" Margin="5" PreviewKeyDown="InputRichTexBox_PreviewKeyDown"/>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="btnFont" Content="폰트" Click="FontButton_Click"/>
+            <Button x:Name="btnEmoticon" Content="이모티콘" Click="EmoticonButton_Click"/>
+        </StackPanel>
+        <RichTextBox x:Name="rtbxInfo" Margin="5" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+    </DockPanel>
+</Window>

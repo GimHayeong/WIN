@@ -36,15 +36,7 @@ namespace WpfAppFTP
         /// [파일전송메시지] 전송할 파일정보
         /// </summary>
         private const string CTOC_FILE_TRANS_INFO = "CTOC_FILE_TRANS_INFO";
-        /// <summary>
-        /// [파일전송메시지] 파일전송 수락
-        /// </summary>
-        private const string CTOC_FILE_TRANS_YES = "CTOC_FILE_TRANS_YES";
-        /// <summary>
-        /// [파일전송메시지] 파일전송 거부
-        /// </summary>
-        private const string CTOC_FILE_NO = "CTOC_FILE_TRANS_NO";
-
+ 
         private FileTransfer m_ftp = null;
         /// <summary>
         /// FTP 서버 시작 스레드

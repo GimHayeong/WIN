@@ -18,3 +18,13 @@ D:\Projects\2015\WpfApp\WpfAppChatSocket\obj\Debug\ChatStreamWind.g.cs
 D:\Projects\2015\WpfApp\WpfAppChatSocket\obj\Debug\ChatStreamWind.baml
 D:\Projects\2015\WpfApp\WpfAppChatSocket\obj\Debug\ChatHelperWind.g.cs
 D:\Projects\2015\WpfApp\WpfAppChatSocket\obj\Debug\ChatHelperWind.baml
+D:\Projects\2015\WpfApp\WpfAppChatSocket\bin\Debug\BLL.dll
+D:\Projects\2015\WpfApp\WpfAppChatSocket\bin\Debug\DAL.dll
+D:\Projects\2015\WpfApp\WpfAppChatSocket\bin\Debug\System.Net.Http.Formatting.dll
+D:\Projects\2015\WpfApp\WpfAppChatSocket\bin\Debug\MySql.Data.dll
+D:\Projects\2015\WpfApp\WpfAppChatSocket\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\2015\WpfApp\WpfAppChatSocket\bin\Debug\Google.Protobuf.dll
+D:\Projects\2015\WpfApp\WpfAppChatSocket\bin\Debug\BLL.pdb
+D:\Projects\2015\WpfApp\WpfAppChatSocket\bin\Debug\DAL.pdb
+D:\Projects\2015\WpfApp\WpfAppChatSocket\bin\Debug\MySql.Data.xml
+D:\Projects\2015\WpfApp\WpfAppChatSocket\bin\Debug\Google.Protobuf.xml

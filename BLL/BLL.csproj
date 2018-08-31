@@ -71,6 +71,9 @@
   <ItemGroup>
     <Compile Include="AddressBook.cs" />
     <Compile Include="ApiData.cs" />
+    <Compile Include="INetwork.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="Network.cs" />
     <Compile Include="MembershipBLL.cs" />
     <Compile Include="ProductAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
