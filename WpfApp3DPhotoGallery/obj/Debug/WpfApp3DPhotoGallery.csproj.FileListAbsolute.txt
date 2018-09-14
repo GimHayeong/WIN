@@ -1,0 +1,17 @@
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\WpfApp3DPhotoGallery.csprojResolveAssemblyReference.cache
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\App.g.cs
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\WpfApp3DPhotoGallery_MarkupCompile.cache
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\WpfApp3DPhotoGallery_MarkupCompile.lref
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\bin\Debug\WpfApp3DPhotoGallery.exe.config
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\bin\Debug\WpfApp3DPhotoGallery.exe
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\bin\Debug\WpfApp3DPhotoGallery.pdb
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\resPhotoGallery.baml
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\WpfApp3DPhotoGallery.g.resources
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\WpfApp3DPhotoGallery.Properties.Resources.resources
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\WpfApp3DPhotoGallery.csproj.GenerateResource.Cache
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\WpfApp3DPhotoGallery.exe
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\WpfApp3DPhotoGallery.pdb
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\MainWind.g.cs
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\MainWind.baml
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\RenameDialog.g.cs
+D:\Projects\2015\WpfAppProject\WpfApp3DPhotoGallery\obj\Debug\RenameDialog.baml
