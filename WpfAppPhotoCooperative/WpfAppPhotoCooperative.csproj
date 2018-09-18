@@ -115,15 +115,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Photos\child-1871104_1920.jpg" />
     <Resource Include="Photos\child-817371_1920.jpg" />
-    <Resource Include="Photos\child-817373_1920.jpg" />
-    <Resource Include="Photos\children-817365_1920.jpg" />
     <Resource Include="Photos\children-817368_1920.jpg" />
     <Resource Include="Photos\girl-1357485_1920.jpg" />
-    <Resource Include="Photos\girl-797837_1920.jpg" />
     <Resource Include="Photos\siblings-817369_1920.jpg" />
-    <Resource Include="Photos\sleeping-1311784_1920.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\photoframe.png" />
@@ -139,10 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Photos\girl-3402351_1920.jpg" />
-    <Resource Include="Photos\girl-738306_1920.jpg" />
     <Resource Include="Photos\girl-918686_1920.jpg" />
     <Resource Include="Photos\girls-462072_1920.jpg" />
-    <Resource Include="Photos\kids-1508121_1920.jpg" />
     <Resource Include="Photos\little-girl-2516582_1920.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
