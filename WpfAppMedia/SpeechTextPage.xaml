@@ -1,0 +1,25 @@
+﻿<Page x:Class="WpfAppMedia.SpeechTextPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppMedia"
+      mc:Ignorable="d" 
+      d:DesignHeight="200" d:DesignWidth="300"
+      Title="Speech Recognition Text Sample Page">
+
+    <DockPanel Margin="10">
+        <WrapPanel DockPanel.Dock="Top">
+            <WrapPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="0,0,5,0"/>
+                    <Setter Property="Padding" Value="10,2"/>
+                </Style>
+            </WrapPanel.Resources>
+            <Button x:Name="btnNew" Content="New" Click="NewButton_Click"/>
+            <Button x:Name="btnOpen" Content="Open" Click="OpenButton_Click"/>
+            <Button x:Name="btnSave" Content="Save" Click="SaveButtn_Click"/>
+        </WrapPanel>
+        <TextBox x:Name="tbxSpeech" Margin="0,10" AcceptsReturn="True" TextWrapping="Wrap"/>
+    </DockPanel>
+</Page>

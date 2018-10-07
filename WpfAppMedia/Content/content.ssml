@@ -1,0 +1,21 @@
+﻿<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
+  <say-as interpret-as="characters">WPF</say-as>
+  sounds better than WPF
+  <break time="2000ms"/>
+  
+  The time is 
+  <say-as interpret-as="time">08:25</say-as>
+  <break time="2000ms"/>
+
+  Hey Heami, can you speel queue?
+  <voice name="Microsoft Heami Desktop">
+    <say-as interpret-as="characters">queue</say-as>
+  </voice>
+  
+  Do it faster!
+  <voice name="Microsoft Heami Desktop">
+    <prosody rate="x-fast">
+      <say-as interpret-as="characters">queue</say-as>
+    </prosody>
+  </voice>
+</speak>

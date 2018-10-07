@@ -1,0 +1,18 @@
+﻿<Window x:Class="WpfAppMedia.SpeechCommandWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppMedia"
+        mc:Ignorable="d"
+        Width="325" Height="200"
+        Closing="Window_Closing"
+        Title="Speech Recognition Command Sample Page">
+
+    <DockPanel Margin="10">
+        <WrapPanel DockPanel.Dock="Top">
+            <ToggleButton x:Name="btnToggleListening" Content="Listen" Click="ListeningToggleButton_Click"/>
+        </WrapPanel>
+        <Label x:Name="lblDemo" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" Content="Hello, World!"/>
+    </DockPanel>
+</Window>

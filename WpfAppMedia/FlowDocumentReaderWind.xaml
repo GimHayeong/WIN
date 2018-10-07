@@ -1,0 +1,41 @@
+﻿<Window x:Class="WpfAppMedia.FlowDocumentReaderWind"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppMedia"
+        xmlns:a="clr-namespace:System.Windows.Annotations;assembly=PresentationFramework"
+        mc:Ignorable="d"
+        Title="FlowDocumentReader 에서 주석추가" Width="700" Height="400">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="resAboutWPF.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Control Annotations:"/>
+            <Button Content="Create Text Note"
+                    Command="a:AnnotationService.CreateTextStickyNoteCommand"
+                    CommandTarget="{Binding ElementName=reader}"/>
+            <Button Content="Create Ink Note"
+                    Command="a:AnnotationService.CreateInkStickyNoteCommand"
+                    CommandTarget="{Binding ElementName=reader}"/>
+            <Button Content="Remove Note"
+                    Command="a:AnnotationService.DeleteStickyNotesCommand"
+                    CommandTarget="{Binding ElementName=reader}"/>
+            <Button Content="Create Yellow Highlight"
+                    Command="a:AnnotationService.CreateHighlightCommand"
+                    CommandTarget="{Binding ElementName=reader}"/>
+            <Button Content="Remove Highlight"
+                    Command="a:AnnotationService.ClearHighlightsCommand"
+                    CommandTarget="{Binding ElementName=reader}"/>
+        </StackPanel>
+        <FlowDocumentReader x:Name="reader">
+            <StaticResource ResourceKey="aboutWPF"/>
+        </FlowDocumentReader>
+    </StackPanel>
+
+</Window>

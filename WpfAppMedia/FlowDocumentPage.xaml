@@ -1,0 +1,161 @@
+﻿<Page x:Class="WpfAppMedia.FlowDocumentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppMedia"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="500"
+      Title="FlowDocumentPage">
+
+    <FlowDocument>
+        <Paragraph FontSize="22" FontWeight="Bold">Capter 1</Paragraph>
+        <Paragraph FontSize="35" FontWeight="Bold">Why WPF?</Paragraph>
+        <Paragraph>
+            <!--<Figure Width="130" HorizontalAnchor="ColumnRight">
+                <BlockUIContainer>
+                    <Image Source="Images/wpf.png" Opacity=".9"/>
+                </BlockUIContainer>
+            </Figure>-->
+            <!-- Floater : Figure를 단순화한 엘리먼트. (페이지나 스팬, 컬럼의 상대적 위치 조정 미지원)-->
+            <Floater Width="130" HorizontalAlignment="Right">
+                <BlockUIContainer>
+                    <Image Source="Images/wpf.png" Opacity=".9"/>
+                </BlockUIContainer>
+            </Floater>
+            In movies and on TV, the main characters are typically an exaggeration of the people you encounter in real life.
+            They're more attractive, they react quicker, and they somehow always know exactly what to do. 
+            The same could be said about the software they use.
+        </Paragraph>
+        <Paragraph>
+            This first struck me back in 1994 when watching the movie Disclosure, starring Michael Douglas, Demi Moore, and an email program that looks nothing like Microsoft Outlook!
+            Throughout the movie, we're treated to various visual features of the program: a spinning three-dimensional "e," messages that unfold when you open them and crumple when you delete them, hints of inking support, and slick animations when you print messages. 
+            (The email program isn't even the most unrealistic software in the movie. I'll just say "virtual reality database" and leave it at that.)
+        </Paragraph>
+        <Paragraph>
+            Usability issues aside, Hollywood has been telling us for a long time that software in the real world isn't as compelling as it should be. You can probably think of several examples on your own of TV shows and movies with comically unrealistic software. But real-world software is starting to catch up to Hollywood's standards! You can already see it in traditional operating systems (such as Mac OS and more recently Windows Vista), in software for devices such as TiVo or Xbox, and on the Web thanks to Adobe Flash. Users have increasing expectations for the experience of using software, and companies are spending a great deal of time and money on user interfaces that differentiate themselves from the competition.
+        </Paragraph>
+        <Paragraph>
+            Microsoft now has a solution for helping people create 21st-century software that meets these high demands, using less time and less money. This solution is Windows Presentation Foundation (WPF).
+        </Paragraph>
+        <Section LineHeight="2" Foreground="White" Background="Black">
+            <Paragraph FontSize="18">
+                <Bold>WPF</Bold> Unleashed
+            </Paragraph>
+            <Paragraph FontSize="30" FontWeight="Bold">
+                <Italic>Notes from Chapter 1</Italic>
+            </Paragraph>
+        </Section>
+        <Paragraph>
+            <Hyperlink NavigateUri="http://www.daum.net">Here</Hyperlink> are some highlights of WPF:
+        </Paragraph>
+        <List>
+            <ListItem>
+                <Paragraph>Broad integration</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>Resolution independence</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>Hardware acceleration</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>Declarative programming</Paragraph>
+            </ListItem>
+            <ListItem>
+                <Paragraph>
+                    <Span>
+                        <Span.TextDecorations>
+                            <TextDecoration Location="Strikethrough"/>
+                        </Span.TextDecorations>
+                        Rich composition and customization
+                    </Span>
+                </Paragraph>
+            </ListItem>
+        </List>
+        <BlockUIContainer>
+            <Viewbox>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Images/diagram.jpg" Margin="5"/>
+                    <TextBlock VerticalAlignment="Center" Width="100" TextWrapping="Wrap">The technologies in the .NET Framework 3.0.</TextBlock>
+                </StackPanel>
+            </Viewbox>
+        </BlockUIContainer>
+        <Paragraph>Here's another version of the diagram, as a Table:</Paragraph>
+        <Table CellSpacing="5" Padding="15" FontFamily="Segoe UI">
+            <Table.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="{x:Type TableCell}">
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="TextAlignment" Value="Center"/>
+                    </Style>
+                </ResourceDictionary>
+            </Table.Resources>
+            <Table.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="Yellow" Offset="0"/>
+                    <GradientStop Color="Orange" Offset="1"/>
+                </LinearGradientBrush>
+            </Table.Background>
+            <Table.Columns>
+                <TableColumn/>
+                <TableColumn/>
+                <TableColumn/>
+                <TableColumn/>
+            </Table.Columns>
+            <TableRowGroup>
+                <TableRow>
+                    <TableCell ColumnSpan="4" 
+                               TextAlignment="Center" 
+                               LineHeight="50"
+                               Background="Transparent" 
+                               BorderBrush="Transparent">
+                        <Paragraph FontWeight="Bold">.NET Framework 3.0</Paragraph>
+                    </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell LineHeight="70">
+                        <Paragraph FontWeight="Bold">WPF</Paragraph>
+                    </TableCell>
+                    <TableCell>
+                        <Paragraph FontWeight="Bold">WCF</Paragraph>
+                    </TableCell>
+                    <TableCell>
+                        <Paragraph FontWeight="Bold">WF</Paragraph>
+                    </TableCell>
+                    <TableCell>
+                        <Paragraph FontWeight="Bold">WCS</Paragraph>
+                    </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell>
+                        <Paragraph FontWeight="Bold">ADO.NET</Paragraph>
+                    </TableCell>
+                    <TableCell>
+                        <Paragraph FontWeight="Bold">ASP.NET</Paragraph>
+                    </TableCell>
+                    <TableCell>
+                        <Paragraph FontWeight="Bold">Windows Forms</Paragraph>
+                    </TableCell>
+                    <TableCell>
+                        <Paragraph FontWeight="Bold">-</Paragraph>
+                    </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell ColumnSpan="4" TextAlignment="Center" LineHeight="30">
+                        <Paragraph FontWeight="Bold">
+                            <LineBreak/> 
+                            Common Language Runtime
+                            <LineBreak/>
+                        </Paragraph>
+                    </TableCell>
+                </TableRow>
+            </TableRowGroup>
+        </Table>
+        <Paragraph>
+            You can read more about this on my blog (<Hyperlink NavigateUri="http://blogs.msdn.com/adam_nathan/rss.aspx">subscribe</Hyperlink><InlineUIContainer><Image Width="14" Source="Images/rss.gif"/></InlineUIContainer>), which I try to update once a month.
+        </Paragraph>
+    </FlowDocument>
+</Page>

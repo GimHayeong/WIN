@@ -1,0 +1,42 @@
+﻿<Window x:Class="WpfAppMedia.SpeechWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppMedia"
+        Closing="Window_Closing"
+        mc:Ignorable="d"
+        Title="SpeechWnd" Height="300" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Padding" Value="10,5"/>
+                    <Setter Property="Margin" Value="10,5"/>
+                </Style>
+            </StackPanel.Resources>
+            <ComboBox x:Name="cbxVoice"/>
+            <TextBox x:Name="tbxMsg" MinWidth="100" Text="I love WPF"/>
+            <Button x:Name="btnSpeak" Content="Speak" Click="SpeakButton_Click"/>
+            <Button x:Name="btnPrompt" Content="PromptBuilder" Click="PromptButton_Click"/>
+            <Button x:Name="btnSSML" Content="SSML" Click="SSMLButton_Click"/>
+            <Button x:Name="btnText" Content="TEXT" Click="TextButton_Click"/>
+            <Button x:Name="btnWPF" Click="WPFButton_Click">
+                <Button.Content>
+                    <Image Width="20" Source="Images/wpf.png"/>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+
+        <TextBox x:Name="tbxResult" Grid.Row="1"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+            <Button x:Name="btnRecord" Content="REC" Click="RecordButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

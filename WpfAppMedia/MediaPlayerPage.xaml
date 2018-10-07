@@ -1,0 +1,56 @@
+﻿<Page x:Class="WpfAppMedia.MediaPlayerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppMedia"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="MediaPlayerPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="btnPlay">
+                <EventTrigger.Actions>
+                    <BeginStoryboard x:Name="playVideo">
+                        <Storyboard>
+                            <MediaTimeline Source="Video/kaist.wmv" 
+                                           Storyboard.TargetName="video"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="btnPause">
+                <EventTrigger.Actions>
+                    <PauseStoryboard BeginStoryboardName="playVideo"/>
+                </EventTrigger.Actions>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="btnResume">
+                <EventTrigger.Actions>
+                    <ResumeStoryboard BeginStoryboardName="playVideo"/>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Grid.Triggers>
+        
+        <MediaElement x:Name="video" MediaFailed="Video_MediaFailed"/>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+            <StackPanel.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#55FFFFFF"/>
+                        <Setter Property="Padding" Value="5,10"/>
+                    </Style>
+                </ResourceDictionary>
+            </StackPanel.Resources>
+            <Button x:Name="btnPlay" Content="Play"/>
+            <Button x:Name="btnPause" Content="Pause"/>
+            <Button x:Name="btnResume" Content="Resume"/>
+        </StackPanel>
+    </Grid>
+</Page>

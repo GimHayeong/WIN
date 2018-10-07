@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grammar version="1.0" xml:lang="en-US"
+         xmlns="http://www.w3.org/2001/06/grammar"
+         tag-format="semantics/1.0"
+         root="Main">
+  <!--
+  Grammar citiesGrammar = new Grammar("cities.xml");
+  citiesGrammar.Name = "SRGS File Cities Grammar";
+  -->
+  <rule id="Main">
+    <item>
+      I would like to fly from <ruleref uri="#Cities"/>
+      to <ruleref uri="#Cities"/>
+    </item>
+  </rule>
+  <rule id="Cities" scope="public">
+    <one-of>
+      <item>Seattle</item>
+      <item>Los Angeles</item>
+      <item>New York</item>
+      <item>Miami</item>
+    </one-of>
+  </rule>
+</grammar>
